@@ -105,6 +105,7 @@
 ; setup evil
 (require 'evil)
 (evil-mode 1)
+(define-key evil-motion-state-map ";" 'evil-ex)
 
 ; Highlight current line
 (global-hl-line-mode 1)
