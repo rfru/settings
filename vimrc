@@ -12,7 +12,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rfru/ctrlp-dwim'
 Bundle 'rfru/vim-gocode'
-Bundle 'rfru/vim-jsdev'
 Bundle 'Raimondi/delimitMate'
 Bundle 'pangloss/vim-javascript'
 Bundle 'mileszs/ack.vim'
@@ -83,6 +82,8 @@ colorscheme clean
 
 source $VIMRUNTIME/macros/matchit.vim
 
+noremap ; :
+
 " Relies on nsf/gocode, $GOROOT, $GOPATH
 autocmd FileType go set omnifunc=gocomplete#Complete
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
@@ -143,5 +144,4 @@ hi! link jsThis Typedef
 hi! link jsDocTags Comment
 hi! link jsDocParam javaDocParam
 hi! link jsNull Constant
-map <Leader>j call JsdevConfig(1)
 
