@@ -3,7 +3,7 @@ import sys
 import subprocess
 import re
 import pipes
-tools = set(["sublime", "mydiff", "emacs"])
+tools = set(["mydiff", "emacs"])
 
 while True:
   line = raw_input()
@@ -21,9 +21,6 @@ while True:
       args = [editFilename(a.strip()) for a in spl[2:]]
 
       shell = False
-      if spl[1] == "sublime":
-        args.insert(0, "-a")
-        args.insert(0, "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl")
       if spl[1] == "emacs":
         args.insert(0, "-n")
         args.insert(0, "/usr/local/bin/emacsclient")
