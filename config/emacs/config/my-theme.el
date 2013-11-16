@@ -1,18 +1,21 @@
+(if (equal system-type 'darwin)
+    (progn
+                                        ;(setq noctilux-broken-srgb nil)
+                                        ;(load-theme 'noctilux t)
+
+      (set-face-attribute 'default nil :family "Consolas")
+      (set-face-attribute 'default nil :height 140)
+      (set-fontset-font "fontset-default"
+                        'unicode
+                        '("Consolas" . "iso10646-1"))
+      (setq-default line-spacing 6)
+      (add-to-list 'default-frame-alist '(width  . 125))
+      (add-to-list 'default-frame-alist '(height . 50))
+
+      (tool-bar-mode -1)
+      (menu-bar-mode -1)))
+
 (load-theme 'solarized-light t)
-;(setq noctilux-broken-srgb nil)
-;(load-theme 'noctilux t)
-
-(set-face-attribute 'default nil :family "Consolas")
-(set-face-attribute 'default nil :height 140)
-(set-fontset-font "fontset-default"
-                  'unicode
-                  '("Consolas" . "iso10646-1"))
-(setq-default line-spacing 6)
-(add-to-list 'default-frame-alist '(width  . 125))
-(add-to-list 'default-frame-alist '(height . 50))
-
-(tool-bar-mode -1)
-(menu-bar-mode -1)
 
 (setq column-number-mode t)
 (setq-default indent-tabs-mode nil)
@@ -22,19 +25,19 @@
 (setq css-indent-offset 2)
 
 (require 'whitespace)
-(setq-default whitespace-style '(face empty trailing))
-(add-hook 'prog-mode-hook (lambda ()
-                            (setq whitespace-line-column 80)
-                            (setq whitespace-style '(face lines-tail empty trailing))
-                            (whitespace-mode 1)
-                            ))
-(add-hook 'go-mode-hook (lambda ()
-                          (whitespace-mode -1)
-                          (setq whitespace-line-column 120)
-                          (whitespace-mode 1)
-                          ))
+(setq-default whitespace-style '(face lines-tail empty trailing))
+(defun my-set-whitespace (col)
+  (whitespace-mode -1)
+  (setq whitespace-line-column col)
+  (whitespace-mode 1))
+(defun my-set-whitespace-normal ()
+  (my-set-whitespace 120))
+(defun my-set-whitespace-less ()
+  (my-set-whitespace 80))
+(add-hook 'prog-mode-hook 'my-set-whitespace-normal)
+(add-hook 'java-mode-hook 'my-set-whitespace-less)
+(add-hook 'js-mode-hook 'my-set-whitespace-less)
 (add-hook 'web-mode-hook (lambda () (whitespace-mode -1)))
-
 
 (defvar my-pretty-symbols
   (let ((c-like '(c-mode c++-mode go-mode java-mode js-mode
