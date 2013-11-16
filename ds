@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ ! -n "$1" ]
+then
+  echo "Usage: `basename $0` server"
+  exit
+fi
+umount -f /mnt/$1 2>/dev/null
+umount -f /google 2>/dev/null
+umount -f /usr/local/google 2>/dev/null
+rmdir /mnt/$1

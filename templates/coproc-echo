@@ -1,0 +1,9 @@
+#!/bin/bash
+str="$LC_MOUNT\t$1"
+for file in "${@:2}"
+do
+  changed_file=`readlink -f $file`
+  str+="\t"
+  str+=$changed_file
+done
+echo -e "$str"

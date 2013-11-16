@@ -1,0 +1,14 @@
+[user]
+	email = ice.arch@gmail.com
+	name = Michael Lin
+[alias]
+	co = checkout
+	st = status
+	br = branch
+	ci = commit
+[color]
+	ui = auto
+[merge]
+  conflictstyle = diff3
+[diff]
+  tool = meld
