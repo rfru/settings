@@ -2,11 +2,7 @@
 (require 'helm)
 (require 'helm-buffers)
 (require 'helm-files)
-(require 'helm-ls-git)
-;; (custom-set-faces
-;;  '(helm-header ((t (:inherit info-menu-header))))
-;;  '(helm-source-header ((t (:inherit info-title-3))))
-;;  '(helm-selection ((t (:inherit highlight)))))
+
 (setq helm-M-x-always-save-history t)
 (define-key evil-normal-state-map (kbd "t") 'helm-M-x)
 (define-key evil-visual-state-map (kbd "t") 'helm-M-x)
@@ -49,13 +45,13 @@
   (interactive)
   (helm-other-buffer
    '(
-     ;helm-c-source-ls-git
      helm-source-myrecent
      helm-c-source-buffers-list)
    " *my-helm*"))
 
 (define-key evil-normal-state-map (kbd ",") 'my-helm)
-(define-key helm-map (kbd "<escape>") 'helm-keyboard-quit)
+(define-key helm-map (kbd "<f4>") 'helm-keyboard-quit)
+(global-set-key (kbd "<f4>") (kbd "<escape>"))
 (helm-mode 1)
 
 (provide 'my-helm)

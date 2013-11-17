@@ -13,10 +13,9 @@
         'web-mode
         'flycheck
         'jedi
-        'solarized-theme
+        'color-theme-solarized
         'go-autocomplete
         'auto-save-buffers-enhanced
-        'helm-ls-git
         's
         'multiple-cursors
         'dash

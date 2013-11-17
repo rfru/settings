@@ -4,15 +4,18 @@
 (setq mc/cmds-to-run-for-all
       '(
         evil-backward-char
+        evil-backward-word-begin
         evil-delete
         evil-delete-backward-char-and-join
         evil-delete-char
+        evil-end-of-line
         evil-forward-char
         evil-forward-word-begin
         evil-insert
         evil-next-line
         evil-previous-line
         keyboard-quit
+        sp--self-insert-command
         ))
 
 (setq mc/cmds-to-run-once

@@ -3,13 +3,14 @@
 (add-to-list 'load-path my-config-dir)
 
 (require 'my-package)
-(require 'my-theme)
 (require 'my-motions)
 (require 'my-helm)
 (require 'my-prog)
 (require 'my-completion)
 (require 'my-misc)
 (require 'my-google)
+
+(require 'my-theme)
 
 (load "server")
 (unless (server-running-p) (server-start))
