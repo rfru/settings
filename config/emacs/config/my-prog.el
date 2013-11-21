@@ -41,6 +41,9 @@
 (setq-default tab-width 2)
 (setq c-basic-offset 2)
 (setq css-indent-offset 2)
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
 
 (require 'whitespace)
 (setq-default whitespace-style '(face lines-tail empty trailing))

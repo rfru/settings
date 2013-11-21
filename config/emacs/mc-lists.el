@@ -24,8 +24,11 @@
         evil-normal-state
         evil-scroll-page-down
         evil-scroll-page-up
+        evil-search-forward
+        evil-search-next
         evil-window-middle
         helm-confirm-and-exit-minibuffer
+        isearch-abort
         my-helm
         ns-handle-scroll-bar-event
         ))
