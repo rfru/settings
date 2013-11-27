@@ -31,7 +31,7 @@
         recentf-list))
 
 (require 'recentf)
-(setq recentf-exclude '("\\.recentf" "^/tmp/" "/.git/"))
+(setq recentf-exclude '("\\.recentf" "^/tmp/" "/.git/" "/.emacs.d/elpa/"))
 (setq recentf-max-saved-items 100)
 (setq recentf-auto-cleanup 'never)
 (setq recentf-save-file (expand-file-name "~/.emacs.d/.recentf" user-emacs-directory))

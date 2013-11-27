@@ -37,28 +37,36 @@
 
 ; Indentation
 (setq-default indent-tabs-mode nil)
-(setq evil-shift-width 2)
 (setq-default tab-width 2)
 (setq c-basic-offset 2)
 (setq css-indent-offset 2)
 (setq web-mode-markup-indent-offset 2)
 (setq web-mode-css-indent-offset 2)
 (setq web-mode-code-indent-offset 2)
+(setq-default evil-shift-width 2)
 
 (require 'whitespace)
-(setq-default whitespace-style '(face lines-tail empty trailing))
+(setq whitespace-style '(face lines-tail empty trailing))
 (defun my-set-whitespace (col)
   (whitespace-mode -1)
   (setq whitespace-line-column col)
   (whitespace-mode 1))
-(defun my-set-whitespace-normal ()
+(defun my-set-whitespace-normal()
   (my-set-whitespace 120))
 (defun my-set-whitespace-less ()
   (my-set-whitespace 80))
-(add-hook 'prog-mode-hook 'my-set-whitespace-normal)
-(add-hook 'java-mode-hook 'my-set-whitespace-less)
-(add-hook 'js-mode-hook 'my-set-whitespace-less)
-(add-hook 'web-mode-hook (lambda () (whitespace-mode -1)))
+(defun my-whitespace-hook ()
+  (let ((mode major-mode))
+    (cond ((s-equals? mode "java-mode") (my-set-whitespace-less))
+          ((s-equals? mode "js-mode") (my-set-whitespace-less))
+          (t (my-set-whitespace-normal)))))
+(add-hook 'prog-mode-hook 'my-whitespace-hook)
+(add-hook 'web-mode-hook (lambda ()
+                           (add-hook 'local-write-file-hooks
+                                     (lambda ()
+                                       (delete-trailing-whitespace)
+                                       nil))
+                           (whitespace-mode -1)))
 
 (defvar my-pretty-symbols
   (let ((c-like '(c-mode c++-mode go-mode java-mode js-mode

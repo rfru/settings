@@ -9,12 +9,6 @@
 (define-key evil-motion-state-map ";" 'evil-ex)
 (evil-ex-define-cmd "bd[elete]" 'kill-this-buffer)
 
-;; (define-key evil-motion-state-map (kbd "<down>") 'evil-scroll-page-down)
-;; (define-key evil-motion-state-map (kbd "<up>") 'evil-scroll-page-up)
-;; ; Prevent normal usage.
-;; (define-key evil-motion-state-map (kbd "\C-f") nil)
-;; (define-key evil-motion-state-map (kbd "\C-b") nil)
-
 (require 'expand-region)
 (define-key evil-normal-state-map (kbd "e") 'er/expand-region)
 (define-key evil-visual-state-map (kbd "e") 'er/expand-region)

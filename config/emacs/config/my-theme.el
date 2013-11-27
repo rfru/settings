@@ -1,18 +1,18 @@
-(if (equal system-type 'darwin)
-    (progn
-                                        ;(setq noctilux-broken-srgb nil)
-                                        ;(load-theme 'noctilux t)
-
-      (set-face-attribute 'default nil :family "Consolas")
-      (set-face-attribute 'default nil :height 120)
-      (set-fontset-font "fontset-default"
-                        'unicode
-                        '("Consolas" . "iso10646-1"))
-      (setq-default line-spacing 4)
-      (add-to-list 'default-frame-alist '(width  . 125))
-      (add-to-list 'default-frame-alist '(height . 50))
-
-      (tool-bar-mode -1)))
+(when (display-graphic-p)
+  (tool-bar-mode -1)
+  (when (equal system-type 'darwin)
+    (set-face-attribute 'default nil :family "Consolas")
+    (set-face-attribute 'default nil :height 120)
+    (set-fontset-font "fontset-default"
+                      'unicode
+                      '("Consolas" . "iso10646-1"))
+    (setq-default line-spacing 4)
+    (add-to-list 'default-frame-alist '(width  . 125))
+    (add-to-list 'default-frame-alist '(height . 50))
+    )
+  (when (equal system-type 'gnu/linux)
+    )
+  )
 
 (defun reset-ui ()
   (menu-bar-mode -1)
@@ -37,13 +37,13 @@
    '(show-paren-match ((t (:background nil :foreground nil :inverse-video t))))
    ;'(show-paren-mismatch ((t (:background "magenta" :foreground nil :inverse-video t))))
    '(sp-show-pair-match-face ((t (:foreground nil :background nil :inherit show-paren-match))))
-
    '(ac-completion-face ((t (:inherit shadow))))
    '(ac-emacs-eclim-candidate-face ((t (:inherit ac-candidate-face))))
    '(ac-emacs-eclim-selection-face ((t (:inherit ac-selection-face))))
    '(whitespace-line ((t (:inherit error :background nil))))
    '(vertical-border ((t (:foreground "white" :background "brightwhite"))))
    '(popup-tip-face ((t (:inherit secondary-selection))))
+   '(whitespace-trailing ((t (:inherit trailing-whitespace :background nil))))
    '(match ((t (:background nil :inverse-video nil :weight bold :underline t :foreground "blue"))))
    '(header-line ((t (:weight bold :inverse-video nil :background nil))))
    '(helm-candidate-number ((t (:inherit mode-line))))

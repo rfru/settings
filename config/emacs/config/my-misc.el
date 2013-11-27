@@ -6,7 +6,7 @@
   (flet ((process-list ())) ad-do-it))
 
 (require 'auto-save-buffers-enhanced)
-(setq auto-save-buffers-enhanced-interval 1)
+(setq auto-save-buffers-enhanced-interval 0.8)
 (auto-save-buffers-enhanced t)
 
 (require 'saveplace)
@@ -17,6 +17,7 @@
 ;(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ; Refresh all buffers periodically.
+(setq revert-without-query '(".*"))
 (global-auto-revert-mode t)
 
 ; Only backup locally

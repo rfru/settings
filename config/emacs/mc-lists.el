@@ -20,6 +20,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        evil-goto-line
         evil-mouse-drag-region
         evil-normal-state
         evil-scroll-page-down
@@ -29,6 +30,8 @@
         evil-window-middle
         helm-confirm-and-exit-minibuffer
         isearch-abort
+        isearch-exit
+        isearch-printing-char
         my-helm
         ns-handle-scroll-bar-event
         ))
