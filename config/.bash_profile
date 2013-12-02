@@ -1,4 +1,3 @@
-alias e='emacsclient -n'
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin:$HOME/scripts
 

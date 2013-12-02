@@ -10,8 +10,6 @@
     (add-to-list 'default-frame-alist '(width  . 125))
     (add-to-list 'default-frame-alist '(height . 50))
     )
-  (when (equal system-type 'gnu/linux)
-    )
   )
 
 (defun reset-ui ()
