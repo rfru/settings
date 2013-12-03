@@ -45,6 +45,8 @@
    '(match ((t (:background nil :inverse-video nil :weight bold :underline t :foreground "blue"))))
    '(header-line ((t (:weight bold :inverse-video nil :background nil))))
    '(helm-candidate-number ((t (:inherit mode-line))))
+   ; Autocomplete with pop-tip generates empty whitespace at end of buffer
+   '(whitespace-empty ((t (:background nil :foreground nil))))
    '(helm-source-header ((t (:inherit default :weight bold :underline t))))
    '(helm-selection ((t (:inherit highlight)))))
   )
