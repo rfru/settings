@@ -32,7 +32,17 @@
 (setq vc-handled-backends nil)
 
 (add-hook 'emacs-lisp-mode-hook (lambda ()
-                            (define-key evil-normal-state-map (kbd ".") 'eval-last-sexp)))
+                            (define-key evil-normal-state-local-map (kbd ".") 'eval-last-sexp)
+                            (define-key evil-visual-state-local-map (kbd ".") '(lambda ()
+                                                                          (interactive)
+                                                                          (call-interactively 'eval-region)
+                                                                          (evil-normal-state)))
+                            ))
+(add-hook 'python-mode-hook (lambda ()
+                            (define-key evil-visual-state-local-map (kbd ".") '(lambda ()
+                                                                           (interactive)
+                                                                           (call-interactively 'python-shell-send-region)))
+                            ))
 
 (setq vc-follow-symlinks 't)
 
