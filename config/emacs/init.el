@@ -8,7 +8,9 @@
 (require 'my-prog)
 (require 'my-completion)
 (require 'my-misc)
-(require 'my-google)
+(when (equal system-type 'gnu/linux)
+ (require 'my-google)
+ )
 
 (require 'my-ui)
 (require 'my-theme)

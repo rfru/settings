@@ -62,6 +62,8 @@
                                         ;'(show-paren-mismatch ((t (:background "magenta" :foreground nil :inverse-video t))))
    '(sp-show-pair-match-face ((t (:foreground nil :background nil :inherit show-paren-match))))
 
+   ; Autocomplete with pop-tip generates empty whitespace at end of buffer
+   '(whitespace-empty ((t (:background nil :foreground nil))))
    '(whitespace-line ((t (:inherit error :background nil))))
    '(whitespace-trailing ((t (:inherit trailing-whitespace :background nil))))
 

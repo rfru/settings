@@ -1,5 +1,5 @@
-alias e='emacsclient -n'
 export GOPATH=$HOME/go
+export EDITOR=$HOME/scripts/e
 export PATH=$PATH:$GOPATH/bin:$HOME/scripts
 
 # Setting PATH for Python 2.7
