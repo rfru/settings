@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        evil-force-normal-state
         evil-backward-char
         evil-backward-word-begin
         evil-delete
