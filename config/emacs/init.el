@@ -10,6 +10,7 @@
 (require 'my-misc)
 (require 'my-google)
 
+(require 'my-ui)
 (require 'my-theme)
 
 (load "server")

@@ -12,6 +12,8 @@
 (require 'saveplace)
 (setq-default save-place t)
 
+(setq lazy-highlight-initial-delay 0)
+
 ; Spell check.
 ;(add-hook 'text-mode-hook 'flyspell-mode)
 ;(add-hook 'prog-mode-hook 'flyspell-prog-mode)

@@ -13,7 +13,6 @@
         'web-mode
         'flycheck
         'jedi
-        'color-theme-solarized
         'go-autocomplete
         'auto-save-buffers-enhanced
         's
