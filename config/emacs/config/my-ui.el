@@ -16,7 +16,6 @@
 
 (defun reset-ui ()
   (menu-bar-mode -1)
-  (load-theme 'light t)
 
   (setq column-number-mode t)
 

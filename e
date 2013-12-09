@@ -1,2 +1,2 @@
 #!/bin/bash
-emacsclient -t -a "" "$@"
+/usr/local/bin/emacsclient -t -a "" "$@"

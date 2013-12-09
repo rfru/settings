@@ -1,6 +1,6 @@
 export GOPATH=$HOME/go
-export EDITOR=$HOME/scripts/e
-export PATH=$PATH:$GOPATH/bin:$HOME/scripts
+export EDITOR=e
+export PATH=$PATH:$GOPATH/bin:$HOME/settings
 
 # Setting PATH for Python 2.7
 # The orginal version is saved in .bash_profile.pysave

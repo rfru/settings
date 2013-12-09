@@ -1,5 +1,6 @@
 (deftheme light "My light theme.")
-(let* ((black "black"))
+(let* ((black "black")
+       (gray "gray"))
   (custom-theme-set-faces
    'light
    ;;;;;;;;;;;;;;;;;;;;;;;
@@ -15,6 +16,7 @@
    ;; `(escape-glyph-face ((,class (:foreground ,red))))
    ;; `(fringe ((,class (:foreground ,solarized-fg :background ,s-fringe-bg))))
    ;; `(highlight ((,class (:background ,solarized-hl))))
+   `(highlight ((t (:background ,gray))))
    ;; `(link ((,class (:foreground ,yellow :underline t :weight bold))))
    ;; `(link-visited ((,class (:foreground ,yellow :underline t :weight normal))))
    ;; `(success ((,class (:foreground ,green ))))
@@ -43,8 +45,8 @@
    ;; `(font-lock-warning-face ((,class (:foreground ,orange :weight bold :underline t))))
 
                                         ; other
-   '(mode-line ((t (:inverse-video nil))))
-   '(mode-line-inactive ((t (:foreground "brightcyan" :background "brightwhite" :inverse-video nil))))
+   `(mode-line ((t (:inverse-video nil :background ,gray))))
+   `(mode-line-inactive ((t (:foreground ,gray :background "brightwhite" :inverse-video nil))))
    '(vertical-border ((t (:foreground "white" :background "brightwhite"))))
    '(match ((t (:background nil :inverse-video nil :weight bold :underline t :foreground "blue"))))
    '(font-lock-comment-face ((t (:foreground "magenta"))))
@@ -71,17 +73,17 @@
                                         ; Pure inherited aliases.
    ;;;;;;;;;;;;;;;;;;;;;;;;;
    '(web-mode-html-tag-face ((t (:inherit font-lock-variable-name-face))))
-   '(web-mode-html-attr-name-face ((t (:inherit font-lock-keyword-face))))
-   '(web-mode-param-name-face ((t (:inherit font-lock-variable-name-face))))
-   '(web-mode-doctype-face ((t (:inherit web-mode-comment-face))))
-   '(web-mode-symbol-face ((t (:inherit web-mode-comment-face))))
+    '(web-mode-html-attr-name-face ((t (:inherit font-lock-keyword-face))))
+    '(web-mode-param-name-face ((t (:inherit font-lock-variable-name-face))))
+    '(web-mode-doctype-face ((t (:inherit web-mode-comment-face))))
+    '(web-mode-symbol-face ((t (:inherit web-mode-comment-face))))
 
-   '(ac-completion-face ((t (:inherit font-lock-special-keyword-face))))
-   '(ac-emacs-eclim-candidate-face ((t (:inherit ac-candidate-face))))
-   '(ac-emacs-eclim-selection-face ((t (:inherit ac-selection-face))))
-   '(popup-tip-face ((t (:inherit secondary-selection))))
+    '(ac-completion-face ((t (:inherit font-lock-comment-face))))
+    '(ac-emacs-eclim-candidate-face ((t (:inherit ac-candidate-face))))
+    '(ac-emacs-eclim-selection-face ((t (:inherit ac-selection-face))))
+    '(popup-tip-face ((t (:inherit secondary-selection))))
 
-   '(helm-candidate-number ((t (:inherit mode-line))))
-   '(helm-selection ((t (:inherit highlight))))))
+    '(helm-candidate-number ((t (:inherit mode-line))))
+    '(helm-selection ((t (:inherit highlight))))))
 
 (provide 'my-theme)
