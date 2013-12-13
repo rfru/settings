@@ -44,16 +44,16 @@
 (starter-kit-elpa-install)
 
 ; GUI Emacs needs to be similar to shell init.
-(when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize))
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+;;(when (memq window-system '(mac ns))
+;;    (exec-path-from-shell-initialize))
+;;(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
+;;(unless (require 'el-get nil 'noerror)
+;;  (with-current-buffer
+;;      (url-retrieve-synchronously
+;;       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+;;    (goto-char (point-max))
+;;    (eval-print-last-sexp)))
 
 ;; (setq el-get-sources
 ;;       '((:name my-theme
