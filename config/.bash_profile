@@ -2,7 +2,12 @@ export GOPATH=$HOME/go
 export EDITOR=e
 export PATH=$GOPATH/bin:$HOME/settings:$HOME/bin:/usr/local/bin:$PATH
 
-alias ls='ls --color=auto'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    alias ls='ls --color=auto'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    alias ls='ls -G'
+fi
 
 #export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 "(%s)")\$ '
 reset=$(tput sgr0)

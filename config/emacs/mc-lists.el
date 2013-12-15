@@ -3,13 +3,13 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        evil-force-normal-state
         evil-backward-char
         evil-backward-word-begin
         evil-delete
         evil-delete-backward-char-and-join
         evil-delete-char
         evil-end-of-line
+        evil-force-normal-state
         evil-forward-char
         evil-forward-word-begin
         evil-insert
@@ -29,6 +29,7 @@
         evil-search-forward
         evil-search-next
         evil-window-middle
+        handle-switch-frame
         helm-confirm-and-exit-minibuffer
         isearch-abort
         isearch-exit
