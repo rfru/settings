@@ -3,13 +3,14 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        evil-force-normal-state
+        evil-append
         evil-backward-char
         evil-backward-word-begin
         evil-delete
         evil-delete-backward-char-and-join
         evil-delete-char
         evil-end-of-line
+        evil-force-normal-state
         evil-forward-char
         evil-forward-word-begin
         evil-insert
