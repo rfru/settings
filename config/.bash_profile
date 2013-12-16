@@ -1,12 +1,13 @@
 export GOPATH=$HOME/go
 export EDITOR=e
-export PATH=$PATH:$GOPATH/bin:$HOME/settings
+export PATH=$GOPATH/bin:$HOME/settings:$HOME/bin:/usr/local/bin:$PATH
 
-# Setting PATH for Python 2.7
-# The orginal version is saved in .bash_profile.pysave
-PATH="/usr/local/bin:${PATH}:/Users/mtlin/Library/Haskell/bin:/Users/mtlin/bin"
-export PATH
-alias ls='ls -G'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    alias ls='ls --color=auto'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    alias ls='ls -G'
+fi
 
 #export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 "(%s)")\$ '
 reset=$(tput sgr0)

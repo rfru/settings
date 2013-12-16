@@ -30,6 +30,7 @@
         evil-search-forward
         evil-search-next
         evil-window-middle
+        handle-switch-frame
         helm-confirm-and-exit-minibuffer
         isearch-abort
         isearch-exit
