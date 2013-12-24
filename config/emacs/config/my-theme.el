@@ -72,6 +72,7 @@
    ;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Pure inherited aliases.
    ;;;;;;;;;;;;;;;;;;;;;;;;;
+   '(secondary-selection ((t (:inherit highlight))))
    '(web-mode-html-tag-face ((t (:inherit font-lock-variable-name-face))))
     '(web-mode-html-attr-name-face ((t (:inherit font-lock-keyword-face))))
     '(web-mode-param-name-face ((t (:inherit font-lock-variable-name-face))))
