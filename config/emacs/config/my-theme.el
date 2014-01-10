@@ -1,6 +1,7 @@
 (deftheme light "My light theme.")
 (let* ((black "black")
-       (gray "gray"))
+       (gray "gray")
+       (pink "magenta"))
   (custom-theme-set-faces
    'light
    ;;;;;;;;;;;;;;;;;;;;;;;
@@ -48,8 +49,8 @@
    `(mode-line ((t (:inverse-video nil :background ,gray))))
    `(mode-line-inactive ((t (:foreground ,gray :background "brightwhite" :inverse-video nil))))
    '(vertical-border ((t (:foreground "white" :background "brightwhite"))))
-   '(match ((t (:background nil :inverse-video nil :weight bold :underline t :foreground "blue"))))
-   '(font-lock-comment-face ((t (:foreground "magenta"))))
+   `(match ((t (:background nil :inverse-video t :weight light :underline nil :foreground ,black))))
+   `(font-lock-comment-face ((t (:foreground ,pink))))
    '(header-line ((t (:weight bold :inverse-video nil :background nil))))
    '(show-paren-match ((t (:background nil :foreground nil :inverse-video t))))
    '(helm-source-header ((t (:inherit default :weight bold :underline t))))
