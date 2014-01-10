@@ -25,12 +25,14 @@
 (setq mc/cmds-to-run-once
       '(
         evil-goto-line
+        evil-inner-tag
         evil-mouse-drag-region
         evil-normal-state
         evil-scroll-page-down
         evil-scroll-page-up
         evil-search-forward
         evil-search-next
+        evil-search-previous
         evil-window-middle
         handle-switch-frame
         helm-confirm-and-exit-minibuffer
