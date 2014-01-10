@@ -1,56 +1,35 @@
 (deftheme light "My light theme.")
 (let* ((black "black")
        (gray "gray")
-       (pink "magenta"))
+       (cyan "cyan")
+       (green "yellow")
+       (blue "blue")
+       (lightgray "white")
+       (lightgray2 "brightcyan")
+       (pink "magenta")
+       (darkgray "brightblue")
+       (white "brightwhite"))
   (custom-theme-set-faces
    'light
    ;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Direct specification.
    ;;;;;;;;;;;;;;;;;;;;;;;
    `(default ((t (:foreground ,black ))))
-   ;; `(shadow ((,class (:foreground ,solarized-comments))))
-   ;; `(match ((,class (:background ,solarized-hl :foreground ,solarized-emph :weight bold))))
-   ;; `(cursor ((,class (:foreground ,solarized-bg :background ,solarized-fg
-   ;;                                :inverse-video t))))
-   ;; `(mouse ((,class (:foreground ,solarized-bg :background ,solarized-fg
-   ;;                               :inverse-video t))))
-   ;; `(escape-glyph-face ((,class (:foreground ,red))))
-   ;; `(fringe ((,class (:foreground ,solarized-fg :background ,s-fringe-bg))))
-   ;; `(highlight ((,class (:background ,solarized-hl))))
-   `(highlight ((t (:background ,gray))))
-   ;; `(link ((,class (:foreground ,yellow :underline t :weight bold))))
-   ;; `(link-visited ((,class (:foreground ,yellow :underline t :weight normal))))
-   ;; `(success ((,class (:foreground ,green ))))
-   ;; `(warning ((,class (:foreground ,yellow ))))
-   ;; `(error ((,class (:foreground ,orange))))
-   ;; `(lazy-highlight ((,class (:foreground ,solarized-bg :background ,yellow
-   ;;                                        :weight normal))))
-   ;; `(escape-glyph ((,class (:foreground ,violet))))
-
-   ;; ;; font lock
-   ;; `(font-lock-builtin-face ((,class (:foreground ,solarized-fg :weight bold))))
-   ;; `(font-lock-comment-delimiter-face
-   ;;   ((,class (:foreground ,solarized-comments))))
-   ;; `(font-lock-comment-face ((,class (:foreground ,solarized-comments))))
-   ;; `(font-lock-constant-face ((,class (:foreground ,blue :weight bold))))
-   ;; `(font-lock-doc-face ((,class (:foreground ,cyan))))
-   ;; `(font-lock-function-name-face ((,class (:foreground ,blue))))
-   ;; `(font-lock-keyword-face ((,class (:foreground ,green :weight bold))))
-   ;; `(font-lock-negation-char-face ((,class (:foreground ,yellow :weight bold))))
-   ;; `(font-lock-preprocessor-face ((,class (:foreground ,blue))))
-   ;; `(font-lock-regexp-grouping-construct ((,class (:foreground ,yellow :weight bold))))
-   ;; `(font-lock-regexp-grouping-backslash ((,class (:foreground ,green :weight bold))))
-   ;; `(font-lock-string-face ((,class (:foreground ,cyan))))
-   ;; `(font-lock-type-face ((,class (:foreground ,yellow))))
-   ;; `(font-lock-variable-name-face ((,class (:foreground ,blue))))
-   ;; `(font-lock-warning-face ((,class (:foreground ,orange :weight bold :underline t))))
+   `(isearch ((t (:background ,white :foreground ,pink :inverse-video t))))
+   `(lazy-highlight ((t (:foreground ,gray :background ,black :inverse-video t))))
+   `(highlight ((t (:background ,lightgray))))
+   `(font-lock-keyword-face ((t (:foreground ,cyan))))
+   `(font-lock-builtin-face ((t (:foreground ,blue))))
+   `(font-lock-constant-face ((t (:foreground ,pink))))
+   `(font-lock-string-face ((t (:foreground ,black))))
+   `(region ((t (:background ,lightgray))))
 
                                         ; other
-   `(mode-line ((t (:inverse-video nil :background ,gray))))
-   `(mode-line-inactive ((t (:foreground ,gray :background "brightwhite" :inverse-video nil))))
-   '(vertical-border ((t (:foreground "white" :background "brightwhite"))))
-   `(match ((t (:background nil :inverse-video t :weight light :underline nil :foreground ,black))))
-   `(font-lock-comment-face ((t (:foreground ,pink))))
+   `(mode-line ((t (:inverse-video nil :background ,lightgray))))
+   `(mode-line-inactive ((t (:foreground ,gray :background ,white :inverse-video nil))))
+   `(vertical-border ((t (:foreground "white" :background ,white))))
+   `(match ((t (:background nil :inverse-video t :weight light :underline nil :foreground ,darkgray))))
+   `(font-lock-comment-face ((t (:foreground ,lightgray2))))
    '(header-line ((t (:weight bold :inverse-video nil :background nil))))
    '(show-paren-match ((t (:background nil :foreground nil :inverse-video t))))
    '(helm-source-header ((t (:inherit default :weight bold :underline t))))
@@ -86,6 +65,6 @@
     '(popup-tip-face ((t (:inherit secondary-selection))))
 
     '(helm-candidate-number ((t (:inherit mode-line))))
-    '(helm-selection ((t (:inherit highlight))))))
+      '(helm-selection ((t (:inherit highlight))))))
 
 (provide 'my-theme)
