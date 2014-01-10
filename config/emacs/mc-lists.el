@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         evil-append
+        evil-append-line
         evil-backward-char
         evil-backward-word-begin
         evil-delete
@@ -16,6 +17,7 @@
         evil-insert
         evil-next-line
         evil-previous-line
+        go-mode-insert-and-indent
         keyboard-quit
         sp--self-insert-command
         ))
