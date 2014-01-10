@@ -24,6 +24,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        evil-goto-first-line
         evil-goto-line
         evil-inner-tag
         evil-mouse-drag-region
@@ -33,6 +34,7 @@
         evil-search-forward
         evil-search-next
         evil-search-previous
+        evil-visual-line
         evil-window-middle
         handle-switch-frame
         helm-confirm-and-exit-minibuffer

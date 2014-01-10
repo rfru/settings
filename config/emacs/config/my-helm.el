@@ -5,6 +5,7 @@
 
 (setq helm-mp-matching-method 'multi3p)
 (setq helm-mp-highlight-delay 0.1)
+(setq helm-mp-highlight-threshold 1)
 (setq helm-M-x-always-save-history t)
 (define-key evil-normal-state-map (kbd "t") 'helm-M-x)
 (define-key evil-visual-state-map (kbd "t") 'helm-M-x)
