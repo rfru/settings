@@ -24,6 +24,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        evil-ex
         evil-goto-first-line
         evil-goto-line
         evil-inner-tag
