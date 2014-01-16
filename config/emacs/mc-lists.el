@@ -27,12 +27,14 @@
         evil-ex
         evil-goto-first-line
         evil-goto-line
+        evil-inner-tag
         evil-mouse-drag-region
         evil-normal-state
         evil-scroll-page-down
         evil-scroll-page-up
         evil-search-forward
         evil-search-next
+        evil-search-previous
         evil-visual-line
         evil-window-middle
         handle-switch-frame
