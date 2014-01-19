@@ -1,3 +1,6 @@
+(setq indent-line-function 'insert-tab)
+(electric-indent-mode 1)
+
 ; Save minibuffer history.
 (savehist-mode 1)
 

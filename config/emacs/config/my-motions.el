@@ -1,6 +1,4 @@
-(setq indent-line-function 'insert-tab)
 (global-set-key (kbd "C-x C-f") 'find-file-other-window)
-(define-key global-map (kbd "RET") 'newline-and-indent)
 (global-set-key "\C-xk" 'kill-this-buffer)
 
 ; setup evil
