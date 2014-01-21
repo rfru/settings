@@ -11,6 +11,13 @@
  (add-hook 'protobuf-mode 'my-set-whitespace-normal)
  (add-hook 'google3-build-mode 'my-set-whitespace-normal)
  (add-hook 'borg-mode 'my-set-whitespace-normal)
- (add-hook 'mendel-mode-hook 'my-set-whitespace-normal))
+ (add-hook 'mendel-mode-hook 'my-set-whitespace-normal)
+
+ (require 'gcomplete)
+ (gcomplete-setup-flymake)
+ (gcomplete-setup-for-auto-complete)
+ (add-hook 'c++-mode (lambda ()
+                       (flymake-mode 1)))
+ )
 
 (provide 'my-google)

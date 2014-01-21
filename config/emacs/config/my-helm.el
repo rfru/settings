@@ -57,7 +57,6 @@
 
 (define-key evil-normal-state-map (kbd ",") 'my-helm)
 (define-key helm-map (kbd "<f4>") 'helm-keyboard-quit)
-(global-set-key (kbd "<f4>") (kbd "<escape>"))
 (helm-mode 1)
 
 (provide 'my-helm)

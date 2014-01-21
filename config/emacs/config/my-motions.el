@@ -8,6 +8,8 @@
 (evil-mode 1)
 (define-key evil-motion-state-map ";" 'evil-ex)
 (evil-ex-define-cmd "bd[elete]" 'kill-this-buffer)
+; Automatically save when quitting.
+(evil-ex-define-cmd "q[uit]" 'evil-save-and-quit)
 
 (require 'expand-region)
 (define-key evil-normal-state-map (kbd "e") 'er/expand-region)
@@ -29,25 +31,22 @@
   (switch-to-buffer (other-buffer)))
 (define-key evil-normal-state-map (kbd "q") 'last-buffer)
 
-;; Is this still necessary?
-;; esc quits
+(global-set-key (kbd "<f4>") (kbd "<escape>"))
 ;; Don't wait for any other keys after escape is pressed.
 (setq evil-esc-delay 0)
-;; (defun minibuffer-keyboard-quit ()
-;;   "Abort recursive edit.
-;; In Delete Selection mode, if the mark is active, just deactivate it;
-;; then it takes a second \\[keyboard-quit] to abort the minibuffer."
-;;   (interactive)
-;;   (if (and delete-selection-mode transient-mark-mode mark-active)
-;;       (setq deactivate-mark  t)
-;;     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-;;     (abort-recursive-edit)))
-;; (define-key evil-normal-state-map (kbd "<f7>") 'keyboard-quit)
-;; (define-key evil-visual-state-map (kbd "<f7>") 'keyboard-quit)
-;; (define-key minibuffer-local-map (kbd "<f7>") 'minibuffer-keyboard-quit)
-;; (define-key minibuffer-local-ns-map (kbd "<f7>") 'minibuffer-keyboard-quit)
-;; (define-key minibuffer-local-completion-map (kbd "<f7>") 'minibuffer-keyboard-quit)
-;; (define-key minibuffer-local-must-match-map (kbd "<f7>") 'minibuffer-keyboard-quit)
-;; (define-key minibuffer-local-isearch-map (kbd "<f7>") 'minibuffer-keyboard-quit)
+(defun minibuffer-keyboard-quit ()
+  "Abort recursive edit.
+In Delete Selection mode, if the mark is active, just deactivate it;
+then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+(define-key minibuffer-local-map (kbd "<f4>") 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map (kbd "<f4>") 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map (kbd "<f4>") 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map (kbd "<f4>") 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map (kbd "<f4>") 'minibuffer-keyboard-quit)
 
 (provide 'my-motions)

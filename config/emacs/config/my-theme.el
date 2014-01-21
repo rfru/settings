@@ -23,6 +23,7 @@
    `(font-lock-builtin-face ((t (:foreground ,blue))))
    `(font-lock-constant-face ((t (:foreground ,pink))))
    `(font-lock-string-face ((t (:foreground ,black))))
+   `(error ((t (:inverse-video t :foreground ,red))))
    `(region ((t (:background ,lightgray))))
 
                                         ; other
@@ -47,7 +48,7 @@
 
    ; Autocomplete with pop-tip generates empty whitespace at end of buffer
    '(whitespace-empty ((t (:background nil :foreground nil))))
-   '(whitespace-line ((t (:inherit error :background nil))))
+   `(whitespace-line ((t (:foreground ,red))))
    '(whitespace-trailing ((t (:inherit trailing-whitespace :background nil))))
 
    ;;;;;;;;;;;;;;;;;;;;;;;;;
