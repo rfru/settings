@@ -35,6 +35,7 @@
         evil-search-forward
         evil-search-next
         evil-search-previous
+        evil-substitute
         evil-visual-line
         evil-visual-char
         evil-window-middle

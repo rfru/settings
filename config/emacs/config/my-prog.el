@@ -70,24 +70,25 @@
                            (whitespace-mode -1)))
 
 (defvar my-pretty-symbols
-  (let ((c-like '(c-mode c++-mode go-mode java-mode js-mode
+  (let ((c-like '(c-mode c++-mode go-mode java-mode js-mode js2-mode
                         perl-mode cperl-mode ruby-mode
                         python-mode inferior-python-mode)))
 
   `((?ƒ mine "\\<defun\\>" (emacs-lisp-mode))
     (?ƒ mine "\\<func\\>" (go-mode))
+    (?ƒ mine "\\<function\\>" (js-mode js2-mode))
     (?ƒ mine "\\<def\\>" (python-mode))
-    (?Ṫ mine "\\<true\\>" (java-mode js-mode go-mode))
+    (?Ṫ mine "\\<true\\>" (java-mode js-mode js2-mode go-mode))
     (?Ṫ mine "\\<True\\>" (python-mode))
-    (?Ḟ mine "\\<false\\>" (java-mode js-mode go-mode))
+    (?Ḟ mine "\\<false\\>" (java-mode js-mode js2-mode go-mode))
     (?Ḟ mine "\\<False\\>" (python-mode))
     (?Ø mine "\\<void\\>" (java-mode))
-    (?Ø mine "\\<null\\>" (java-mode js-mode))
+    (?Ø mine "\\<null\\>" (java-mode js-mode js2-mode))
     (?Ø mine "\\<nil\\>" (emacs-lisp-mode go-mode))
     (?Ø mine "\\<None\\>" (python-mode))
     (?Ǝ mine "\\<defvar\\>" (emacs-lisp-mode))
-    (?Ǝ mine "\\<var\\>" (js-mode go-mode))
-    (?← mine "\\<return\\>" (java-mode js-mode go-mode python-mode))
+    (?Ǝ mine "\\<var\\>" (js-mode js2-mode go-mode))
+    (?← mine "\\<return\\>" (java-mode js-mode js2-mode go-mode python-mode))
     (?→ mine "\\<require\\>" (emacs-lisp-mode))
     (?→ mine "\\<import\\>" (java-mode go-mode python-mode))
     ;(?¬ logical ,(rxt-pcre-to-elisp "\\((!)") (java-mode js-mode go-mode))
@@ -97,7 +98,9 @@
 (setq pretty-symbol-categories '(lambda relational mine))
 (add-hook 'emacs-lisp-mode-hook 'pretty-symbols-mode)
 (add-hook 'java-mode-hook 'pretty-symbols-mode)
-(add-hook 'js-mode-hook 'pretty-symbols-mode)
+;(add-hook 'js-mode-hook 'pretty-symbols-mode)
+; TODO
+(add-hook 'js2-mode-hook (lambda () (message "hello")))
 (add-hook 'python-mode-hook 'pretty-symbols-mode)
 (add-hook 'go-mode-hook 'pretty-symbols-mode)
 
