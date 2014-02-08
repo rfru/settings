@@ -18,13 +18,14 @@
    `(default ((t (:foreground ,black ))))
    `(isearch ((t (:background ,white :foreground ,pink :inverse-video t))))
    `(lazy-highlight ((t (:foreground ,gray :background ,black :inverse-video t))))
+   `(hl-line ((t :background ,lightgray)))
    `(highlight ((t (:background ,lightgray))))
    `(font-lock-keyword-face ((t (:foreground ,cyan))))
    `(font-lock-builtin-face ((t (:foreground ,blue))))
    `(font-lock-constant-face ((t (:foreground ,pink))))
    `(font-lock-string-face ((t (:foreground ,black))))
    `(error ((t (:inverse-video t :foreground ,red))))
-   `(region ((t (:background ,lightgray))))
+   `(region ((t (:background ,black :foreground ,white))))
 
                                         ; other
    `(mode-line ((t (:inverse-video nil :background ,lightgray))))

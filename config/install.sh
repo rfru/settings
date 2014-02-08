@@ -6,6 +6,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
 fi
 command -v $cmd >/dev/null 2>&1 || {
     echo "Readlink needs to be installed.";
+    brew install coreutils
     exit;
 }
 

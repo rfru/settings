@@ -1,4 +1,5 @@
 (setq indent-line-function 'insert-tab)
+(setq large-file-warning-threshold 100000000)
 (electric-indent-mode 1)
 
 ; Save minibuffer history.

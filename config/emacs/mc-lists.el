@@ -36,10 +36,13 @@
         evil-search-next
         evil-search-previous
         evil-visual-line
+        evil-visual-char
         evil-window-middle
         handle-switch-frame
+        helm-M-x
         helm-confirm-and-exit-minibuffer
         isearch-abort
+        isearch-delete-char
         isearch-exit
         isearch-printing-char
         my-helm
