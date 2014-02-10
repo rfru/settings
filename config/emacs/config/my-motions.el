@@ -7,7 +7,7 @@
 (define-key evil-motion-state-map ";" 'evil-ex)
 (evil-ex-define-cmd "bd[elete]" 'kill-this-buffer)
 ; Automatically save when quitting.
-(evil-ex-define-cmd "q[uit]" 'evil-save-and-quit)
+(evil-ex-define-cmd "q[uit]" 'evil-save-modified-and-close)
 
 (require 'expand-region)
 (define-key evil-normal-state-map (kbd "e") 'er/expand-region)
