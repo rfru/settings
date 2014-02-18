@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        c-electric-star
         evil-append
         evil-append-line
         evil-backward-char
@@ -36,8 +37,8 @@
         evil-search-next
         evil-search-previous
         evil-substitute
-        evil-visual-line
         evil-visual-char
+        evil-visual-line
         evil-window-middle
         handle-switch-frame
         helm-M-x
