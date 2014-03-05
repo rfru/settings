@@ -55,7 +55,7 @@
 (defun my-set-whitespace-normal()
   (my-set-whitespace 120))
 (defun my-set-whitespace-less ()
-  (my-set-whitespace 80))
+  (my-set-whitespace 100))
 (defun my-whitespace-hook ()
   (let ((mode major-mode))
     (cond ((s-equals? mode "java-mode") (my-set-whitespace-less))
