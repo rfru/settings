@@ -61,6 +61,7 @@
       '(web-mode-param-name-face ((t (:inherit font-lock-variable-name-face))))
       '(web-mode-doctype-face ((t (:inherit web-mode-comment-face))))
       '(web-mode-symbol-face ((t (:inherit web-mode-comment-face))))
+      '(web-mode-current-element-highlight-face ((t (:inherit region))))
 
       '(ac-completion-face ((t (:inherit font-lock-comment-face))))
       '(ac-emacs-eclim-candidate-face ((t (:inherit ac-candidate-face))))

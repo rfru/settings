@@ -27,6 +27,7 @@
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(setq web-mode-enable-current-element-highlight t)
 
 (require 'smartparens-config)
 (show-smartparens-global-mode nil)
