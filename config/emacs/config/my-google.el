@@ -16,7 +16,7 @@
  (require 'gcomplete)
  (gcomplete-setup-flymake)
  (gcomplete-setup-for-auto-complete)
- (remove-hook 'java-mode-hook 'gcomplete-clang-completions-mode-hook)
+ (remove-hook 'java-mode-hook 'gcomplete-clang-completions-mode-func)
  (add-hook 'java-mode-hook (lambda ()
                        (flymake-mode -1)))
  (add-hook 'c++-mode-hook (lambda ()
