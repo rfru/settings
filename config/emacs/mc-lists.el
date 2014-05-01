@@ -6,6 +6,7 @@
         c-electric-star
         evil-append
         evil-append-line
+        evil-backward-WORD-begin
         evil-backward-char
         evil-backward-word-begin
         evil-delete
@@ -13,10 +14,12 @@
         evil-delete-char
         evil-end-of-line
         evil-force-normal-state
+        evil-forward-WORD-begin
         evil-forward-char
         evil-forward-word-begin
         evil-insert
         evil-next-line
+        evil-open-below
         evil-previous-line
         go-mode-insert-and-indent
         keyboard-quit
