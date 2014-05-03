@@ -25,7 +25,7 @@
      `(font-lock-constant-face ((t (:foreground ,pink))))
      `(font-lock-string-face ((t (:foreground ,black))))
      `(error ((t (:inverse-video t :foreground ,red))))
-     `(region ((t (:background ,lightgray))))
+     `(region ((t (:background ,black :foreground ,white))))
 
                                           ; other
      `(mode-line ((t (:inverse-video nil :background ,lightgray))))
