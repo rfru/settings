@@ -30,7 +30,7 @@
                                           ; other
      `(mode-line ((t (:inverse-video nil :background ,lightgray))))
      `(mode-line-inactive ((t (:foreground ,lightgray2 :background ,white :inverse-video nil))))
-     `(vertical-border ((t (:foreground ,white :background ,white))))
+     `(vertical-border ((t (:foreground ,lightgray :background ,lightgray))))
      `(match ((t (:underline t :weight bold :foreground ,pink))))
      `(font-lock-comment-face ((t (:foreground ,lightgray2))))
      '(header-line ((t (:weight bold :inverse-video nil :background nil))))
