@@ -21,6 +21,7 @@
         evil-next-line
         evil-open-below
         evil-previous-line
+        evil-ret
         go-mode-insert-and-indent
         keyboard-quit
         sp--self-insert-command
