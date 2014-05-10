@@ -9,6 +9,17 @@
 ; Automatically save when quitting.
 (evil-ex-define-cmd "q[uit]" 'evil-save-modified-and-close)
 
+(defun comment-or-uncomment-region-or-line ()
+  "Comments or uncomments the region or the current line if there's no active region."
+  (interactive)
+  (let (beg end)
+    (if (region-active-p)
+        (setq beg (region-beginning) end (region-end))
+      (setq beg (line-beginning-position) end (line-end-position)))
+    (comment-or-uncomment-region beg end)))
+(define-key evil-normal-state-map (kbd "c") 'comment-or-uncomment-region-or-line)
+(define-key evil-visual-state-map (kbd "c") 'comment-or-uncomment-region-or-line)
+
 (require 'expand-region)
 (define-key evil-normal-state-map (kbd "e") 'er/expand-region)
 (define-key evil-visual-state-map (kbd "e") 'er/expand-region)
