@@ -23,15 +23,15 @@
      `(highlight ((t (:background ,lightgray))))
 
      `(font-lock-keyword-face ((t (:foreground ,cyan))))
-     `(font-lock-builtin-face ((t (:foreground ,orange))))
+     `(font-lock-builtin-face ((t (:foreground ,pink))))
      `(font-lock-constant-face ((t (:inherit default))))
      `(font-lock-string-face ((t (:foreground ,cyan))))
-     `(font-lock-function-name-face ((t (:foreground ,pink))))
+     `(font-lock-function-name-face ((t (:foreground ,purple))))
      `(font-lock-comment-face ((t (:foreground ,gray))))
-     `(font-lock-keyword-face ((t (:foreground ,purple))))
+     `(font-lock-keyword-face ((t (:foreground ,black :weight bold))))
      `(font-lock-variable-name-face ((t (:underline t))))
      `(font-lock-type-face ((t (:inherit default))))
- 
+
      `(error ((t (:inverse-video t :foreground ,red))))
      `(region ((t (:background ,black :foreground ,white))))
 
@@ -39,7 +39,7 @@
      `(mode-line ((t (:inverse-video nil :background ,lightgray))))
      `(mode-line-inactive ((t (:foreground ,gray :background ,white :inverse-video nil))))
      `(vertical-border ((t (:foreground ,lightgray :background ,lightgray))))
-     `(match ((t (:underline t :weight bold :foreground ,pink))))
+     `(match ((t (:underline t :weight bold :foreground ,black))))
      '(header-line ((t (:weight bold :inverse-video nil :background nil))))
      '(show-paren-match ((t (:background nil :foreground nil :inverse-video t))))
      '(helm-source-header ((t (:inherit default :weight bold :underline t))))
