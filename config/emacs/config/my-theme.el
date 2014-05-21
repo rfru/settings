@@ -33,7 +33,7 @@
      `(font-lock-type-face ((t (:inherit default))))
 
      `(error ((t (:inverse-video t :foreground ,red))))
-     `(region ((t (:background ,black :foreground ,white))))
+     `(region ((t (:inverse-video t :foreground ,black))))
 
                                           ; other
      `(mode-line ((t (:inverse-video nil :background ,lightgray))))

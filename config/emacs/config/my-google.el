@@ -21,6 +21,7 @@
                        (flymake-mode -1)))
  (add-hook 'c++-mode-hook (lambda ()
                        (flymake-mode 1)))
+ (setq ac-delay 0.1)
  )
 
 (provide 'my-google)

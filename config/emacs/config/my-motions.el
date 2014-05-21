@@ -6,8 +6,16 @@
 (evil-mode 1)
 (define-key evil-motion-state-map ";" 'evil-ex)
 (evil-ex-define-cmd "bd[elete]" 'kill-this-buffer)
+
 ; Automatically save when quitting.
-(evil-ex-define-cmd "q[uit]" 'evil-save-modified-and-close)
+(evil-define-command evil-my-save-quit (file &optional bang)
+  "Saves the current buffer and closes the window."
+  :repeat nil
+  (interactive "<f><!>")
+  (when (and (buffer-modified-p) (not (string= (buffer-name) "*scratch*")))
+    (evil-write nil nil nil file bang))
+    (evil-quit))
+(evil-ex-define-cmd "q[uit]" 'evil-my-save-quit)
 
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
@@ -16,7 +24,9 @@
     (if (region-active-p)
         (setq beg (region-beginning) end (region-end))
       (setq beg (line-beginning-position) end (line-end-position)))
-    (comment-or-uncomment-region beg end)))
+    (if (string= "web-mode" major-mode)
+        (web-mode-comment-or-uncomment)
+        (comment-or-uncomment-region beg end))))
 (define-key evil-normal-state-map (kbd "c") 'comment-or-uncomment-region-or-line)
 (define-key evil-visual-state-map (kbd "c") 'comment-or-uncomment-region-or-line)
 

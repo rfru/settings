@@ -19,17 +19,21 @@
       nil)))
 
 (defun myrecents ()
-  (if (not (s-blank? myrecents-current-buffer))
-      (let ((matched (string-match
-                      g4-project-regex
-                      myrecents-current-buffer)))
-        (if matched
-            (let ((proj (match-string 1 myrecents-current-buffer)))
-              (remove-if (lambda (file)
-                           (g4filter file proj))
-                         recentf-list))
-          recentf-list))
-        recentf-list))
+  (let* ((home (expand-file-name (getenv "HOME")))
+        (new-recentf-list
+         (mapcar (lambda (path)
+                   (replace-regexp-in-string home "~" path)) recentf-list)))
+    (if (not (s-blank? myrecents-current-buffer))
+        (let ((matched (string-match
+                        g4-project-regex
+                        myrecents-current-buffer)))
+          (if matched
+              (let ((proj (match-string 1 myrecents-current-buffer)))
+                (remove-if (lambda (file)
+                             (g4filter file proj))
+                           new-recentf-list))
+            new-recentf-list))
+      new-recentf-list)))
 
 (require 'recentf)
 (setq recentf-exclude '("\\.recentf" "^/tmp/" "/.git/" "/.emacs.d/elpa/"))
