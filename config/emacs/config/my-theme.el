@@ -44,9 +44,6 @@
      '(show-paren-match ((t (:background nil :foreground nil :inverse-video t))))
      '(helm-source-header ((t (:inherit default :weight bold :underline t))))
 
-     ;;;;;;;;;;;;;;;;;;;;;;;;
-                                          ; Overriden inheritance.
-     ;;;;;;;;;;;;;;;;;;;;;;;;
      '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground nil))))
      '(font-lock-doc-face ((t (:inherit font-lock-comment-face :foreground nil))))
      '(font-lock-doc-string-face ((t (:inherit font-lock-comment-face :foreground nil))))
@@ -59,10 +56,8 @@
      `(whitespace-line ((t (:foreground ,red))))
      '(whitespace-trailing ((t (:inherit trailing-whitespace :background nil))))
 
-     ;;;;;;;;;;;;;;;;;;;;;;;;;
-                                          ; Pure inherited aliases.
-     ;;;;;;;;;;;;;;;;;;;;;;;;;
      '(secondary-selection ((t (:inherit highlight))))
+     '(web-mode-html-tag-bracket-face ((t (:inherit default))))
      '(web-mode-html-tag-face ((t (:inherit default :weight bold))))
      '(web-mode-css-property-name-face ((t (:inherit default))))
      '(web-mode-css-selector-face ((t (:inherit default))))
