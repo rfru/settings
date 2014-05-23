@@ -1,0 +1,3 @@
+#!/bin/bash
+coproc-echo `basename $0` $@
+read

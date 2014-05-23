@@ -26,6 +26,7 @@
 	<integer>1</integer>
 	<key>Coprocess MRU</key>
 	<array>
+		<string>/Users/mtlin/settings/coprocess.py</string>
 		<string>/Users/mtlin/scripts/coprocess.py</string>
 		<string>/User/m</string>
 		<string>/Users/mtlin/Library/Application Support/Sublime Text 3/test.py</string>
@@ -5067,6 +5068,93 @@
 	<false/>
 	<key>FsTabDelay</key>
 	<real>1</real>
+	<key>GlobalKeyMap</key>
+	<dict>
+		<key>0x9-0x40000</key>
+		<dict>
+			<key>Action</key>
+			<integer>32</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf700-0x300000</key>
+		<dict>
+			<key>Action</key>
+			<integer>7</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf701-0x300000</key>
+		<dict>
+			<key>Action</key>
+			<integer>6</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf702-0x300000</key>
+		<dict>
+			<key>Action</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf702-0x320000</key>
+		<dict>
+			<key>Action</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf703-0x320000</key>
+		<dict>
+			<key>Action</key>
+			<integer>0</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf729-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>5</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf72b-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>4</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf72c-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>9</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf72c-0x20000</key>
+		<dict>
+			<key>Action</key>
+			<integer>9</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf72d-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>8</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0xf72d-0x20000</key>
+		<dict>
+			<key>Action</key>
+			<integer>8</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+	</dict>
 	<key>HiddenAFRStrokeThickness</key>
 	<real>0.0</real>
 	<key>HiddenAdvancedFontRendering</key>
@@ -5105,43 +5193,24 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
+	<key>NSColorPanelMode</key>
+	<string>0</string>
+	<key>NSColorPickerSlidersDefaults</key>
+	<string>0</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/scripts/iterm</string>
-	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{966, 660}</string>
+	<string>~/settings/iterm</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
-	<key>NSTableView Columns KeyBingingTable</key>
-	<array>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErATCG
-		</data>
-		<string>198</string>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErATGG
-		</data>
-		<string>287</string>
-	</array>
-	<key>NSTableView Hidden Columns KeyBingingTable</key>
-	<array/>
-	<key>NSTableView Sort Ordering KeyBingingTable</key>
-	<array/>
-	<key>NSWindow Frame NSFontPanel</key>
-	<string>839 139 445 270 0 0 1440 878 </string>
+	<key>NSWindow Frame NSColorPanel</key>
+	<string>1448 205 201 309 0 0 2560 1578 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>469 139 924 485 0 0 1440 878 </string>
-	<key>NSWindow Frame SUStatusFrame</key>
-	<string>1936 1058 384 129 0 0 2560 1578 </string>
+	<string>1522 831 924 485 0 0 2560 1578 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>56 202 585 666 0 0 1440 878 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
-	<string>844 86 585 666 0 0 1440 878 </string>
+	<string>1393 55 1049 971 0 0 2560 1578 </string>
 	<key>NeverWarnAboutShortLivedSessions_B8DA8B3F-088A-484A-A3F4-78160B81D8C0</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -5156,20 +5225,20 @@
 			<key>Ansi 0 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.19370138645172119</real>
+				<real>0.0</real>
 				<key>Green Component</key>
-				<real>0.15575926005840302</real>
+				<real>0.0</real>
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
 			<key>Ansi 1 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.14145712554454803</real>
+				<real>0.20533014833927155</real>
 				<key>Green Component</key>
-				<real>0.10840645432472229</real>
+				<real>0.19761215150356293</real>
 				<key>Red Component</key>
-				<real>0.81926983594894409</real>
+				<real>0.86772304773330688</real>
 			</dict>
 			<key>Ansi 10 Color</key>
 			<dict>
@@ -5219,11 +5288,11 @@
 			<key>Ansi 15 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.86405980587005615</real>
+				<real>1</real>
 				<key>Green Component</key>
-				<real>0.95794391632080078</real>
+				<real>1</real>
 				<key>Red Component</key>
-				<real>0.98943418264389038</real>
+				<real>1</real>
 			</dict>
 			<key>Ansi 2 Color</key>
 			<dict>
@@ -5259,7 +5328,7 @@
 				<key>Green Component</key>
 				<real>0.10802463442087173</real>
 				<key>Red Component</key>
-				<real>0.77738940715789795</real>
+				<real>0.90177673101425171</real>
 			</dict>
 			<key>Ansi 6 Color</key>
 			<dict>
@@ -5273,11 +5342,11 @@
 			<key>Ansi 7 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.79781103134155273</real>
+				<real>0.95236897468566895</real>
 				<key>Green Component</key>
-				<real>0.89001238346099854</real>
+				<real>0.95236897468566895</real>
 				<key>Red Component</key>
-				<real>0.91611063480377197</real>
+				<real>0.95236897468566895</real>
 			</dict>
 			<key>Ansi 8 Color</key>
 			<dict>
@@ -5304,11 +5373,11 @@
 			<key>Background Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.86405980587005615</real>
+				<real>1</real>
 				<key>Green Component</key>
-				<real>0.95794391632080078</real>
+				<real>1</real>
 				<key>Red Component</key>
-				<real>0.98943418264389038</real>
+				<real>1</real>
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
@@ -5327,11 +5396,11 @@
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.38298487663269043</real>
+				<real>0.45882353186607361</real>
 				<key>Green Component</key>
-				<real>0.35665956139564514</real>
+				<real>0.43137255311012268</real>
 				<key>Red Component</key>
-				<real>0.27671992778778076</real>
+				<real>0.34509804844856262</real>
 			</dict>
 			<key>Character Encoding</key>
 			<integer>4</integer>
@@ -5344,11 +5413,11 @@
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.43850564956665039</real>
+				<real>0.84075731039047241</real>
 				<key>Green Component</key>
-				<real>0.40717673301696777</real>
+				<real>0.84075731039047241</real>
 				<key>Red Component</key>
-				<real>0.32436618208885193</real>
+				<real>0.84075731039047241</real>
 			</dict>
 			<key>Cursor Text Color</key>
 			<dict>
@@ -5364,7 +5433,7 @@
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
-			<string>Yes</string>
+			<string>No</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Disable Printing</key>
@@ -5378,11 +5447,11 @@
 			<key>Foreground Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.43850564956665039</real>
+				<real>0.27822580933570862</real>
 				<key>Green Component</key>
-				<real>0.40717673301696777</real>
+				<real>0.27822580933570862</real>
 				<key>Red Component</key>
-				<real>0.32436618208885193</real>
+				<real>0.27822580933570862</real>
 			</dict>
 			<key>Guid</key>
 			<string>B8DA8B3F-088A-484A-A3F4-78160B81D8C0</string>
@@ -5697,7 +5766,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Consolas 12</string>
+			<string>Consolas 14</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -5709,7 +5778,7 @@
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
-			<integer>10000</integer>
+			<integer>0</integer>
 			<key>Scrollback With Status Bar</key>
 			<false/>
 			<key>Scrollback in Alternate Screen</key>
@@ -5717,20 +5786,20 @@
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.38298487663269043</real>
+				<real>0.79000002145767212</real>
 				<key>Green Component</key>
-				<real>0.35665956139564514</real>
+				<real>0.79000002145767212</real>
 				<key>Red Component</key>
-				<real>0.27671992778778076</real>
+				<real>0.79000002145767212</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.79781103134155273</real>
+				<real>0.25882354378700256</real>
 				<key>Green Component</key>
-				<real>0.89001238346099854</real>
+				<real>0.21176470816135406</real>
 				<key>Red Component</key>
-				<real>0.91611063480377197</real>
+				<real>0.027450980618596077</real>
 			</dict>
 			<key>Semantic History</key>
 			<dict>
@@ -5750,7 +5819,7 @@
 			<key>Silence Bell</key>
 			<false/>
 			<key>Smart Cursor Color</key>
-			<true/>
+			<false/>
 			<key>Smart Selection Rules</key>
 			<array>
 				<dict>
@@ -5853,7 +5922,7 @@
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
-			<false/>
+			<true/>
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
@@ -5863,7 +5932,7 @@
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Vertical Spacing</key>
-			<real>1.3062183856964111</real>
+			<real>1.2100533246994019</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -5922,7 +5991,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/mtlin/scripts/iterm</string>
+	<string>/Users/mtlin/settings/iterm</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -5938,7 +6007,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2013-11-18T01:44:13Z</date>
+	<date>2014-05-21T16:57:55Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -5984,6 +6053,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20131116</string>
+	<string>1.0.0.20140518</string>
 </dict>
 </plist>

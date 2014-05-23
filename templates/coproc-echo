@@ -2,7 +2,11 @@
 str="$LC_MOUNT\t$1"
 for file in "${@:2}"
 do
-  changed_file=`readlink -f $file`
+  if [[ "$file" =~ --.* ]]; then
+      changed_file="$file"
+  else
+      changed_file=`readlink -f $file`
+  fi
   str+="\t"
   str+=$changed_file
 done
