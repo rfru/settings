@@ -5205,12 +5205,29 @@
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
+	<key>NSTableView Columns KeyBingingTable</key>
+	<array>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErATCG
+		</data>
+		<string>198</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErATGG
+		</data>
+		<string>287</string>
+	</array>
+	<key>NSTableView Hidden Columns KeyBingingTable</key>
+	<array/>
+	<key>NSTableView Sort Ordering KeyBingingTable</key>
+	<array/>
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>1448 205 201 309 0 0 2560 1578 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>1522 831 924 485 0 0 2560 1578 </string>
+	<string>343 159 924 485 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1393 55 1049 971 0 0 2560 1578 </string>
+	<string>5 53 1290 824 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_B8DA8B3F-088A-484A-A3F4-78160B81D8C0</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -5342,11 +5359,11 @@
 			<key>Ansi 7 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.95236897468566895</real>
+				<real>0.94999998807907104</real>
 				<key>Green Component</key>
-				<real>0.95236897468566895</real>
+				<real>0.94999998807907104</real>
 				<key>Red Component</key>
-				<real>0.95236897468566895</real>
+				<real>0.94999998807907104</real>
 			</dict>
 			<key>Ansi 8 Color</key>
 			<dict>
@@ -5422,11 +5439,11 @@
 			<key>Cursor Text Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.79781103134155273</real>
+				<real>0.49423512816429138</real>
 				<key>Green Component</key>
-				<real>0.89001238346099854</real>
+				<real>0.49423512816429138</real>
 				<key>Red Component</key>
-				<real>0.91611063480377197</real>
+				<real>0.49423512816429138</real>
 			</dict>
 			<key>Cursor Type</key>
 			<integer>2</integer>
@@ -6007,7 +6024,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-05-21T16:57:55Z</date>
+	<date>2014-05-30T20:21:34Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
