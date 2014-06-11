@@ -1,6 +1,6 @@
 export GOPATH=$HOME/go
 export EDITOR=e
-export PATH=$GOPATH/bin:$HOME/settings:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$GOPATH/bin:$HOME/settings:$HOME/bin:$HOME/Library/Haskell/bin:/usr/local/bin:$PATH
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then

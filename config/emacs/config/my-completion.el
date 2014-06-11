@@ -9,6 +9,8 @@
 (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
 (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
 (add-hook 'css-mode-hook 'ac-css-mode-setup)
+(add-hook 'haskell-mode-hook (lambda()
+                               (setq ac-sources (append '(ac-source-ghc-mod) ac-sources))))
 (setq ac-auto-start 0)
 (setq ac-auto-show-menu t)
 (setq ac-quick-help-delay 0.5)

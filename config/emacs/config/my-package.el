@@ -6,6 +6,7 @@
   (list 'evil
         'auto-complete
         'pos-tip
+        'diminish
         'ace-jump-mode
         'expand-region
         'pcre2el
