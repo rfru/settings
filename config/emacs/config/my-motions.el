@@ -12,7 +12,7 @@
   "Saves the current buffer and closes the window."
   :repeat nil
   (interactive "<f><!>")
-  (when (and (buffer-modified-p) (not (string= (buffer-name) "*scratch*")))
+  (when (and (buffer-modified-p) (not (string-match "^\\*.+?\\*$" (buffer-name))))
     (evil-write nil nil nil file bang))
     (evil-quit))
 (evil-ex-define-cmd "q[uit]" 'evil-my-save-quit)
