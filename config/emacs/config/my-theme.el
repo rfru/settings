@@ -29,7 +29,7 @@
      `(font-lock-function-name-face ((t (:foreground ,purple))))
      `(font-lock-comment-face ((t (:foreground ,gray))))
      `(font-lock-keyword-face ((t (:foreground ,black :weight bold))))
-     `(font-lock-variable-name-face ((t (:underline t))))
+     `(font-lock-variable-name-face ((t (:inherit default))))
      `(font-lock-type-face ((t (:inherit default))))
 
      `(error ((t (:inverse-video t :foreground ,red))))
