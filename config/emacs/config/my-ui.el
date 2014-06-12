@@ -32,6 +32,7 @@
   (diminish 'helm-mode)
   (diminish 'smartparens-mode)
   (diminish 'auto-complete-mode)
+  (diminish 'whitespace-mode)
 
 
   (custom-set-variables

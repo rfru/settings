@@ -75,6 +75,10 @@
 (add-hook 'haskell-mode-hook (lambda ()
                                (turn-on-haskell-indentation)
                                (ghc-init)))
+(add-hook 'haskell-mode-hook (lambda nil
+                               (add-hook 'after-save-hook
+                                         (lambda nil (ghc-check-syntax))
+                                         nil 'local)))
 
 (defvar my-pretty-symbols
   (let ((c-like '(c-mode c++-mode go-mode java-mode js-mode js2-mode

@@ -35,14 +35,16 @@
      `(error ((t (:inverse-video t :foreground ,red))))
      `(region ((t (:inverse-video t :foreground ,black))))
 
+     `(popup-face ((t (:background ,lightgray))))
                                           ; other
+     `(minibuffer-prompt ((t (:inherit default :weight bold))))
      `(mode-line ((t (:inverse-video nil :background ,lightgray))))
      `(mode-line-inactive ((t (:foreground ,gray :background ,white :inverse-video nil))))
      `(vertical-border ((t (:foreground ,lightgray :background ,lightgray))))
      `(match ((t (:underline t :weight bold :foreground ,black))))
      '(header-line ((t (:weight bold :inverse-video nil :background nil))))
      '(show-paren-match ((t (:background nil :foreground nil :inverse-video t))))
-     '(helm-source-header ((t (:inherit default :weight bold :underline t))))
+     `(helm-source-header ((t (:foreground ,orange :underline t :weight bold))))
 
      '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground nil))))
      '(font-lock-doc-face ((t (:inherit font-lock-comment-face :foreground nil))))
@@ -71,6 +73,7 @@
      '(ac-emacs-eclim-candidate-face ((t (:inherit ac-candidate-face))))
      '(ac-emacs-eclim-selection-face ((t (:inherit ac-selection-face))))
      '(popup-tip-face ((t (:inherit secondary-selection))))
+     '(ghc-face-error ((t (:inherit error))))
 
      '(helm-candidate-number ((t (:inherit mode-line))))
      '(helm-selection ((t (:inherit highlight))))))
