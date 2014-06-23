@@ -74,6 +74,21 @@
                                          (lambda nil (ghc-check-syntax))
                                          nil 'local)))
 
+(defconst scss-font-lock-keywords
+  ;; Variables
+    '(("$[a-z_-][a-z-_0-9]*" . font-lock-constant-face)))
+(define-derived-mode scss-mode css-mode "SCSS"
+    "Major mode for editing SCSS files, http://sass-lang.com/
+Special commands:
+\\{scss-mode-map}"
+    (font-lock-add-keywords nil scss-font-lock-keywords)
+    ;; Add the single-line comment syntax ('//', ends with newline)
+    ;; as comment style 'b' (see "Syntax Flags" in elisp manual)
+    (modify-syntax-entry ?/ ". 124" css-mode-syntax-table)
+    (modify-syntax-entry ?* ". 23b" css-mode-syntax-table)
+      (modify-syntax-entry ?\n ">" css-mode-syntax-table))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+
 (defvar my-pretty-symbols
   (let ((c-like '(c-mode c++-mode go-mode java-mode js2-mode
                         perl-mode cperl-mode ruby-mode
