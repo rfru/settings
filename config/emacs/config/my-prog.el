@@ -24,6 +24,7 @@
   (auto-complete '(ac-source-emacs-eclim)))
 (define-key evil-insert-state-map (kbd "C-SPC") 'eclim-complete)
 
+(require 'magit)
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -89,6 +90,7 @@ Special commands:
       (modify-syntax-entry ?\n ">" css-mode-syntax-table))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
+(require 'pretty-symbols)
 (defvar my-pretty-symbols
   (let ((c-like '(c-mode c++-mode go-mode java-mode js2-mode
                         perl-mode cperl-mode ruby-mode
