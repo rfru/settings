@@ -33,6 +33,8 @@
   (diminish 'smartparens-mode)
   (diminish 'auto-complete-mode)
   (diminish 'whitespace-mode)
+  (diminish 'magit-auto-revert-mode)
+  (diminish 'pretty-symbols-mode)
 
 
   (custom-set-variables

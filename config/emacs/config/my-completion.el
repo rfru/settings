@@ -13,6 +13,11 @@
                                (setq ac-sources (append '(ac-source-ghc-mod) ac-sources))))
 (setq ac-auto-start 0)
 (setq ac-auto-show-menu t)
+
+; Don't use quick help in console.
+(setq ac-use-quick-help nil)
+(when (display-graphic-p)
+  (setq ac-use-quick-help t))
 (setq ac-quick-help-delay 0.5)
 (setq ac-candidate-limit 100)
 (add-to-list 'ac-modes 'html-mode)

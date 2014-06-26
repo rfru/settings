@@ -60,15 +60,9 @@
 (defun my-whitespace-hook ()
   (let ((mode major-mode))
     (cond ((s-equals? mode "java-mode") (my-set-whitespace-less))
-          ((s-equals? mode "js-mode") (my-set-whitespace-less))
+          ((s-equals? mode "js2-mode") (my-set-whitespace-less))
           (t (my-set-whitespace-normal)))))
 (add-hook 'prog-mode-hook 'my-whitespace-hook)
-;; (add-hook 'web-mode-hook (lambda ()
-;;                            (add-hook 'local-write-file-hooks
-;;                                      (lambda ()
-;;                                        (delete-trailing-whitespace)
-;;                                        nil))
-;;                            (whitespace-mode -1)))
 
 (add-to-list 'load-path "~/.emacs.d/ghc")
 (autoload 'ghc-init "ghc" nil t)
