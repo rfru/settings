@@ -44,7 +44,7 @@
      `(match ((t (:underline t :weight bold :foreground ,black))))
      '(header-line ((t (:weight bold :inverse-video nil :background nil))))
      '(show-paren-match ((t (:background nil :foreground nil :inverse-video t))))
-     `(helm-source-header ((t (:foreground ,orange :underline t :weight bold))))
+     `(helm-source-header ((t (:foreground ,black :underline t :weight bold))))
 
      '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground nil))))
      '(font-lock-doc-face ((t (:inherit font-lock-comment-face :foreground nil))))

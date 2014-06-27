@@ -10,6 +10,7 @@
         'diminish
         'ace-jump-mode
         'expand-region
+        'ag
         'pcre2el
         'magit
         'web-mode
