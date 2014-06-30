@@ -6,9 +6,11 @@
   (list 'evil
         'auto-complete
         'pos-tip
+        'protobuf-mode
         'diminish
         'ace-jump-mode
         'expand-region
+        'ag
         'pcre2el
         'magit
         'web-mode
