@@ -29,6 +29,7 @@
   ;(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
   ;(global-visual-line-mode t)
   (diminish 'undo-tree-mode)
+  (diminish 'flycheck-mode)
   (diminish 'helm-mode)
   (diminish 'smartparens-mode)
   (diminish 'auto-complete-mode)
