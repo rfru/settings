@@ -52,6 +52,11 @@
 
                                           ;'(show-paren-mismatch ((t (:background "magenta" :foreground nil :inverse-video t))))
      '(sp-show-pair-match-face ((t (:foreground nil :background nil :inherit show-paren-match))))
+     '(js2-external-variable ((t (:inherit default))))
+     '(js2-jsdoc-value ((t (:inherit font-lock-comment-face))))
+     '(js2-jsdoc-tag ((t (:inherit font-lock-comment-face))))
+     '(js2-jsdoc-type ((t (:inherit font-lock-comment-face))))
+     '(js2-function-param ((t (:inherit font-lock-variable-name-face))))
 
      ; Autocomplete with pop-tip generates empty whitespace at end of buffer
      '(whitespace-empty ((t (:background nil :foreground nil))))
