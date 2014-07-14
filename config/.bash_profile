@@ -29,4 +29,3 @@ elif [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
 else
   export PS1='\h:\w $ '
 fi
-alias serve='python -m SimpleHTTPServer'
