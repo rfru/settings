@@ -28,6 +28,7 @@
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
 (setq web-mode-enable-current-element-highlight t)
 
 (require 'smartparens-config)
@@ -90,40 +91,6 @@ Special commands:
       (modify-syntax-entry ?\n ">" css-mode-syntax-table))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
-(require 'pretty-symbols)
-(defvar my-pretty-symbols
-  (let ((c-like '(c-mode c++-mode go-mode java-mode js2-mode
-                        perl-mode cperl-mode ruby-mode
-                        python-mode inferior-python-mode)))
-
-  `((?ƒ mine "\\<defun\\>" (emacs-lisp-mode))
-    (?ƒ mine "\\<func\\>" (go-mode))
-    (?ƒ mine "\\<function\\>" (js2-mode))
-    (?ƒ mine "\\<def\\>" (python-mode))
-    (?Ṫ mine "\\<true\\>" (java-mode js2-mode go-mode))
-    (?Ṫ mine "\\<True\\>" (python-mode))
-    (?Ḟ mine "\\<false\\>" (java-mode js2-mode go-mode))
-    (?Ḟ mine "\\<False\\>" (python-mode))
-    (?Ø mine "\\<void\\>" (java-mode))
-    (?Ø mine "\\<null\\>" (java-mode js2-mode))
-    (?Ø mine "\\<nil\\>" (emacs-lisp-mode go-mode))
-    (?Ø mine "\\<None\\>" (python-mode))
-    (?Ǝ mine "\\<defvar\\>" (emacs-lisp-mode))
-    (?Ǝ mine "\\<var\\>" (js2-mode go-mode))
-    (?← mine "\\<return\\>" (java-mode js2-mode go-mode python-mode))
-    (?→ mine "\\<require\\>" (emacs-lisp-mode))
-    (?→ mine "\\<import\\>" (java-mode go-mode python-mode))
-    ;(?¬ logical ,(rxt-pcre-to-elisp "\\((!)") (java-mode js-mode go-mode))
-    )))
-
-(setq pretty-symbol-patterns (append pretty-symbol-patterns my-pretty-symbols))
-(setq pretty-symbol-categories '(lambda relational mine))
-(add-hook 'emacs-lisp-mode-hook 'pretty-symbols-mode)
-(add-hook 'java-mode-hook 'pretty-symbols-mode)
-(add-hook 'js2-mode-hook 'pretty-symbols-mode)
-(add-hook 'python-mode-hook 'pretty-symbols-mode)
-(add-hook 'go-mode-hook 'pretty-symbols-mode)
-
 (setq
  python-shell-interpreter "ipython"
  python-shell-interpreter-args ""
@@ -135,6 +102,20 @@ Special commands:
    "';'.join(module_completion('''%s'''))\n"
  python-shell-completion-string-code
    "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+
+(flycheck-define-checker jsxhint-checker
+  "A JSX syntax and style checker based on JSXHint."
+
+  :command ("jsxhint" source)
+  :error-patterns
+  ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
+  :modes (web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (equal web-mode-content-type "jsx")
+              ;; enable flycheck
+              (flycheck-select-checker 'jsxhint-checker)
+              (flycheck-mode))))
 
 (setq sp-autoescape-string-quote nil)
 
