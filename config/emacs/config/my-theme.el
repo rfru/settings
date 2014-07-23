@@ -40,7 +40,7 @@
      `(minibuffer-prompt ((t (:inherit default :weight bold))))
      `(mode-line ((t (:inverse-video nil :background ,lightgray))))
      `(mode-line-inactive ((t (:foreground ,gray :background ,white :inverse-video nil))))
-     `(vertical-border ((t (:foreground ,lightgray :background ,lightgray))))
+     `(vertical-border ((t (:foreground ,lightgray :background ,white))))
      `(match ((t (:underline t :weight bold :foreground ,black))))
      '(header-line ((t (:weight bold :inverse-video nil :background nil))))
      '(show-paren-match ((t (:background nil :foreground nil :inverse-video t))))
