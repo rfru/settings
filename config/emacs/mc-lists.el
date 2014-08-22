@@ -44,6 +44,7 @@
         evil-visual-char
         evil-visual-line
         evil-window-middle
+        evil-window-prev
         handle-switch-frame
         helm-M-x
         helm-confirm-and-exit-minibuffer
