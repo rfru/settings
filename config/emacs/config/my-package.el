@@ -7,6 +7,7 @@
         'auto-complete
         'pos-tip
         'protobuf-mode
+        'ess
         'diminish
         'ace-jump-mode
         'expand-region

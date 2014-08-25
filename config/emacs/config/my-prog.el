@@ -119,4 +119,9 @@ Special commands:
 
 (setq sp-autoescape-string-quote nil)
 
+(load "ess-site")
+; ESS will not print the evaluated comands, also speeds up the evaluation
+(setq ess-eval-visibly nil)
+(ess-toggle-underscore nil)
+
 (provide 'my-prog)

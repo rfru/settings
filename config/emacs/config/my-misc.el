@@ -47,6 +47,16 @@
                  (evil-normal-state)))
             ))
 
+(defun my-ess-eval ()
+  (interactive)
+  (if (and transient-mark-mode mark-active)
+      (call-interactively 'ess-eval-region)
+          (call-interactively 'ess-eval-line-and-step)))
+(add-hook 'ess-mode-hook
+          (lambda ()
+            (define-key evil-normal-state-local-map (kbd ".") 'my-ess-eval)
+            (define-key evil-visual-state-local-map (kbd ".") 'my-ess-eval)
+            ))
 
 (defun my-py-send (start end)
   "Send the region delimited by START and END to inferior Python process."
@@ -67,7 +77,10 @@
     (if (region-active-p)
         (setq beg (region-beginning) end (region-end))
       (setq beg (line-beginning-position) end (line-end-position)))
-    (my-py-send beg end)))
+    (my-py-send beg end)
+    (if (region-active-p)
+      (deactivate-mark)
+      (next-line 1))))
 (add-hook 'python-mode-hook
           (lambda ()
             (define-key evil-visual-state-local-map (kbd ".") 'python-eval-region-or-line)
@@ -87,5 +100,10 @@
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
+
+(require 'midnight)
+(setq clean-buffer-list-delay-general 2)
+; Cleanup every hour.
+(setq midnight-period (* 1 60 60))
 
 (provide 'my-misc)

@@ -1,5 +1,4 @@
 (global-set-key (kbd "C-x C-f") 'find-file-other-window)
-(global-set-key "\C-xk" 'kill-this-buffer)
 
 ; setup evil
 (require 'evil)
