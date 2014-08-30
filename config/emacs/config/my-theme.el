@@ -44,7 +44,7 @@
      `(match ((t (:underline t :weight bold :foreground ,black))))
      '(header-line ((t (:weight bold :inverse-video nil :background nil))))
      '(show-paren-match ((t (:background nil :foreground nil :inverse-video t))))
-     `(helm-source-header ((t (:foreground ,black :underline t :weight bold))))
+     `(helm-source-header ((t (:foreground ,darkgray :background ,lightgray :weight bold))))
 
      '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground nil))))
      '(font-lock-doc-face ((t (:inherit font-lock-comment-face :foreground nil))))
@@ -80,7 +80,8 @@
      '(popup-tip-face ((t (:inherit secondary-selection))))
      '(ghc-face-error ((t (:inherit error))))
 
-     '(helm-candidate-number ((t (:inherit mode-line))))
-     '(helm-selection ((t (:inherit highlight))))))
+     `(helm-match ((t (:foreground ,white :background ,pink :inverse-video nil))))
+      `(helm-candidate-number ((t (:inherit mode-line))))
+     `(helm-selection ((t (:weight bold :underline t))))))
 
 (provide 'my-theme)

@@ -18,10 +18,6 @@
 
 (setq lazy-highlight-initial-delay 0)
 
-; Spell check.
-;(add-hook 'text-mode-hook 'flyspell-mode)
-;(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-
 ; Refresh all buffers periodically.
 (setq revert-without-query '(".*"))
 (global-auto-revert-mode t)
@@ -102,6 +98,7 @@
 (setq comint-move-point-for-output t)
 
 (require 'midnight)
+(midnight-delay-set 'midnight-delay "4:30am")
 (setq clean-buffer-list-delay-general 2)
 ; Cleanup every hour.
 (setq midnight-period (* 1 60 60))

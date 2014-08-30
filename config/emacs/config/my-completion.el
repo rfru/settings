@@ -18,6 +18,8 @@
 (setq ac-use-quick-help nil)
 (when (display-graphic-p)
   (setq ac-use-quick-help t))
+; Avoid pasting issues.
+(setq ac-delay 0.05)
 (setq ac-quick-help-delay 0.5)
 (setq ac-candidate-limit 100)
 (add-to-list 'ac-modes 'html-mode)
