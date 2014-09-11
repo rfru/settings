@@ -7,11 +7,13 @@ fi
 command -v $cmd >/dev/null 2>&1 || {
     echo "Readlink needs to be installed.";
     brew install coreutils
+    brew install bash-completion
     exit;
 }
 
 ln -sf `$cmd -f .gitconfig` ~
 ln -sf `$cmd -f .bash_profile` ~
+ln -sf `$cmd -f .bashrc` ~
 ln -sf ~/.bash_profile ~/.profile
 
 init=`$cmd -f emacs/init.el`

@@ -1,2 +1,7 @@
 #!/bin/bash
-emacsclient -t -a "" "$@"
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    emacsclient -t -a "" "$@"
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    open -a Emacs "$@"
+fi

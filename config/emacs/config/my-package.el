@@ -5,14 +5,17 @@
 (defvar starter-kit-packages
   (list 'evil
         'auto-complete
+        'buffer-move
+        'multi-term
         'pos-tip
         'protobuf-mode
         'ess
+        'helm-swoop
         'diminish
         'ace-jump-mode
         'expand-region
         'ag
-        'pcre2el
+        ;; 'pcre2el
         'magit
         'web-mode
         'flycheck
@@ -26,7 +29,7 @@
         'pretty-symbols
         'go-mode
         'haskell-mode
-        'smartparens
+         'smartparens
         'js2-mode
         'undo-tree ; Automatically loaded by evil.
         'exec-path-from-shell
@@ -48,8 +51,11 @@
 (starter-kit-elpa-install)
 
 ; GUI Emacs needs to be similar to shell init.
-;;(when (memq window-system '(mac ns))
-;;    (exec-path-from-shell-initialize))
+(require 'exec-path-from-shell)
+(add-to-list 'exec-path-from-shell-variables "GOPATH")
+(when (memq window-system '(mac ns))
+   (exec-path-from-shell-initialize))
+
 ;;(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 ;;(unless (require 'el-get nil 'noerror)
@@ -76,7 +82,7 @@
 ;; (el-get 'sync my-el-get-packages)
 ;; (el-get 'sync)
 
-(require 's)
-(require 'dash)
+;; (require 's)
+;; (require 'dash)
 
 (provide 'my-package)

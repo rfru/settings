@@ -1,14 +1,12 @@
 (when (display-graphic-p)
   (tool-bar-mode -1)
   (when (equal system-type 'darwin)
-    (set-face-attribute 'default nil :family "Consolas")
-    (set-face-attribute 'default nil :height 120)
-    (set-fontset-font "fontset-default"
-                      'unicode
-                      '("Consolas" . "iso10646-1"))
-    (setq-default line-spacing 4)
-    (add-to-list 'default-frame-alist '(width  . 125))
-    (add-to-list 'default-frame-alist '(height . 50))
+    (set-default-font "Minion Pro 16")
+    (setq-default line-spacing 2)
+    (add-to-list 'default-frame-alist '(width  . 100))
+    (add-to-list 'default-frame-alist '(height . 35))
+    (set-fringe-mode 0)
+    (scroll-bar-mode -1)
     )
   (when (equal system-type 'gnu/linux)
     )
@@ -21,8 +19,11 @@
 
   (add-hook 'window-configuration-change-hook
             (lambda ()
+              (global-hl-line-mode t)
+              (set-frame-parameter nil 'internal-border-width 4)
               (set-window-margins (car (get-buffer-window-list (current-buffer) nil t)) 1 1)))
                                         ; Highlight current line
+
 
   (custom-set-variables
    '(inhibit-startup-screen t))
@@ -66,11 +67,7 @@
 (add-hook 'python-mode-hook 'pretty-symbols-mode)
 (add-hook 'go-mode-hook 'pretty-symbols-mode)
 
-(global-hl-line-mode t)
-
 ; Word wrapping.
-;(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
-;(global-visual-line-mode t)
 (diminish 'undo-tree-mode)
 (diminish 'flycheck-mode)
 (diminish 'helm-mode)
@@ -81,3 +78,4 @@
 (diminish 'pretty-symbols-mode)
 
 (provide 'my-ui)
+

@@ -13,6 +13,7 @@
         evil-delete-backward-char-and-join
         evil-delete-char
         evil-end-of-line
+        evil-exit-visual-state
         evil-force-normal-state
         evil-forward-WORD-begin
         evil-forward-char
@@ -52,6 +53,7 @@
         isearch-delete-char
         isearch-exit
         isearch-printing-char
+        last-buffer
         my-helm
         ns-handle-scroll-bar-event
         ))

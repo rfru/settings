@@ -8,12 +8,11 @@
 (require 'my-prog)
 (require 'my-completion)
 (require 'my-misc)
-(when (equal system-type 'gnu/linux)
- (require 'my-google)
- )
+(require 'my-google)
 
 (require 'my-ui)
 (require 'my-theme)
 
 (load "server")
 (unless (server-running-p) (server-start))
+(multi-term)

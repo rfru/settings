@@ -2,9 +2,39 @@
 
 ; setup evil
 (require 'evil)
-(evil-mode 1)
+(defcustom evil-state-modes
+  '(fundamental-mode
+    text-mode
+    prog-mode
+    sws-mode
+    dired-mode
+    comint-mode
+    log-edit-mode
+    compilation-mode)
+  "List of modes that should start up in Evil state."
+  :type '(repeat (symbol)))
+
+(defun my-enable-evil-mode ()
+  (if (apply 'derived-mode-p evil-state-modes)
+      (turn-on-evil-mode)))
+(add-hook 'after-change-major-mode-hook 'my-enable-evil-mode)
 (define-key evil-motion-state-map ";" 'evil-ex)
 (evil-ex-define-cmd "bd[elete]" 'kill-this-buffer)
+
+; Window motions.
+(define-key evil-motion-state-map (kbd "<right>") 'windmove-right)
+(define-key evil-motion-state-map (kbd "<left>") 'windmove-left)
+(define-key evil-motion-state-map (kbd "<up>") 'windmove-up)
+(define-key evil-motion-state-map (kbd "<down>") 'windmove-down)
+(define-key evil-motion-state-map (kbd "<S-right>") 'buf-move-right)
+(define-key evil-motion-state-map (kbd "<S-left>") 'buf-move-left)
+(define-key evil-motion-state-map (kbd "<S-up>") 'buf-move-up)
+(define-key evil-motion-state-map (kbd "<S-down>") 'buf-move-down)
+
+(define-key evil-motion-state-map (kbd "SPC") 'evil-scroll-page-down)
+(define-key evil-motion-state-map (kbd "<S-SPC>") 'evil-scroll-page-up)
+(define-key evil-motion-state-map (kbd "C-b") nil)
+(define-key evil-motion-state-map (kbd "C-f") nil)
 
 ; Automatically save when quitting.
 (evil-define-command evil-my-save-quit (file &optional bang)
@@ -42,14 +72,13 @@
 (define-key evil-visual-state-map (kbd "M") 'mc/unmark-next-like-this)
 
 (require 'ace-jump-mode)
-(define-key evil-normal-state-map (kbd "f") 'ace-jump-mode)
+(define-key evil-motion-state-map (kbd "f") 'ace-jump-mode)
 
 (defun last-buffer ()
   (interactive)
   (switch-to-buffer (other-buffer)))
 (define-key evil-normal-state-map (kbd "q") 'last-buffer)
 
-(global-set-key (kbd "<f4>") (kbd "<escape>"))
 ;; Don't wait for any other keys after escape is pressed.
 (setq evil-esc-delay 0)
 (defun minibuffer-keyboard-quit ()
@@ -61,10 +90,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (setq deactivate-mark  t)
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
-(define-key minibuffer-local-map (kbd "<f4>") 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map (kbd "<f4>") 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map (kbd "<f4>") 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map (kbd "<f4>") 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map (kbd "<f4>") 'minibuffer-keyboard-quit)
+(define-key mc/keymap [escape] 'mc/keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+
+(evil-mode 1)
 
 (provide 'my-motions)
