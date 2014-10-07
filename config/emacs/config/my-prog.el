@@ -1,38 +1,25 @@
 (require 'flycheck)
-(setq-default flycheck-disabled-checkers '(html-tidy haskell-ghc))
+(setq-default flycheck-disabled-checkers
+              '(html-tidy haskell-ghc emacs-lisp-checkdoc))
+
+;; (setq ofLibs (split-string (shell-command-to-string "find /Users/mtlin/Downloads/of_v0.8.4_osx_release/libs/openFrameworks -type d")))
+;; (add-to-list 'ofLibs "/Users/mtlin/Downloads/of_v0.8.4_osx_release/libs/glew/include")
+;; (add-to-list 'ofLibs "/Users/mtlin/Downloads/of_v0.8.4_osx_release/libs/tess2/include")
+;; (add-to-list 'ofLibs "/Users/mtlin/Downloads/of_v0.8.4_osx_release/libs/poco/include")
+;; (add-hook 'c++-mode-hook
+;;           (lambda ()
+;;             (setq flycheck-clang-language-standard "c++11")
+;;             (setq flycheck-clang-include-path ofLibs)))
 (global-flycheck-mode)
 
-;; (require 'eclim)
-;(setq eclim-print-debug-messages t)
-;; (setq eclim-problems-refresh-delay 3)
-;; (add-hook 'java-mode-hook (lambda ()
-;;                             (when (and buffer-file-name
-;;                                      (eclim--accepted-p buffer-file-name)
-;;                                      (eclim--project-dir buffer-file-name))
-;;                               (eclim-mode 1))))
-;; (add-to-list 'eclim--file-coding-system-mapping '("no-conversion" . "utf8"))
-;; (setq eclim-executable "/Users/mtlin/eclipse/eclim")
-;; (setq help-at-pt-display-when-idle t)
-;; (setq help-at-pt-timer-delay 0.1)
-;; (help-at-pt-set-timer)
-;; (defun eclim--project-dir (&optional filename)
-;;    "/usr/local/google/users/mtlin/magicjar/home-citc/magicjar/eclipse")
-;; (global-eclim-mode)
-
-;; (defun eclim-complete ()
-;;   (interactive)
-;;   (auto-complete '(ac-source-emacs-eclim)))
-;; (define-key evil-insert-state-map (kbd "C-SPC") 'eclim-complete)
+(when (display-graphic-p (selected-frame))
+  (eval-after-load 'flycheck
+    '(custom-set-variables
+      '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))))
 
 ; Make compile commands per buffer basis.
 (make-variable-buffer-local 'compile-command)
-;; (make-variable-buffer-local 'compile-history)
-
-(require 'ag)
-(defun ag(string)
-   (interactive (list (read-from-minibuffer "Search string: " "")))
-   (ag/search string default-directory))
-
+(setq compilation-ask-about-save nil)
 
 (require 'magit)
 (require 'web-mode)
@@ -63,29 +50,15 @@
 (setq whitespace-style '(face lines-tail empty trailing))
 (setq whitespace-line-column 100)
 (global-whitespace-mode 1)
-;; (defun my-set-whitespace (col)
-;;   (whitespace-mode -1)
-;;   (setq whitespace-line-column col)
-;;   (whitespace-mode 1))
-;; (defun my-set-whitespace-normal()
-;;   (my-set-whitespace 120))
-;; (defun my-set-whitespace-less ()
-;;   (my-set-whitespace 100))
-;; (defun my-whitespace-hook ()
-;;   (let ((mode major-mode))
-;;     (cond ((s-equals? mode "java-mode") (my-set-whitespace-less))
-;;           ((s-equals? mode "js2-mode") (my-set-whitespace-less))
-;;           (t (my-set-whitespace-normal)))))
 
 (add-to-list 'load-path "~/.emacs.d/ghc")
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda ()
-                               (turn-on-haskell-indentation)
-                               (ghc-init)))
-(add-hook 'haskell-mode-hook (lambda nil
                                (add-hook 'after-save-hook
                                          (lambda nil (ghc-check-syntax))
-                                         nil 'local)))
+                                         nil 'local)
+                               (turn-on-haskell-indentation)
+                               (ghc-init)))
 
 (defconst scss-font-lock-keywords
   ;; Variables
@@ -116,7 +89,6 @@ Special commands:
 
 (flycheck-define-checker jsxhint-checker
   "A JSX syntax and style checker based on JSXHint."
-
   :command ("jsxhint" source)
   :error-patterns
   ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))

@@ -1,11 +1,12 @@
 (deftheme light "My light theme.")
-(blink-cursor-mode -1)
 (set-cursor-color "#ccc")
+
 (let* ((gui (display-graphic-p))
        (black (if gui "#333" "black"))
        (gray (if gui "#aaa" "brightcyan"))
        (cyan (if gui "forestgreen" "cyan"))
        (red "red")
+       (fgRed "#dd1144")
        (orange (if gui "orange" "yellow"))
        (blue "blue")
        (verylightgray (if gui "#f8f8f8" "white"))
@@ -19,16 +20,16 @@
      ;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Direct specification.
      ;;;;;;;;;;;;;;;;;;;;;;;
-   `(default ((t (:foreground ,black :weight normal))))
+   `(default ((t (:foreground ,black))))
    `(isearch ((t (:background ,white :foreground ,pink :inverse-video t))))
    `(lazy-highlight ((t (:foreground ,lightgray :background ,black :inverse-video t))))
-   `(hl-line ((t :background ,verylightgray)))
-   `(highlight ((t (:background ,verylightgray))))
+   `(hl-line ((t :background ,lightgray)))
+   `(highlight ((t (:background ,lightgray))))
 
    `(font-lock-keyword-face ((t (:foreground ,cyan))))
    `(font-lock-builtin-face ((t (:foreground ,purple))))
-   `(font-lock-constant-face ((t (:weight light))))
-   `(font-lock-string-face ((t (:foreground ,cyan :weight light))))
+   `(font-lock-constant-face ((t (:foreground ,fgRed))))
+   `(font-lock-string-face ((t (:foreground ,cyan :family "Input Serif Narrow"))))
    `(font-lock-function-name-face ((t ())))
    `(font-lock-comment-face ((t (:foreground ,gray :slant italic))))
    `(font-lock-keyword-face ((t (:foreground ,black :weight semi-bold))))
@@ -39,14 +40,16 @@
    `(region ((t (:inverse-video t :foreground ,gray))))
 
    `(popup-face ((t (:background ,verylightgray))))
+   `(comint-highlight-prompt ((t (:inherit default))))
                                         ; other
    `(minibuffer-prompt ((t (:inherit default :weight bold))))
-   `(mode-line ((t (:inverse-video nil :background ,verylightgray))))
-   `(mode-line-inactive ((t (:foreground ,gray :background ,white :inverse-video nil))))
+   `(mode-line ((t (:inverse-video nil :foreground ,gray :background ,lightgray))))
+   `(mode-line-buffer-id ((t ( :height 1.1 :foreground ,black))))
+   `(mode-line-inactive ((t ( :background ,lightgray :foreground ,gray :inverse-video nil))))
    `(vertical-border ((t (:foreground ,lightgray :background ,white))))
    `(match ((t (:underline t :weight bold :foreground ,black))))
    `(header-line ((t (:foreground ,gray :weight light))))
-   '(show-paren-match ((t (:background nil :foreground nil :inverse-video t))))
+   `(show-paren-match ((t (:background nil :foreground ,gray :inverse-video t))))
    `(helm-source-header ((t (:foreground ,darkgray :weight normal :height 1.4 :underline t))))
 
    '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground nil))))
@@ -76,6 +79,8 @@
    '(web-mode-doctype-face ((t (:inherit web-mode-comment-face))))
    '(web-mode-symbol-face ((t (:inherit web-mode-comment-face))))
    '(web-mode-current-element-highlight-face ((t (:inherit highlight))))
+   '(helm-swoop-target-word-face ((t (:inherit isearch))))
+   `(helm-swoop-target-line-face ((t (:inherit hl-line))))
 
    '(ac-completion-face ((t (:inherit font-lock-comment-face))))
    '(ac-emacs-eclim-candidate-face ((t (:inherit ac-candidate-face))))
@@ -85,7 +90,7 @@
 
    `(helm-match ((t (:weight bold))))
    `(helm-candidate-number ((t (:inherit mode-line))))
-   `(helm-selection ((t (:background ,verylightgray))))))
+   `(helm-selection ((t (:background ,lightgray))))))
 (setq underline-minimum-offset 4)
 
 (provide 'my-theme)

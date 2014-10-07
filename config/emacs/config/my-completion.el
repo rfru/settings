@@ -1,7 +1,6 @@
 ; setup autocompletion
 (require 'auto-complete-config)
 (require 'go-autocomplete)
-(require 'ac-emacs-eclim-source)
 (setq-default ac-sources '(ac-source-words-in-same-mode-buffers))
 (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
 (add-hook 'css-mode-hook 'ac-css-mode-setup)
@@ -9,10 +8,6 @@
                                (setq ac-sources (append '(ac-source-ghc-mod) ac-sources))))
 (setq ac-auto-show-menu t)
 
-; Don't use quick help in console.
-(setq ac-use-quick-help nil)
-;; (when (display-graphic-p)
-;;   (setq ac-use-quick-help t))
 ; Avoid pasting issues.
 (setq ac-delay 0.05)
 (setq ac-quick-help-delay 0.5)
@@ -24,11 +19,17 @@
 (add-to-list 'ac-modes 'web-mode)
 (add-to-list 'ac-modes 'protobuf-mode)
 
+;; (require 'auto-complete-clang)
+;; (defun my-ac-cc-mode-setup ()
+;;   (setq ac-sources (append '(ac-source-clang) ac-sources)))
+;; (add-hook 'c++-mode-hook 'my-ac-cc-mode-setup)
+
 (setq ac-disable-faces nil)
 
-(setq ac-auto-show-menu nil)
+;; ; Don't show the menu automatically.
+;; (setq ac-auto-show-menu nil)
+(setq ac-auto-show-menu 0.1)
 (global-auto-complete-mode t)
-
 ;; (setq-default company-frontends '(
 ;;                                   company-pseudo-tooltip-frontend
 ;;                           company-preview-if-just-one-frontend))

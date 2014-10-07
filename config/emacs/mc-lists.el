@@ -56,4 +56,5 @@
         last-buffer
         my-helm
         ns-handle-scroll-bar-event
+        term-send-raw
         ))

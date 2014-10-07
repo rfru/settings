@@ -1,16 +1,13 @@
 (when (display-graphic-p)
   (tool-bar-mode -1)
   (when (equal system-type 'darwin)
-    (set-default-font "Minion Pro 16")
-    (setq-default line-spacing 2)
+    (set-default-font "Input Sans Narrow-12")
+    (setq-default line-spacing 0)
     (add-to-list 'default-frame-alist '(width  . 100))
     (add-to-list 'default-frame-alist '(height . 35))
     (set-fringe-mode 0)
     (scroll-bar-mode -1)
-    )
-  (when (equal system-type 'gnu/linux)
-    )
-  )
+    ))
 
 (defun reset-ui ()
   (menu-bar-mode -1)
@@ -26,8 +23,7 @@
 
 
   (custom-set-variables
-   '(inhibit-startup-screen t))
-)
+   '(inhibit-startup-screen t)))
 
 ;; (add-hook 'after-make-frame-functions (lambda (frame)
 ;;                                         (reset-ui)))
@@ -69,6 +65,7 @@
 
 ; Word wrapping.
 (diminish 'undo-tree-mode)
+(diminish 'global-whitespace-mode)
 (diminish 'flycheck-mode)
 (diminish 'helm-mode)
 (diminish 'smartparens-mode)

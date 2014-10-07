@@ -5,9 +5,11 @@ if [[ "$unamestr" == 'Linux' ]]; then
     cmd='readlink'
 fi
 command -v $cmd >/dev/null 2>&1 || {
-    echo "Readlink needs to be installed.";
+    sudo easy_install pip
+    sudo pip install jedi epc
     brew install coreutils
     brew install bash-completion
+    brew install the_silver_searcher
     exit;
 }
 

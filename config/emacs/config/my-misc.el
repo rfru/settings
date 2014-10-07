@@ -1,10 +1,12 @@
 (setq indent-line-function 'insert-tab)
 (setq large-file-warning-threshold 100000000)
-(electric-indent-mode 1)
+(global-set-key (kbd "RET") 'newline-and-indent)
+
+(setq ring-bell-function 'ignore)
 
 (setq debug-on-quit nil)
 
-(defun my-paste () 
+(defun my-paste ()
   (interactive)
   (if (string-match "^\*terminal" (buffer-name))
       (term-paste)
@@ -23,20 +25,14 @@
 (defalias 'yes-or-no-p 'my-yes-or-mumble-p)
 
 ; Save minibuffer history and other variables.
-(setq savehist-additional-variables 
-  '(compile-history) 
-  savehist-file "~/.emacs.d/savehist") 
-savehist-file
+(setq savehist-additional-variables
+  '(compile-history)
+  savehist-file "~/.emacs.d/savehist")
 (savehist-mode 1)
 
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (cl-flet ((process-list ())) ad-do-it))
-
-(require 'auto-save-buffers-enhanced)
-(setq auto-save-buffers-enhanced-interval 0.7)
-(setq auto-save-buffers-enhanced-quiet-save-p nil)
-(auto-save-buffers-enhanced t)
 
 (require 'saveplace)
 (setq-default save-place t)
@@ -44,10 +40,9 @@ savehist-file
 (setq lazy-highlight-initial-delay 0)
 
 ; Refresh all buffers periodically.
-(require 'autorevert)
-(setq revert-without-query '(".*"))
-(setq auto-revert-use-notify nil)
-(global-auto-revert-mode t)
+;; (require 'autorevert)
+;; (setq revert-without-query '(".*"))
+;; (global-auto-revert-mode t)
 
 ; Only backup locally
 (defvar backup-dir (expand-file-name "~/.emacs.d/backup/"))
@@ -55,36 +50,43 @@ savehist-file
 ; Don't use builtin autosave.
 (setq auto-save-default nil)
 
+(require 'smooth-scrolling)
+(setq smooth-scroll-margin 10)
+
+(defun kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (tramp-cleanup-all-connections)
+    (mapc 'kill-buffer
+          (delq (current-buffer)
+                (remove-if-not 'buffer-file-name (buffer-list)))))
+(evil-leader/set-key "k" 'kill-other-buffers)
+
 (require 'tramp)
 (setq tramp-verbose 3)
-;; (setq tramp-verbose 6)
-; Tramp might be more stable if we don't use the same connection as terminal SSH.
-(setq tramp-ssh-controlmaster-options
-                 (concat
-                   "-o ControlPath=/tmp/ssh-%%r@%%h:%%p "
-                   "-o ControlMaster=auto -o ControlPersist=yes"))
 (setq vc-handled-backends nil)
+(setq vc-ignore-dir-regexp
+                (format "\\(%s\\)\\|\\(%s\\)"
+                        vc-ignore-dir-regexp
+                        tramp-file-name-regexp))
 (setq tramp-remote-path '(tramp-own-remote-path))
 
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map (kbd ".") 'eval-last-sexp)
-            (define-key evil-visual-state-local-map (kbd ".")
-              '(lambda ()
-                 (interactive)
-                 (call-interactively 'eval-region)
-                 (evil-normal-state)))))
+(evil-define-key 'normal emacs-lisp-mode-map (kbd ".") 'eval-last-sexp)
+(evil-define-key 'normal lisp-interaction-mode-map (kbd ".") 'eval-last-sexp)
+(defun evil-eval-region ()
+     (interactive)
+     (call-interactively 'eval-region)
+     (evil-normal-state))
+(evil-define-key 'visual emacs-lisp-mode-map (kbd ".") 'evil-eval-region)
+(evil-define-key 'visual lisp-interaction-mode-map (kbd ".") 'evil-eval-region)
 
 (defun my-ess-eval ()
   (interactive)
   (if (and transient-mark-mode mark-active)
       (call-interactively 'ess-eval-region)
           (call-interactively 'ess-eval-line-and-step)))
-(add-hook 'ess-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map (kbd ".") 'my-ess-eval)
-            (define-key evil-visual-state-local-map (kbd ".") 'my-ess-eval)
-            ))
+(evil-define-key 'normal ess-mode-map (kbd ".") 'my-ess-eval)
+(evil-define-key 'visual ess-mode-map (kbd ".") 'my-ess-eval)
 
 (defun my-py-send (start end)
   "Send the region delimited by START and END to inferior Python process."
@@ -112,8 +114,7 @@ savehist-file
 (add-hook 'python-mode-hook
           (lambda ()
             (define-key evil-visual-state-local-map (kbd ".") 'python-eval-region-or-line)
-            (define-key evil-normal-state-local-map (kbd ".") 'python-eval-region-or-line)
-            ))
+            (define-key evil-normal-state-local-map (kbd ".") 'python-eval-region-or-line)))
 
 (setq vc-follow-symlinks 't)
 
@@ -121,21 +122,41 @@ savehist-file
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '((".*" . "~/.emacs.d/undo")))
 
-; Tail the compilation buffer.
-(setq compilation-scroll-output t)
+; Jump to first error
+(setq compilation-scroll-output 'first-error)
 
 ; Console output scrolling.
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
+(evil-define-key 'insert comint-mode-map (kbd "<up>") 'comint-previous-input)
+(evil-define-key 'insert comint-mode-map (kbd "<down>") 'comint-next-input)
+(evil-define-key 'insert comint-mode-map (kbd "C-z") 'comint-stop-subjob)
+(defun my-dirtrack-mode ()
+  "Add to shell-mode-hook to use dirtrack mode in my shell buffers."
+    (setq ansi-color-for-comint-mode t)
+    (shell-dirtrack-mode 0)
+    (set-variable 'dirtrack-list '("^.+[^ ]+:\\(.+?\\) *\\$" 1 nil))
+    (dirtrack-mode 1))
+(add-hook 'shell-mode-hook 'my-dirtrack-mode)
+(setq explicit-shell-file-name "/bin/bash")
+(setq shell-counter 1)
+(defun my-find-directory (dir)
+  (with-temp-buffer
+    (cd dir)
+    (setq shell-counter (+ shell-counter 1))
+    (shell (concat "*shell-" (number-to-string shell-counter) "*"))))
+(setq find-directory-functions '(my-find-directory))
 
-(require 'midnight)
-(midnight-delay-set 'midnight-delay "4:30am")
-(setq clean-buffer-list-delay-general 2)
-; Cleanup every hour.
-(setq midnight-period (* 1 60 60))
-
-(require 'multi-term)
-(setq multi-term-program "/bin/bash")
+(defun narrow-or-widen-dwim (p)
+  (interactive "P")
+  (declare (interactive-only))
+  (cond
+        ((region-active-p)
+         (progn
+           (narrow-to-region (region-beginning) (region-end))
+           (evil-exit-visual-state)))
+        (t (widen))))
+(evil-leader/set-key "n" 'narrow-or-widen-dwim)
 
 (provide 'my-misc)
