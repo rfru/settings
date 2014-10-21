@@ -16,7 +16,6 @@
         'magit
         'web-mode
         'flycheck
-        'flycheck-pos-tip
         'visual-regexp
         'ace-jump-mode
         'visual-regexp-steroids

@@ -1,7 +1,7 @@
 (when (display-graphic-p)
   (tool-bar-mode -1)
   (when (equal system-type 'darwin)
-    (set-default-font "Input Sans Narrow-12")
+    (set-default-font "Tisa Pro 14")
     (setq-default line-spacing 0)
     (add-to-list 'default-frame-alist '(width  . 100))
     (add-to-list 'default-frame-alist '(height . 35))

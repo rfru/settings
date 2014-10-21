@@ -27,6 +27,7 @@ editable.  This also saves the current buffer, and will revert it
 once JIWYU finishes.
   Caveat: does not revert the associated BUILD file."
   (interactive)
+  (save-buffer)
   (unless (eq major-mode 'java-mode)
     (error "JIWYU only works with Java."))
   (let* (

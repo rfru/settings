@@ -1,5 +1,5 @@
 (deftheme light "My light theme.")
-(set-cursor-color "#ccc")
+(set-cursor-color "#444")
 
 (let* ((gui (display-graphic-p))
        (black (if gui "#333" "black"))
@@ -29,7 +29,7 @@
    `(font-lock-keyword-face ((t (:foreground ,cyan))))
    `(font-lock-builtin-face ((t (:foreground ,purple))))
    `(font-lock-constant-face ((t (:foreground ,fgRed))))
-   `(font-lock-string-face ((t (:foreground ,cyan :family "Input Serif Narrow"))))
+   `(font-lock-string-face ((t (:foreground ,cyan :family "Tisa Sans Pro"))))
    `(font-lock-function-name-face ((t ())))
    `(font-lock-comment-face ((t (:foreground ,gray :slant italic))))
    `(font-lock-keyword-face ((t (:foreground ,black :weight semi-bold))))
@@ -37,7 +37,7 @@
    `(font-lock-type-face ((t (:inherit default))))
 
    `(error ((t (:inverse-video t :foreground ,red))))
-   `(region ((t (:inverse-video t :foreground ,gray))))
+   `(region ((t (:inverse-video t :foreground ,black))))
 
    `(popup-face ((t (:background ,verylightgray))))
    `(comint-highlight-prompt ((t (:inherit default))))

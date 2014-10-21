@@ -12,11 +12,6 @@
 ;;             (setq flycheck-clang-include-path ofLibs)))
 (global-flycheck-mode)
 
-(when (display-graphic-p (selected-frame))
-  (eval-after-load 'flycheck
-    '(custom-set-variables
-      '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))))
-
 ; Make compile commands per buffer basis.
 (make-variable-buffer-local 'compile-command)
 (setq compilation-ask-about-save nil)
@@ -29,7 +24,7 @@
 (setq web-mode-enable-current-element-highlight t)
 
 (require 'smartparens-config)
-(show-smartparens-global-mode nil)
+(show-smartparens-global-mode -1)
 (smartparens-global-mode t)
 
 (setq jedi:complete-on-dot t)

@@ -10,6 +10,7 @@ command -v $cmd >/dev/null 2>&1 || {
     brew install coreutils
     brew install bash-completion
     brew install the_silver_searcher
+    brew install emacs --HEAD --use-git-head --cocoa
     exit;
 }
 

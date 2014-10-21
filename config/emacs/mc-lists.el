@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         c-electric-star
+        ess-smart-comma
         evil-append
         evil-append-line
         evil-backward-WORD-begin

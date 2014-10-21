@@ -3,6 +3,7 @@
 (add-to-list 'load-path my-config-dir)
 
 (require 'my-package)
+(require 'my-util)
 (require 'my-motions)
 (require 'my-helm)
 (require 'my-prog)

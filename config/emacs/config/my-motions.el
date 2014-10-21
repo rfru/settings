@@ -18,21 +18,6 @@
   (if (apply 'derived-mode-p evil-state-modes)
       (turn-on-evil-mode)))
 (add-hook 'after-change-major-mode-hook 'my-enable-evil-mode)
-(evil-define-command evil-delete-buffer-keep-windows
-  (buffer &optional bang)
-  (interactive "<b><!>")
-  (with-current-buffer (or buffer (current-buffer))
-    (when bang
-      (set-buffer-modified-p nil)
-      (dolist (process (process-list))
-        (when (eq (process-buffer process)
-                  (current-buffer))
-          (set-process-query-on-exit-flag process nil))))
-    (if (and (fboundp 'server-edit)
-             (boundp 'server-buffer-clients)
-             server-buffer-clients)
-        (server-edit)
-		  (kill-buffer nil))))
 
 ;; Don't wait for any other keys after escape is pressed.
 (setq evil-esc-delay 0)
@@ -55,7 +40,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
-
 
 (defun my-quit ()
   (interactive)
@@ -131,6 +115,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (define-key evil-normal-state-map "U" 'undo-tree-redo)
 (define-key evil-normal-state-map "\C-r" nil)
-(define-key evil-normal-state-map (kbd "RET") '(lambda() (interactive) (evil-goto-mark ?`)))
+;; (define-key evil-normal-state-map (kbd "RET") '(lambda() (interactive) (evil-goto-mark ?`)))
+(define-key evil-normal-state-map (kbd "RET") 'goto-last-change)
 
 (provide 'my-motions)

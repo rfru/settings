@@ -6,14 +6,6 @@
 
 (setq debug-on-quit nil)
 
-(defun my-paste ()
-  (interactive)
-  (if (string-match "^\*terminal" (buffer-name))
-      (term-paste)
-      (yank)))
-(define-key evil-normal-state-map (kbd "s-v") 'my-paste)
-(define-key evil-insert-state-map (kbd "s-v") 'my-paste)
-
 (defun my-yes-or-mumble-p (prompt)
     "PROMPT user with a yes-or-no question, but only test for yes."
     (if (string= "y"
@@ -38,11 +30,7 @@
 (setq-default save-place t)
 
 (setq lazy-highlight-initial-delay 0)
-
-; Refresh all buffers periodically.
-;; (require 'autorevert)
-;; (setq revert-without-query '(".*"))
-;; (global-auto-revert-mode t)
+(setq revert-without-query '(".*"))
 
 ; Only backup locally
 (defvar backup-dir (expand-file-name "~/.emacs.d/backup/"))
@@ -53,14 +41,7 @@
 (require 'smooth-scrolling)
 (setq smooth-scroll-margin 10)
 
-(defun kill-other-buffers ()
-    "Kill all other buffers."
-    (interactive)
-    (tramp-cleanup-all-connections)
-    (mapc 'kill-buffer
-          (delq (current-buffer)
-                (remove-if-not 'buffer-file-name (buffer-list)))))
-(evil-leader/set-key "k" 'kill-other-buffers)
+(evil-leader/set-key "k" 'my-kill-buffers)
 
 (require 'tramp)
 (setq tramp-verbose 3)
@@ -140,9 +121,15 @@
     (dirtrack-mode 1))
 (add-hook 'shell-mode-hook 'my-dirtrack-mode)
 (setq explicit-shell-file-name "/bin/bash")
+
+(add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
+(add-hook 'compilation-filter-hook 'comint-truncate-buffer)
+(setq comint-buffer-maximum-size 2000)
+
 (setq shell-counter 1)
 (defun my-find-directory (dir)
   (with-temp-buffer
+    (add-to-recentd dir)
     (cd dir)
     (setq shell-counter (+ shell-counter 1))
     (shell (concat "*shell-" (number-to-string shell-counter) "*"))))
