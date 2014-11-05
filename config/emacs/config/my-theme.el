@@ -34,7 +34,7 @@
    `(font-lock-comment-face ((t (:foreground ,gray :slant italic))))
    `(font-lock-keyword-face ((t (:foreground ,black :weight semi-bold))))
    `(font-lock-variable-name-face ((t (:inherit default))))
-   `(font-lock-type-face ((t (:inherit default))))
+   `(font-lock-type-face ((t (:foreground ,black :family "Avenir Next"))))
 
    `(error ((t (:inverse-video t :foreground ,red))))
    `(region ((t (:inverse-video t :foreground ,black))))

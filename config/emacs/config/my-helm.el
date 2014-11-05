@@ -2,35 +2,63 @@
 (require 'helm)
 (require 'helm-buffers)
 (require 'helm-files)
+(require 'recentf)
+(require 'dash)
+(require 's)
+(require 'f)
+(require 'helm-swoop)
 
 (setq helm-mp-matching-method 'multi3p)
 (setq helm-mp-highlight-delay 0.1)
 (setq helm-M-x-always-save-history t)
 (setq helm-split-window-default-side 'other)
 (setq helm-quick-update t)
-(setq helm-buffer-details-flag nil)
-(define-key evil-motion-state-map (kbd "'") 'helm-M-x)
-(define-key evil-visual-state-map (kbd "'") 'helm-M-x)
 
-(require 'recentf)
 (setq recentf-exclude '("\\.recentf" "^/tmp/" "/.git/" "/.emacs.d/elpa/"))
-(setq recentf-max-saved-items 150)
+(setq recentf-max-saved-items 250)
 (setq recentf-auto-cleanup 'never)
 (setq recentf-save-file (expand-file-name "~/.emacs.d/.recentf"))
 (setq recentf-auto-save-timer
       (run-with-idle-timer 10 t 'recentf-save-list))
 (recentf-mode 1)
 
+(defun my-filter (candidates _source)
+(let* ((expanded (f-full default-directory))
+      (open-buffers (-non-nil (-map 'buffer-file-name (buffer-list))))
+      (diff (-difference candidates open-buffers)))
+  (-map
+   (lambda (file)
+     (s-chop-prefix expanded file))
+   diff)))
+(defvar my-source-recentf
+  `((name . "Recent")
+    (init . (lambda ()
+              (recentf-mode 1)))
+    (candidates . recentf-list)
+    (match . helm-files-match-only-basename)
+    (filtered-candidate-transformer . my-filter)
+    (keymap . ,helm-generic-files-map)
+    (help-message . helm-generic-file-help-message)
+    (mode-line . helm-generic-file-mode-line-string)
+    (action . ,(cdr (helm-get-actions-from-type
+                     helm-source-locate))))
+  "See (info \"(emacs)File Conveniences\").
+Set `recentf-max-saved-items' to a bigger value if default is too small.")
+
 (setq helm-for-files-preferred-list
       '(helm-source-buffers-list
-        helm-source-recentf))
+        my-source-recentf))
 
 (setq recentd-file (expand-file-name "~/.emacs.d/.recentd"))
+(setq recentd-max 50)
 (defun add-to-recentd (d)
-  (setq recentd-list
-        (helm-fast-remove-dups
-         (append (list (file-name-as-directory (expand-file-name d))) recentd-list)
-         :test 'equal)))
+  (let ((tmp (helm-fast-remove-dups
+              (append (list (file-name-as-directory (expand-file-name d))) recentd-list)
+              :test 'equal)))
+    (setq recentd-list
+          (if (>= (length tmp) recentd-max)
+              (cl-subseq tmp 0 recentd-max)
+            tmp))))
 (defun recentd-save-list ()
   (dump-vars-to-file '(recentd-list) recentd-file))
 (setq recentd-list '())
@@ -43,7 +71,7 @@
   (append
    (list (expand-file-name default-directory))
    recentd-list
-   (mapcar (lambda (f) (file-name-directory f)) recentf-list)))
+   (-map 'file-name-directory recentf-list)))
 (cl-defun my-history (&key (comp-read t))
   "The `helm-find-files' history.
 Show the first `helm-ff-history-max-length' elements of
@@ -68,28 +96,21 @@ Show the first `helm-ff-history-max-length' elements of
      :name "Directory History")))
 (defun my-find-directories ()
   (interactive)
-  (let ((dir (my-history)))
+  (if (and (eq major-mode 'shell-mode) (not (get-buffer-process (current-buffer))))
+      (shell)
+      ; Find files.
+      (let ((dir (my-history)))
         (when (file-exists-p dir)
           (add-to-recentd dir))
-        (helm-find-files-1 (expand-file-name dir) nil)))
+        (helm-find-files-1 (expand-file-name dir) nil))))
 
-(require 'helm-swoop)
 (setq helm-swoop-split-direction 'split-window-horizontally)
-(define-key evil-motion-state-map (kbd ",") 'helm-for-files)
-(define-key evil-normal-state-map (kbd ",") 'helm-for-files)
-(define-key evil-motion-state-map (kbd "z") 'my-find-directories)
-(define-key evil-normal-state-map (kbd "z") 'my-find-directories)
-(define-key evil-visual-state-map (kbd "s") 'helm-swoop)
-(define-key evil-normal-state-map (kbd "s") (lambda () (interactive) (helm-swoop :$query "")))
-(define-key evil-normal-state-map (kbd "f") 'ace-jump-mode)
 
 (defun search()
   (interactive)
   (if (file-remote-p default-directory)
       (helm-ag)
     (helm-do-ag)))
-(define-key evil-motion-state-map (kbd "S") 'search)
-(define-key evil-normal-state-map (kbd "S") 'search)
 
 (define-key helm-map [escape] 'helm-keyboard-quit)
 

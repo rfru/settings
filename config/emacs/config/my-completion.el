@@ -3,12 +3,12 @@
 (require 'auto-complete-config)
 (require 'go-autocomplete)
 (setq-default ac-sources '(ac-source-words-in-same-mode-buffers ac-source-dictionary))
-(add-to-list 'ac-modes 'shell-mode)
-(add-hook 'shell-mode-hook
-          (lambda ()
-            (make-local-variable 'ac-auto-start)
-            (setq ac-auto-start 3)
-            (setq ac-sources '(ac-source-files-in-current-dir))))
+;; (add-to-list 'ac-modes 'shell-mode)
+;; (add-hook 'shell-mode-hook
+;;           (lambda ()
+;;             (make-local-variable 'ac-auto-start)
+;;             (setq ac-auto-start 3)
+;;             (setq ac-sources '(ac-source-files-in-current-dir))))
 (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
 (add-hook 'css-mode-hook 'ac-css-mode-setup)
 (add-hook 'haskell-mode-hook (lambda()

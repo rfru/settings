@@ -31,6 +31,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        evil-ace-jump-word-mode
         evil-ex
         evil-goto-first-line
         evil-goto-line

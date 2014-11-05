@@ -1,3 +1,9 @@
+(require 'rainbow-mode)
+(add-hook 'css-mode-hook 'rainbow-mode)
+(add-hook 'js2-mode-hook 'rainbow-mode)
+(add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
+(add-hook 'lisp-interaction-mode-hook 'rainbow-mode)
+
 (require 'flycheck)
 (setq-default flycheck-disabled-checkers
               '(html-tidy haskell-ghc emacs-lisp-checkdoc))
@@ -22,9 +28,10 @@
 (add-to-list 'auto-mode-alist '("\\.js[6]?\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
 (setq web-mode-enable-current-element-highlight t)
+(setq web-mode-enable-css-colorization t)
 
 (require 'smartparens-config)
-(show-smartparens-global-mode -1)
+(show-smartparens-global-mode t)
 (smartparens-global-mode t)
 
 (setq jedi:complete-on-dot t)

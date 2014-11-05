@@ -63,8 +63,8 @@
 (add-hook 'python-mode-hook 'pretty-symbols-mode)
 (add-hook 'go-mode-hook 'pretty-symbols-mode)
 
-; Word wrapping.
 (diminish 'undo-tree-mode)
+(diminish 'rainbow-mode)
 (diminish 'global-whitespace-mode)
 (diminish 'flycheck-mode)
 (diminish 'helm-mode)

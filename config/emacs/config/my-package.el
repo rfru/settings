@@ -1,5 +1,6 @@
 (require 'package)
-(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 (defvar starter-kit-packages
@@ -8,8 +9,13 @@
         'smooth-scrolling
         'protobuf-mode
         'ess
+        'rainbow-mode
         'helm-swoop
+        'ace-window
         'diminish
+        's
+        'dash
+        'f
         'expand-region
         'helm-ag
         'evil-matchit ; Enhance % operator for tags and many other structures

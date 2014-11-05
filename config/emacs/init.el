@@ -4,12 +4,13 @@
 
 (require 'my-package)
 (require 'my-util)
-(require 'my-motions)
+(require 'my-evil)
 (require 'my-helm)
 (require 'my-prog)
 (require 'my-completion)
 (require 'my-misc)
 (require 'my-google)
+(require 'my-keys)
 
 (require 'my-ui)
 (require 'my-theme)
