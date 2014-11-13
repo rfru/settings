@@ -3,7 +3,6 @@ export LC_ALL="en_US.UTF-8"
 export GOPATH=$HOME/go
 export EDITOR=e
 export PATH=$GOPATH/bin:$HOME/settings:$HOME/bin:$HOME/Library/Haskell/bin:/Applications/Emacs.app/Contents/MacOS/bin:/usr/local/bin:$PATH
-alias asdfgh="ls"
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then

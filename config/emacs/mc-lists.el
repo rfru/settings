@@ -27,10 +27,12 @@
         go-mode-insert-and-indent
         keyboard-quit
         sp--self-insert-command
+        vr/replace
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        evil-a-curly
         evil-ace-jump-word-mode
         evil-ex
         evil-goto-first-line

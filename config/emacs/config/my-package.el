@@ -28,6 +28,7 @@
         'evil-leader
         'jedi
         'go-autocomplete
+        'keyfreq
         'auto-complete-clang
         'multiple-cursors
         'pretty-symbols

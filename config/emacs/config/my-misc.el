@@ -1,3 +1,7 @@
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+
 (setq indent-line-function 'insert-tab)
 (setq large-file-warning-threshold 100000000)
 (global-set-key (kbd "RET") 'newline-and-indent)

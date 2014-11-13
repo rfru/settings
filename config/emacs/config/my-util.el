@@ -83,25 +83,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (interactive)
   (split-window-vertically)
   (other-window 1 nil)
-  (switch-to-next-buffer)
-  )
+  (switch-to-next-buffer))
+
 (defun hsplit-last-buffer ()
   (interactive)
    (split-window-horizontally)
   (other-window 1 nil)
-  (switch-to-next-buffer)
-  )
-
-(defun xah-syntax-color-hex ()
-  "Syntax color hex color spec such as 「#ff1100」 in current buffer."
-  (interactive)
-  (font-lock-add-keywords
-   nil
-   '(("#[abcdef[:digit:]]\\{6\\}"
-      (0 (put-text-property
-          (match-beginning 0)
-          (match-end 0)
-          'face (list :background (match-string-no-properties 0)))))))
-  (font-lock-fontify-buffer))
+  (switch-to-next-buffer))
 
 (provide 'my-util)
