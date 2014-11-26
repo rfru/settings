@@ -10,5 +10,6 @@
 	ui = auto
 [merge]
   conflictstyle = diff3
+  tool = meld
 [diff]
   tool = meld

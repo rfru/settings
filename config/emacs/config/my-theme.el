@@ -45,7 +45,7 @@
    `(font-lock-type-face ((t (:foreground "#6E819F"))))
 
    `(error ((t (:inverse-video t :foreground ,red))))
-   `(region ((t (:inverse-video t :foreground ,black))))
+   `(region ((t (:foreground ,white :background ,darkgray))))
 
    `(popup-face ((t (:background ,verylightgray))))
    `(comint-highlight-prompt ((t (:inherit default))))

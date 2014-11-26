@@ -23,7 +23,7 @@
 (recentf-mode 1)
 
 (defun my-filter (candidates _source)
-(let* ((expanded (f-full default-directory))
+(let* ((expanded default-directory)
       (open-buffers (-non-nil (-map 'buffer-file-name (buffer-list))))
       (diff (-difference candidates open-buffers)))
   (-map

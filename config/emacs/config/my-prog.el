@@ -8,14 +8,6 @@
 (setq-default flycheck-disabled-checkers
               '(html-tidy haskell-ghc emacs-lisp-checkdoc))
 
-;; (setq ofLibs (split-string (shell-command-to-string "find /Users/mtlin/Downloads/of_v0.8.4_osx_release/libs/openFrameworks -type d")))
-;; (add-to-list 'ofLibs "/Users/mtlin/Downloads/of_v0.8.4_osx_release/libs/glew/include")
-;; (add-to-list 'ofLibs "/Users/mtlin/Downloads/of_v0.8.4_osx_release/libs/tess2/include")
-;; (add-to-list 'ofLibs "/Users/mtlin/Downloads/of_v0.8.4_osx_release/libs/poco/include")
-;; (add-hook 'c++-mode-hook
-;;           (lambda ()
-;;             (setq flycheck-clang-language-standard "c++11")
-;;             (setq flycheck-clang-include-path ofLibs)))
 (global-flycheck-mode)
 
 ; Make compile commands per buffer basis.
@@ -24,6 +16,7 @@
 
 (require 'magit)
 (require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js[6]?\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))

@@ -81,6 +81,11 @@
 (evil-define-key 'insert comint-mode-map (kbd "<down>") 'comint-next-input)
 (evil-define-key 'insert comint-mode-map (kbd "C-z") 'comint-stop-subjob)
 
+(evil-define-key 'normal shell-mode-map (kbd "RET")
+  (lambda ()
+    (interactive)
+    (evil-goto-line)
+    (evil-append 0)))
 (evil-define-key 'normal emacs-lisp-mode-map (kbd "RET") 'eval-last-sexp)
 (evil-define-key 'normal lisp-interaction-mode-map (kbd "RET") 'eval-last-sexp)
 (evil-define-key 'visual emacs-lisp-mode-map (kbd "RET") 'evil-eval-region)

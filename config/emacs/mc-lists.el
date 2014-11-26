@@ -32,6 +32,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        ace-window
         evil-a-curly
         evil-ace-jump-word-mode
         evil-ex

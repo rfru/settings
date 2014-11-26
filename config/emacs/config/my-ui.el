@@ -6,6 +6,7 @@
     (add-to-list 'default-frame-alist '(width  . 100))
     (add-to-list 'default-frame-alist '(height . 35))
     (set-fringe-mode 0)
+    (blink-cursor-mode -1)
     (scroll-bar-mode -1)))
 
 (defun reset-ui ()

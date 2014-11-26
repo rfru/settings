@@ -35,6 +35,7 @@
 
 (setq lazy-highlight-initial-delay 0)
 (setq revert-without-query '(".*"))
+;; (global-auto-revert-mode)
 
 ; Only backup locally
 (defvar backup-dir (expand-file-name "~/.emacs.d/backup/"))
@@ -119,6 +120,10 @@
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 (add-hook 'compilation-filter-hook 'comint-truncate-buffer)
 (setq comint-buffer-maximum-size 2000)
+(defun my-comint-preoutput-turn-buffer-read-only (text)
+  (propertize text 'read-only t))
+
+(add-hook 'comint-preoutput-filter-functions 'my-comint-preoutput-turn-buffer-read-only)
 
 (defun my-find-directory (dir)
   (with-temp-buffer
