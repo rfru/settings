@@ -20,6 +20,7 @@
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js[6]?\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.xml$" . web-mode))
 (setq web-mode-enable-current-element-highlight t)
 (setq web-mode-enable-css-colorization t)
 
@@ -44,6 +45,7 @@
 (require 'whitespace)
 (setq whitespace-style '(face lines-tail empty trailing))
 (setq whitespace-line-column 100)
+(setq whitespace-global-modes '(not fundamental-mode))
 (global-whitespace-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/ghc")
@@ -54,6 +56,20 @@
                                          nil 'local)
                                (turn-on-haskell-indentation)
                                (ghc-init)))
+
+(setq-default compile-command nil)
+(defun my-compile ()
+  (interactive)
+  (when (not compile-command)
+    (setq compile-command
+          (cond
+           ((and (file-remote-p default-directory) (s-equals? "mtl" (tramp-file-name-host (tramp-dissect-file-name default-directory))))
+            (if (s-contains? "test" (buffer-name))
+                "blaze test :all"
+                "blaze build :all"))
+           ((eq 'go-mode major-mode)
+            "go build"))))
+  (call-interactively 'compile))
 
 (defconst scss-font-lock-keywords
   ;; Variables

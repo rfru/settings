@@ -47,7 +47,7 @@
   "w" '(lambda ()
           (interactive)
           (evil-write-all nil))
-  "c" 'compile
+  "c" 'my-compile
   "g" 'magit-status
   "v" 'hsplit-last-buffer
   "s" 'vsplit-last-buffer)

@@ -5,7 +5,6 @@
   (require 'google-coding-style)
  (add-to-list 'ac-modes 'borg-mode)
  (add-to-list 'ac-modes 'mendel-mode)
- (setq-default compile-command "blaze build :all")
   (setq auto-mode-alist
         (nconc
          (list

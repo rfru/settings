@@ -51,6 +51,7 @@
         evil-visual-line
         evil-window-middle
         evil-window-prev
+        evil-yank
         handle-switch-frame
         helm-M-x
         helm-confirm-and-exit-minibuffer

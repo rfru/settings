@@ -10,6 +10,7 @@
 
 (setq helm-mp-matching-method 'multi3p)
 (setq helm-mp-highlight-delay 0.1)
+(setq helm-mp-highlight-threshold 1)
 (setq helm-M-x-always-save-history t)
 (setq helm-split-window-default-side 'other)
 (setq helm-quick-update t)
@@ -26,27 +27,45 @@
 (let* ((expanded default-directory)
       (open-buffers (-non-nil (-map 'buffer-file-name (buffer-list))))
       (diff (-difference candidates open-buffers)))
-  (-map
-   (lambda (file)
-     (s-chop-prefix expanded file))
-   diff)))
-(defvar my-source-recentf
+   diff))
+
+(setq my-source-recentf
   `((name . "Recent")
     (init . (lambda ()
               (recentf-mode 1)))
     (candidates . recentf-list)
-    (match . helm-files-match-only-basename)
+    (candidate-number-limit . 50)
     (filtered-candidate-transformer . my-filter)
     (keymap . ,helm-generic-files-map)
-    (help-message . helm-generic-file-help-message)
-    (mode-line . helm-generic-file-mode-line-string)
     (action . ,(cdr (helm-get-actions-from-type
-                     helm-source-locate))))
-  "See (info \"(emacs)File Conveniences\").
-Set `recentf-max-saved-items' to a bigger value if default is too small.")
+                     helm-source-locate)))))
+
+(defun buffers-shell-attrs (buffer)
+  (let* ((buf (get-buffer buffer))
+         (name (buffer-name buf))
+         (file (buffer-file-name buf))
+         (dir (with-current-buffer buffer default-directory))
+         (proc (get-buffer-process buf)))
+    (list
+     (cond
+      ((s-starts-with? "*shell" name) (s-concat "*shell:" dir))
+      ((not file) (propertize name 'face 'italic))
+      (t name)))))
+(defun buffers-shell-transformer (buffers _source)
+      (cl-loop for i in buffers
+        for (name) = (buffers-shell-attrs i)
+        collect (cons name i)))
+
+(setq my-source-buffers
+  `((name . "Buffers")
+    (candidates . (lambda ()  (-map 'buffer-name (buffer-list))))
+    (candidate-number-limit . 25)
+    (filtered-candidate-transformer helm-skip-boring-buffers
+                                    buffers-shell-transformer)
+    (action . helm-switch-to-buffer)))
 
 (setq helm-for-files-preferred-list
-      '(helm-source-buffers-list
+      '(my-source-buffers
         my-source-recentf))
 
 (setq recentd-file (expand-file-name "~/.emacs.d/.recentd"))
@@ -72,6 +91,7 @@ Set `recentf-max-saved-items' to a bigger value if default is too small.")
    (list (expand-file-name default-directory))
    recentd-list
    (-map 'file-name-directory recentf-list)))
+
 (cl-defun my-history (&key (comp-read t))
   "The `helm-find-files' history.
 Show the first `helm-ff-history-max-length' elements of
@@ -82,18 +102,13 @@ Show the first `helm-ff-history-max-length' elements of
            (if (>= (length helm-ff-history) helm-ff-history-max-length)
                (cl-subseq helm-ff-history 0 helm-ff-history-max-length)
              helm-ff-history)))
-         (abbrev-hist
-          (mapcar (lambda (dir)
-                    (if (string= dir default-directory)
-                        "./"
-                      (abbreviate-file-name dir)))
-                     history))
-         (pruned-history (helm-fast-remove-dups abbrev-hist
+         (pruned-history (helm-fast-remove-dups history
                                                 :test 'equal)))
     (helm-comp-read
      "Switch to Directory: "
      pruned-history
      :name "Directory History")))
+
 (defun my-find-directories ()
   (interactive)
   (if (and (eq major-mode 'shell-mode) (not (get-buffer-process (current-buffer))))
@@ -115,7 +130,7 @@ Show the first `helm-ff-history-max-length' elements of
 (define-key helm-map [escape] 'helm-keyboard-quit)
 
 (setq helm-candidate-number-limit 25)
-(setq helm-buffer-max-length 75)
+
 (helm-mode 1)
 
 (provide 'my-helm)
