@@ -37,8 +37,7 @@
     (candidate-number-limit . 50)
     (filtered-candidate-transformer . my-filter)
     (keymap . ,helm-generic-files-map)
-    (action . ,(cdr (helm-get-actions-from-type
-                     helm-source-locate)))))
+    (action . ,(helm-actions-from-type-file))))
 
 (defun buffers-shell-attrs (buffer)
   (let* ((buf (get-buffer buffer))

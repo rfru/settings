@@ -8,6 +8,8 @@
         'auto-complete
         'smooth-scrolling
         'protobuf-mode
+        'git-commit-mode
+        'gitignore-mode
         'ess
         'rainbow-mode
         'helm-swoop

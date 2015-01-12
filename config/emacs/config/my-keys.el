@@ -39,6 +39,10 @@
 
 (define-key evil-normal-state-map (kbd "q") 'last-buffer)
 
+; Use evil keys for compilation mode.
+(define-key compilation-mode-map (kbd "g") nil)
+(define-key compilation-mode-map (kbd "h") nil)
+
 (evil-leader/set-key
   "q" 'delete-window
   "n" 'narrow-or-widen-dwim
@@ -50,13 +54,14 @@
   "c" 'my-compile
   "g" 'magit-status
   "v" 'hsplit-last-buffer
+  "r" 'revert-buffer
   "s" 'vsplit-last-buffer)
 
 (require 'visual-regexp)
 (require 'visual-regexp-steroids)
 (define-key evil-visual-state-map (kbd "r") 'vr/replace)
 
-(define-key evil-normal-state-map "U" 'undo-tree-redo)
+(define-key evil-normal-state-map "U" 'redo)
 (define-key evil-normal-state-map "\C-r" nil)
 (define-key evil-normal-state-map (kbd "<tab>") '(lambda() (interactive) (evil-goto-mark ?`)))
 ;; (define-key evil-normal-state-map (kbd "<tab>") 'goto-last-change)

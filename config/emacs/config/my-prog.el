@@ -43,9 +43,10 @@
 (setq-default evil-shift-width 2)
 
 (require 'whitespace)
-(setq whitespace-style '(face lines-tail empty trailing))
-(setq whitespace-line-column 100)
-(setq whitespace-global-modes '(not fundamental-mode))
+;; (setq whitespace-style '(face lines-tail empty trailing))
+;; (setq whitespace-line-column 100)
+(setq whitespace-style '(face empty trailing))
+;; (setq whitespace-global-modes '(java-mode python-mode js2-mode go-mode emacs-lisp-mode c++-mode web-mode protobuf-mode))
 (global-whitespace-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/ghc")
@@ -60,16 +61,27 @@
 (setq-default compile-command nil)
 (defun my-compile ()
   (interactive)
-  (when (not compile-command)
-    (setq compile-command
-          (cond
-           ((and (file-remote-p default-directory) (s-equals? "mtl" (tramp-file-name-host (tramp-dissect-file-name default-directory))))
-            (if (s-contains? "test" (buffer-name))
-                "blaze test :all"
+  (cond
+   ((eq 'ess-mode major-mode)
+    (call-interactively 'ess-eval-buffer))
+   (t
+    (when (not compile-command)
+      (setq compile-command
+            (cond
+             ((and (file-remote-p default-directory) (s-equals? "mtl" (tramp-file-name-host (tramp-dissect-file-name default-directory))))
+              (if (s-contains? "test" (buffer-name))
+                  "blaze test :all"
                 "blaze build :all"))
-           ((eq 'go-mode major-mode)
-            "go build"))))
-  (call-interactively 'compile))
+             ((eq 'go-mode major-mode)
+              (if (s-contains? "test" (buffer-name))
+                  "go test"
+                "go build"))
+             ((eq 'sh-mode major-mode)
+              (s-concat "sh " (buffer-name)))
+             ((eq 'python-mode major-mode)
+              (s-concat "python " (buffer-name)))
+             )))
+    (call-interactively 'compile))))
 
 (defconst scss-font-lock-keywords
   ;; Variables
@@ -86,17 +98,17 @@ Special commands:
       (modify-syntax-entry ?\n ">" css-mode-syntax-table))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
-(setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args ""
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
-   "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
-   "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
-   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+;; (setq
+;;  python-shell-interpreter "ipython"
+;;  python-shell-interpreter-args ""
+;;  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+;;  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+;;  python-shell-completion-setup-code
+;;    "from IPython.core.completerlib import module_completion"
+;;  python-shell-completion-module-string-code
+;;    "';'.join(module_completion('''%s'''))\n"
+;;  python-shell-completion-string-code
+;;    "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 (flycheck-define-checker jsxhint-checker
   "A JSX syntax and style checker based on JSXHint."
