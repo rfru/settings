@@ -19,25 +19,25 @@
           (cons "\\.gclx$" 'borg-mode))
          auto-mode-alist))
 
-(defun google-imports-jiwyu ()
-  "Run JIWYU (http://go/jiwyu) on the current file.
+(defun google-imports-jade()
+  "Run Jade (http://go/jade) on the current file.
 We assume that the files and the build target are already
 editable.  This also saves the current buffer, and will revert it
-once JIWYU finishes.
+once Jade finishes.
   Caveat: does not revert the associated BUILD file."
   (interactive)
   (save-buffer)
   (unless (eq major-mode 'java-mode)
-    (error "JIWYU only works with Java."))
+    (error "JADE only works with Java."))
   (let* (
          (temp-originating-buffer-name (current-buffer))
          (original-directory default-directory)
-         (jiwyu-buffer-name
-          (apply 'make-comint-in-buffer "jiwyu" nil
-                 "/google/data/ro/teams/jiwyu/jiwyu" nil
+         (jade-buffer-name
+          (apply 'make-comint-in-buffer "jade" nil
+                 "/google/data/ro/teams/jade/jade" nil
                  (list (file-relative-name buffer-file-name)))))
 
-    (switch-to-buffer jiwyu-buffer-name)
+    (switch-to-buffer jade-buffer-name)
     (setq-local originating-buffer-name temp-originating-buffer-name)
     (setq-local default-directory original-directory)
 
@@ -48,6 +48,6 @@ once JIWYU finishes.
           (revert-buffer nil t t)
           (kill-buffer cur-buf))))
 
-    (set-process-sentinel (get-buffer-process jiwyu-buffer-name) 'after-execution))))
+    (set-process-sentinel (get-buffer-process jade-buffer-name) 'after-execution))))
 
 (provide 'my-google)

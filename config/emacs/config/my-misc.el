@@ -54,6 +54,15 @@
                         vc-ignore-dir-regexp
                         tramp-file-name-regexp))
 (setq tramp-remote-path '(tramp-own-remote-path))
+(add-to-list 'tramp-default-proxies-alist
+             '("\\`mtl\\'" "\\`root\\'" "/ssh:%h:"))
+(defun open-sudo ()
+  (interactive)
+  (let ((new-dir
+         (if (file-remote-p default-directory)
+             (s-replace "/scp" "/sudo" default-directory)
+           (s-concat "/sudo:localhost:" default-directory))))
+    (helm-find-files-1 new-dir)))
 
 (defun evil-eval-region ()
      (interactive)
@@ -132,6 +141,15 @@
     (shell)
     (rename-uniquely)))
 (setq find-directory-functions '(my-find-directory))
+
+(defun next-shell ()
+  (interactive)
+  (let* ((test (-filter (lambda (s) (s-starts-with? "*shell" (buffer-name s))) (buffer-list)))
+         (sorted (-sort '(lambda (a b) (string< (buffer-name a) (buffer-name b))) test))
+         (index (-elem-index (get-buffer (buffer-name)) sorted)))
+    (if index
+        (switch-to-buffer (nth index (-rotate -1 sorted)))
+        (switch-to-buffer (car sorted)))))
 
 (defun narrow-or-widen-dwim (p)
   (interactive "P")

@@ -55,7 +55,8 @@
   "g" 'magit-status
   "v" 'hsplit-last-buffer
   "r" 'revert-buffer
-  "s" 'vsplit-last-buffer)
+  "s" 'vsplit-last-buffer
+  "." 'open-sudo)
 
 (require 'visual-regexp)
 (require 'visual-regexp-steroids)
@@ -81,6 +82,8 @@
 
 (define-key evil-motion-state-map "?" 'search)
 (define-key evil-normal-state-map "?" 'search)
+
+(define-key evil-normal-state-map "z" 'next-shell)
 
 (evil-define-key 'insert comint-mode-map (kbd "<up>") 'comint-previous-input)
 (evil-define-key 'insert comint-mode-map (kbd "<down>") 'comint-next-input)
