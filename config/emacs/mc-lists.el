@@ -33,6 +33,8 @@
 (setq mc/cmds-to-run-once
       '(
         ace-window
+        c-electric-semi&comma
+        comment-or-uncomment-region-or-line
         evil-a-curly
         evil-ace-jump-word-mode
         evil-ex

@@ -73,7 +73,7 @@
                   "blaze test :all"
                 "blaze build :all"))
              ((eq 'go-mode major-mode)
-              (if (s-contains? "test" (buffer-name))
+              (if (s-contains? "_test" (buffer-name))
                   "go test"
                 "go build"))
              ((eq 'sh-mode major-mode)

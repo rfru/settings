@@ -42,6 +42,7 @@
 ; Use evil keys for compilation mode.
 (define-key compilation-mode-map (kbd "g") nil)
 (define-key compilation-mode-map (kbd "h") nil)
+(define-key compilation-mode-map (kbd "z") nil)
 
 (evil-leader/set-key
   "q" 'delete-window
@@ -52,7 +53,10 @@
           (interactive)
           (evil-write-all nil))
   "c" 'my-compile
-  "g" 'magit-status
+  "g" '(lambda ()
+         (interactive)
+         (evil-write-all nil)
+         (magit-status default-directory))
   "v" 'hsplit-last-buffer
   "r" 'revert-buffer
   "s" 'vsplit-last-buffer
@@ -84,6 +88,7 @@
 (define-key evil-normal-state-map "?" 'search)
 
 (define-key evil-normal-state-map "z" 'next-shell)
+(define-key evil-motion-state-map "z" 'next-shell)
 
 (evil-define-key 'insert comint-mode-map (kbd "<up>") 'comint-previous-input)
 (evil-define-key 'insert comint-mode-map (kbd "<down>") 'comint-next-input)

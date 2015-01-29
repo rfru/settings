@@ -20,6 +20,7 @@
 (setq ac-candidate-limit 100)
 (setq web-mode-ac-sources-alist
   '(("css" . (ac-source-css-property))
+    ("javascript" . (ac-source-words-in-same-mode-buffers))
     ("html" . (ac-source-words-in-same-mode-buffers))))
 (add-to-list 'ac-modes 'html-mode)
 (add-to-list 'ac-modes 'web-mode)

@@ -129,6 +129,7 @@
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 (add-hook 'compilation-filter-hook 'comint-truncate-buffer)
 (setq comint-buffer-maximum-size 2000)
+(setq comint-input-ring-size 5000)
 (defun my-comint-preoutput-turn-buffer-read-only (text)
   (propertize text 'read-only t))
 
