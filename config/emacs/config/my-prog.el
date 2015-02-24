@@ -130,5 +130,6 @@ Special commands:
 (setq ess-eval-visibly nil)
 (define-key inferior-ess-mode-map (kbd ",") nil)
 (ess-toggle-underscore nil)
+(setq ess-ask-for-ess-directory nil)
 
 (provide 'my-prog)

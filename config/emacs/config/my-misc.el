@@ -150,7 +150,7 @@
          (index (-elem-index (get-buffer (buffer-name)) sorted)))
     (if index
         (switch-to-buffer (nth index (-rotate -1 sorted)))
-        (switch-to-buffer (car sorted)))))
+      (switch-to-buffer (car sorted)))))
 
 (defun narrow-or-widen-dwim (p)
   (interactive "P")

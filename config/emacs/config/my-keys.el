@@ -23,8 +23,8 @@
 (define-key evil-motion-state-map (kbd "C-b") nil)
 (define-key evil-motion-state-map (kbd "C-f") nil)
 
-(define-key evil-normal-state-map (kbd "c") 'comment-or-uncomment-region-or-line)
-(define-key evil-visual-state-map (kbd "c") 'comment-or-uncomment-region-or-line)
+(define-key evil-normal-state-map (kbd "z") 'comment-or-uncomment-region-or-line)
+(define-key evil-visual-state-map (kbd "z") 'comment-or-uncomment-region-or-line)
 
 (require 'expand-region)
 (define-key evil-normal-state-map (kbd "e") 'er/expand-region)
@@ -43,6 +43,7 @@
 (define-key compilation-mode-map (kbd "g") nil)
 (define-key compilation-mode-map (kbd "h") nil)
 (define-key compilation-mode-map (kbd "z") nil)
+(define-key compilation-mode-map (kbd "c") nil)
 
 (evil-leader/set-key
   "q" 'delete-window
@@ -76,8 +77,8 @@
 (define-key evil-motion-state-map "'" 'helm-M-x)
 (define-key evil-visual-state-map "'" 'helm-M-x)
 
-(define-key evil-motion-state-map "," 'helm-for-files)
-(define-key evil-normal-state-map "," 'helm-for-files)
+(define-key evil-motion-state-map "c" 'helm-for-files)
+(define-key evil-normal-state-map "c" 'helm-for-files)
 (define-key evil-motion-state-map "." 'my-find-directories)
 (define-key evil-normal-state-map "." 'my-find-directories)
 (define-key evil-visual-state-map "/" 'helm-swoop)
@@ -86,9 +87,6 @@
 
 (define-key evil-motion-state-map "?" 'search)
 (define-key evil-normal-state-map "?" 'search)
-
-(define-key evil-normal-state-map "z" 'next-shell)
-(define-key evil-motion-state-map "z" 'next-shell)
 
 (evil-define-key 'insert comint-mode-map (kbd "<up>") 'comint-previous-input)
 (evil-define-key 'insert comint-mode-map (kbd "<down>") 'comint-next-input)

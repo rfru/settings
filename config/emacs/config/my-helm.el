@@ -15,7 +15,7 @@
 (setq helm-split-window-default-side 'other)
 (setq helm-quick-update t)
 
-(setq recentf-exclude '("\\.recentf" "^/tmp/" "/.git/" "/.emacs.d/elpa/"))
+(setq recentf-exclude '("\\.recentf" "\\.recentd" "^/tmp/" "/.git/" "/.emacs.d/elpa/"))
 (setq recentf-max-saved-items 250)
 (setq recentf-auto-cleanup 'never)
 (setq recentf-save-file (expand-file-name "~/.emacs.d/.recentf"))
@@ -34,12 +34,12 @@
     (init . (lambda ()
               (recentf-mode 1)))
     (candidates . recentf-list)
-    (candidate-number-limit . 50)
-    (filtered-candidate-transformer . my-filter)
+    (candidate-number-limit . 10)
+    ;; (filtered-candidate-transformer . my-filter)
     (keymap . ,helm-generic-files-map)
     (action . ,(helm-actions-from-type-file))))
 
-(defun buffers-shell-attrs (buffer)
+(defun buffers-attrs (buffer)
   (let* ((buf (get-buffer buffer))
          (name (buffer-name buf))
          (file (buffer-file-name buf))
@@ -47,28 +47,53 @@
          (proc (get-buffer-process buf)))
     (list
      (cond
-      ((s-starts-with? "*shell" name) (s-concat "*shell:" dir))
       ((not file) (propertize name 'face 'italic))
       (t name)))))
-(defun buffers-shell-transformer (buffers _source)
+
+(defun buffers-transformer (buffers _source)
       (cl-loop for i in buffers
-        for (name) = (buffers-shell-attrs i)
+        for (name) = (buffers-attrs i)
         collect (cons name i)))
 
-(setq my-source-buffers
-  `((name . "Buffers")
-    (candidates . (lambda ()  (-map 'buffer-name (buffer-list))))
+(defun shell-buffers ()
+  ; Hack to get the other non-helm buffer
+  (let* ((this-name (buffer-name (nth 1 (buffer-list))))
+         (shells
+     (-filter (lambda (b)
+                (and (not (s-equals? (buffer-name b) this-name))
+                     (s-starts-with? "*shell"
+                                     (buffer-name b)))) (buffer-list))))
+    (-map (lambda (b)
+            (cons (with-current-buffer b default-directory) b)) shells)))
+
+(defun no-shells ()
+  (-filter (lambda (b)
+             (let ((name (buffer-name b)))
+               (and
+                (s-starts-with? "*" name)
+                (not (s-starts-with? "*shell" name))))) (buffer-list)))
+
+(setq my-source-shells
+  `((name . "Shells")
+    (candidates . (lambda ()  (shell-buffers)))
     (candidate-number-limit . 25)
-    (filtered-candidate-transformer helm-skip-boring-buffers
-                                    buffers-shell-transformer)
-    (action . helm-switch-to-buffer)))
+    (action . switch-to-buffer)))
+
+(setq my-source-buffers
+  `((name . "Other")
+    (candidates . (lambda ()  (-map 'buffer-name (no-shells))))
+    (candidate-number-limit . 15)
+    (filtered-candidate-transformer helm-skip-boring-buffers buffers-transformer)
+    (action . switch-to-buffer)))
 
 (setq helm-for-files-preferred-list
-      '(my-source-buffers
-        my-source-recentf))
+      '(my-source-shells
+        my-source-recentf
+        my-source-buffers))
 
 (setq recentd-file (expand-file-name "~/.emacs.d/.recentd"))
 (setq recentd-max 50)
+
 (defun add-to-recentd (d)
   (let ((tmp (helm-fast-remove-dups
               (append (list (file-name-as-directory (expand-file-name d))) recentd-list)
@@ -77,6 +102,7 @@
           (if (>= (length tmp) recentd-max)
               (cl-subseq tmp 0 recentd-max)
             tmp))))
+
 (defun recentd-save-list ()
   (dump-vars-to-file '(recentd-list) recentd-file))
 (setq recentd-list '())
@@ -124,7 +150,7 @@ Show the first `helm-ff-history-max-length' elements of
   (interactive)
   (if (file-remote-p default-directory)
       (helm-ag)
-    (helm-do-ag)))
+    (helm-do-ag default-directory)))
 
 (define-key helm-map [escape] 'helm-keyboard-quit)
 

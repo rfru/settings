@@ -57,6 +57,7 @@
         handle-switch-frame
         helm-M-x
         helm-confirm-and-exit-minibuffer
+        helm-for-files
         helm-show-kill-ring
         isearch-abort
         isearch-delete-char
