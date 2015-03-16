@@ -42,7 +42,9 @@
         evil-goto-line
         evil-inner-tag
         evil-mouse-drag-region
+        evil-next-visual-line
         evil-normal-state
+        evil-paste-before
         evil-scroll-page-down
         evil-scroll-page-up
         evil-search-forward

@@ -13,8 +13,8 @@
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
 ; Window motions.
-(define-key evil-motion-state-map "n" 'ace-window)
-(define-key evil-normal-state-map "n" 'ace-window)
+(define-key evil-motion-state-map "n" 'other-window)
+(define-key evil-normal-state-map "n" 'other-window)
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 
 (define-key evil-motion-state-map (kbd "SPC") 'evil-scroll-page-down)

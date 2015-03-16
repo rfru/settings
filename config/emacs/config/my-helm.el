@@ -34,8 +34,8 @@
     (init . (lambda ()
               (recentf-mode 1)))
     (candidates . recentf-list)
-    (candidate-number-limit . 10)
-    ;; (filtered-candidate-transformer . my-filter)
+    (candidate-number-limit . 100)
+    (filtered-candidate-transformer . my-filter)
     (keymap . ,helm-generic-files-map)
     (action . ,(helm-actions-from-type-file))))
 
@@ -69,9 +69,13 @@
 (defun no-shells ()
   (-filter (lambda (b)
              (let ((name (buffer-name b)))
-               (and
-                (s-starts-with? "*" name)
-                (not (s-starts-with? "*shell" name))))) (buffer-list)))
+                (not (s-starts-with? "*shell" name)))) (buffer-list)))
+;; (defun no-shells ()
+;;   (-filter (lambda (b)
+;;              (let ((name (buffer-name b)))
+;;                (and
+;;                 (s-starts-with? "*" name)
+;;                 (not (s-starts-with? "*shell" name))))) (buffer-list)))
 
 (setq my-source-shells
   `((name . "Shells")
@@ -80,7 +84,7 @@
     (action . switch-to-buffer)))
 
 (setq my-source-buffers
-  `((name . "Other")
+  `((name . "Buffers")
     (candidates . (lambda ()  (-map 'buffer-name (no-shells))))
     (candidate-number-limit . 15)
     (filtered-candidate-transformer helm-skip-boring-buffers buffers-transformer)
@@ -88,8 +92,8 @@
 
 (setq helm-for-files-preferred-list
       '(my-source-shells
-        my-source-recentf
-        my-source-buffers))
+        my-source-buffers
+        my-source-recentf))
 
 (setq recentd-file (expand-file-name "~/.emacs.d/.recentd"))
 (setq recentd-max 50)
@@ -155,6 +159,7 @@ Show the first `helm-ff-history-max-length' elements of
 (define-key helm-map [escape] 'helm-keyboard-quit)
 
 (setq helm-candidate-number-limit 25)
+(setq kill-ring-max 500)
 
 (helm-mode 1)
 

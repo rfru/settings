@@ -56,6 +56,10 @@
 (setq tramp-remote-path '(tramp-own-remote-path))
 (add-to-list 'tramp-default-proxies-alist
              '("\\`mtl\\'" "\\`root\\'" "/ssh:%h:"))
+(setq tramp-ssh-controlmaster-options
+      "-o ControlPath=%t.%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=yes")
+;; (setq debug-on-quit nil)
+
 (defun open-sudo ()
   (interactive)
   (let ((new-dir

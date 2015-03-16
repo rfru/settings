@@ -1,32 +1,28 @@
-(when (display-graphic-p)
-  (tool-bar-mode -1)
-  (when (equal system-type 'darwin)
-    (set-default-font "Tisa Pro 14")
-    (setq-default line-spacing 0)
-    (add-to-list 'default-frame-alist '(width  . 100))
-    (add-to-list 'default-frame-alist '(height . 35))
-    (set-fringe-mode 0)
-    (blink-cursor-mode -1)
-    (scroll-bar-mode -1)))
-
 (defun reset-ui ()
-  (menu-bar-mode -1)
+  (when (display-graphic-p)
+    (tool-bar-mode -1)
+    (when (equal system-type 'darwin)
+      (set-default-font "Tisa Pro 14")
+      (setq-default line-spacing 0)
+      (add-to-list 'default-frame-alist '(width  . 100))
+      (add-to-list 'default-frame-alist '(height . 35))
+      (set-fringe-mode 0)
+      (blink-cursor-mode -1)
+      (scroll-bar-mode -1)))
+    (menu-bar-mode -1)
+    (setq column-number-mode t)
 
-  (setq column-number-mode t)
-
-  (add-hook 'window-configuration-change-hook
-            (lambda ()
-              (global-hl-line-mode t)
-              (set-frame-parameter nil 'internal-border-width 0)
-              (set-window-margins (car (get-buffer-window-list (current-buffer) nil t)) 1 1)))
+    (add-hook 'window-configuration-change-hook
+              (lambda ()
+                (global-hl-line-mode t)
+                (set-frame-parameter nil 'internal-border-width 0)
+                (set-window-margins (car (get-buffer-window-list (current-buffer) nil t)) 1 1)))
                                         ; Highlight current line
+    (custom-set-variables
+     '(inhibit-startup-screen t)))
 
-
-  (custom-set-variables
-   '(inhibit-startup-screen t)))
-
-;; (add-hook 'after-make-frame-functions (lambda (frame)
-;;                                         (reset-ui)))
+(add-hook 'after-make-frame-functions
+          (lambda (frame) (reset-ui)))
 (reset-ui)
 
 (require 'pretty-symbols)
