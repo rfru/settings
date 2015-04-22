@@ -26,7 +26,6 @@
 (define-key evil-normal-state-map (kbd "z") 'comment-or-uncomment-region-or-line)
 (define-key evil-visual-state-map (kbd "z") 'comment-or-uncomment-region-or-line)
 
-(require 'expand-region)
 (define-key evil-normal-state-map (kbd "e") 'er/expand-region)
 (define-key evil-visual-state-map (kbd "e") 'er/expand-region)
 (define-key evil-normal-state-map (kbd "E") 'er/contract-region)
@@ -38,6 +37,11 @@
 (define-key evil-visual-state-map (kbd "M") 'mc/unmark-next-like-this)
 
 (define-key evil-normal-state-map (kbd "q") 'last-buffer)
+
+(define-key evil-normal-state-map (kbd "<S-up>") 'buf-move-up)
+(define-key evil-normal-state-map (kbd "<S-down>") 'buf-move-down)
+(define-key evil-normal-state-map (kbd "<S-left>") 'buf-move-left)
+(define-key evil-normal-state-map (kbd "<S-right>") 'buf-move-right)
 
 ; Use evil keys for compilation mode.
 (define-key compilation-mode-map (kbd "g") nil)
@@ -92,6 +96,8 @@
 (evil-define-key 'insert comint-mode-map (kbd "<down>") 'comint-next-input)
 (evil-define-key 'insert comint-mode-map (kbd "C-z") 'comint-stop-subjob)
 
+(evil-define-key 'normal shell-mode-map (kbd "C-r") 'helm-comint-input-ring)
+(evil-define-key 'insert shell-mode-map (kbd "C-r") 'helm-comint-input-ring)
 (evil-define-key 'normal shell-mode-map (kbd "RET")
   (lambda ()
     (interactive)

@@ -45,6 +45,7 @@
         evil-next-visual-line
         evil-normal-state
         evil-paste-before
+        evil-previous-visual-line
         evil-scroll-page-down
         evil-scroll-page-up
         evil-search-forward

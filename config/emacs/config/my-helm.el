@@ -8,7 +8,7 @@
 (require 'f)
 (require 'helm-swoop)
 
-(setq helm-mp-matching-method 'multi3p)
+(setq helm-mp-matching-method 'multi3)
 (setq helm-mp-highlight-delay 0.1)
 (setq helm-mp-highlight-threshold 1)
 (setq helm-M-x-always-save-history t)
@@ -30,14 +30,14 @@
    diff))
 
 (setq my-source-recentf
-  `((name . "Recent")
-    (init . (lambda ()
-              (recentf-mode 1)))
-    (candidates . recentf-list)
-    (candidate-number-limit . 100)
-    (filtered-candidate-transformer . my-filter)
-    (keymap . ,helm-generic-files-map)
-    (action . ,(helm-actions-from-type-file))))
+      (helm-build-sync-source "Recent"
+        :init ((lambda ()
+                 (recentf-mode 1)))
+        :candidates recentf-list
+        :candidate-number-limit 100
+        :filtered-candidate-transformer 'my-filter
+        :keymap helm-generic-files-map
+        :action (helm-actions-from-type-file)))
 
 (defun buffers-attrs (buffer)
   (let* ((buf (get-buffer buffer))
@@ -78,17 +78,17 @@
 ;;                 (not (s-starts-with? "*shell" name))))) (buffer-list)))
 
 (setq my-source-shells
-  `((name . "Shells")
-    (candidates . (lambda ()  (shell-buffers)))
-    (candidate-number-limit . 25)
-    (action . switch-to-buffer)))
+      (helm-build-sync-source "Shells"
+        :candidates 'shell-buffers
+        :candidate-number-limit 25
+        :action 'switch-to-buffer))
 
 (setq my-source-buffers
-  `((name . "Buffers")
-    (candidates . (lambda ()  (-map 'buffer-name (no-shells))))
-    (candidate-number-limit . 15)
-    (filtered-candidate-transformer helm-skip-boring-buffers buffers-transformer)
-    (action . switch-to-buffer)))
+      (helm-build-sync-source "Buffers"
+        :candidates (lambda ()  (-map 'buffer-name (no-shells)))
+        :candidate-number-limit 15
+        :filtered-candidate-transformer '(helm-skip-boring-buffers buffers-transformer)
+        :action 'helm-buffers-list-persistent-action))
 
 (setq helm-for-files-preferred-list
       '(my-source-shells

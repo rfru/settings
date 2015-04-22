@@ -1,3 +1,4 @@
+(require 'expand-region)
 (require 'rainbow-mode)
 (add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'js2-mode-hook 'rainbow-mode)
@@ -6,7 +7,7 @@
 
 (require 'flycheck)
 (setq-default flycheck-disabled-checkers
-              '(html-tidy haskell-ghc emacs-lisp-checkdoc))
+              '(html-tidy haskell-ghc emacs-lisp-checkdoc r-lintr))
 
 (global-flycheck-mode)
 
@@ -23,6 +24,8 @@
 (add-to-list 'auto-mode-alist '("\\.xml$" . web-mode))
 (setq web-mode-enable-current-element-highlight t)
 (setq web-mode-enable-css-colorization t)
+; This is a temporary fix for web-mode-mark-and-expand, which doesn't work with expand region anymore.
+(remove-hook 'web-mode-hook 'er/add-web-mode-expansions)
 
 (require 'smartparens-config)
 (show-smartparens-global-mode t)
@@ -131,5 +134,21 @@ Special commands:
 (define-key inferior-ess-mode-map (kbd ",") nil)
 (ess-toggle-underscore nil)
 (setq ess-ask-for-ess-directory nil)
+
+(defun google ()
+  "Google the selected region if any, display a query prompt otherwise."
+  (interactive)
+  (browse-url
+   (concat
+    "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
+    (url-hexify-string
+     (if mark-active
+         (concat (buffer-substring (region-beginning) (region-end)) " "
+                 (cond
+                  ((eq major-mode 'go-mode) "golang")
+                  ((eq major-mode 'python-mode) "python")
+                  ((eq major-mode 'emacs-lisp-mode) "elisp")
+                  ((eq major-mode 'ruby-mode) "rails")))
+       (read-string "Google: "))))))
 
 (provide 'my-prog)

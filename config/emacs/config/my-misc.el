@@ -1,6 +1,4 @@
-(require 'keyfreq)
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
+(setq magit-last-seen-setup-instructions "1.4.0")
 
 (setq indent-line-function 'insert-tab)
 (setq large-file-warning-threshold 100000000)

@@ -30,6 +30,7 @@
         'keyfreq
         'auto-complete-clang
         'multiple-cursors
+        'buffer-move
         'pretty-symbols
         'go-mode
         'haskell-mode
