@@ -5,12 +5,11 @@
 
 (defvar starter-kit-packages
   (list 'evil
-        'auto-complete
         'smooth-scrolling
         'protobuf-mode
         'ess
-        'rainbow-mode
         'helm-swoop
+        'goto-last-change
         'diminish
         's
         'dash
@@ -19,6 +18,8 @@
         'helm-ag
         'evil-matchit ; Enhance % operator for tags and many other structures
         'magit
+        'groovy-mode
+        'emacs-eclim
         'web-mode
         'flycheck
         'visual-regexp
@@ -26,9 +27,9 @@
         'visual-regexp-steroids
         'evil-leader
         'jedi
-        'go-autocomplete
         'keyfreq
-        'auto-complete-clang
+        'company
+        'company-go
         'multiple-cursors
         'buffer-move
         'pretty-symbols

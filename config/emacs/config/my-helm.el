@@ -33,7 +33,7 @@
       (helm-build-sync-source "Recent"
         :init ((lambda ()
                  (recentf-mode 1)))
-        :candidates recentf-list
+        :candidates (lambda () recentf-list)
         :candidate-number-limit 100
         :filtered-candidate-transformer 'my-filter
         :keymap helm-generic-files-map
@@ -149,6 +149,20 @@ Show the first `helm-ff-history-max-length' elements of
         (helm-find-files-1 (expand-file-name dir) nil))))
 
 (setq helm-swoop-split-direction 'split-window-horizontally)
+
+(setq helm-source-comint-input-ring
+  '((name . "Comint history")
+    (candidates . (lambda ()
+                    (with-helm-current-buffer
+                      (-remove
+                       (lambda(str)
+                         (or
+                          (s-starts-with? "exec env ENV=" str)
+                          (s-starts-with? "test -" str)
+                          (s-equals? "echo are you awake" str)
+                          (s-equals? "exit" str)))
+                       (-distinct (ring-elements comint-input-ring))))))
+    (action . helm-comint-input-ring-action)))
 
 (defun search()
   (interactive)

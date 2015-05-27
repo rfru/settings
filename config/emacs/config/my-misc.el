@@ -8,15 +8,7 @@
 
 (setq debug-on-quit nil)
 
-(defun my-yes-or-mumble-p (prompt)
-    "PROMPT user with a yes-or-no question, but only test for yes."
-    (if (string= "y"
-                 (downcase
-                  (read-from-minibuffer
-                   (concat prompt "(y or n) "))))
-        t
-      nil))
-(defalias 'yes-or-no-p 'my-yes-or-mumble-p)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ; Save minibuffer history and other variables.
 (setq savehist-additional-variables
@@ -34,6 +26,18 @@
 (setq lazy-highlight-initial-delay 0)
 (setq revert-without-query '(".*"))
 ;; (global-auto-revert-mode)
+
+(defun tramp-comint-read-input-ring ()
+  "Read remote bash_history file into comint input ring."
+  (when (tramp-tramp-file-p default-directory)
+    (setq-local comint-input-ring-file-name
+                (substitute-in-file-name (format "%s~/.bash_history" default-directory)))
+    (comint-read-input-ring)))
+
+(add-hook 'shell-mode-hook 'tramp-comint-read-input-ring)
+;; Tramp sets HISTFILE to /dev/null so bash history on remote shells does not work.
+(add-to-list 'tramp-remote-process-environment "HISTFILE=")
+(setq explicit-bash-args '("--noediting" "-i" "-c" "export PROMPT_COMMAND=\"history -a; $PROMPT_COMMAND\"; bash"))
 
 ; Only backup locally
 (defvar backup-dir (expand-file-name "~/.emacs.d/backup/"))

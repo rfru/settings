@@ -60,12 +60,11 @@
 (add-hook 'go-mode-hook 'pretty-symbols-mode)
 
 (diminish 'undo-tree-mode)
-(diminish 'rainbow-mode)
 (diminish 'global-whitespace-mode)
 (diminish 'flycheck-mode)
 (diminish 'helm-mode)
 (diminish 'smartparens-mode)
-(diminish 'auto-complete-mode)
+(diminish 'company-mode)
 (diminish 'whitespace-mode)
 (diminish 'magit-auto-revert-mode)
 (diminish 'pretty-symbols-mode)

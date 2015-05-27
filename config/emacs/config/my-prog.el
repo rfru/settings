@@ -1,9 +1,19 @@
+(require 'eclim)
+(require 'eclimd)
+(setq eclimd-default-workspace "~/Documents/workspace")
+(custom-set-variables
+  '(company-eclim-executable "~/Desktop/eclipse/eclim")
+  '(eclim-eclipse-dirs '("~/Desktop/eclipse"))
+  '(eclim-executable "~/Desktop/eclipse/eclim"))
+(global-eclim-mode)
+(require 'ac-emacs-eclim-source)
+(ac-emacs-eclim-config)
+
+(setq help-at-pt-display-when-idle t)
+(setq help-at-pt-timer-delay 0.1)
+(help-at-pt-set-timer)
+
 (require 'expand-region)
-(require 'rainbow-mode)
-(add-hook 'css-mode-hook 'rainbow-mode)
-(add-hook 'js2-mode-hook 'rainbow-mode)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
-(add-hook 'lisp-interaction-mode-hook 'rainbow-mode)
 
 (require 'flycheck)
 (setq-default flycheck-disabled-checkers
@@ -24,8 +34,6 @@
 (add-to-list 'auto-mode-alist '("\\.xml$" . web-mode))
 (setq web-mode-enable-current-element-highlight t)
 (setq web-mode-enable-css-colorization t)
-; This is a temporary fix for web-mode-mark-and-expand, which doesn't work with expand region anymore.
-(remove-hook 'web-mode-hook 'er/add-web-mode-expansions)
 
 (require 'smartparens-config)
 (show-smartparens-global-mode t)
@@ -64,27 +72,33 @@
 (setq-default compile-command nil)
 (defun my-compile ()
   (interactive)
-  (cond
-   ((eq 'ess-mode major-mode)
-    (call-interactively 'ess-eval-buffer))
-   (t
-    (when (not compile-command)
-      (setq compile-command
-            (cond
-             ((and (file-remote-p default-directory) (s-equals? "mtl" (tramp-file-name-host (tramp-dissect-file-name default-directory))))
-              (if (s-contains? "test" (buffer-name))
-                  "blaze test :all"
-                "blaze build :all"))
-             ((eq 'go-mode major-mode)
-              (if (s-contains? "_test" (buffer-name))
-                  "go test"
-                "go build"))
-             ((eq 'sh-mode major-mode)
-              (s-concat "sh " (buffer-name)))
-             ((eq 'python-mode major-mode)
-              (s-concat "python " (buffer-name)))
-             )))
-    (call-interactively 'compile))))
+  (let ((is-remote-host (and (file-remote-p default-directory) (s-equals? "mtl" (tramp-file-name-host (tramp-dissect-file-name default-directory))))))
+    (cond
+     ((and (eq 'java-mode major-mode) (not is-remote-host))
+      (let ((default-directory (locate-dominating-file default-directory 'gradle-is-project-dir)))
+        (compile "gradle run")))
+     ((eq 'ess-mode major-mode)
+      (call-interactively 'ess-eval-buffer))
+     (t (when (not compile-command)
+        (setq compile-command
+              (cond
+               (is-remote-host
+                (if (s-contains? "test" (buffer-name))
+                    "blaze test :all"
+                  "blaze build :all"))
+               ((eq 'java-mode major-mode)
+                "gradle run")
+               ((eq 'go-mode major-mode)
+                (if (s-contains? "_test" (buffer-name))
+                    "go test"
+                  "go build"))
+               ((eq 'sh-mode major-mode)
+                (s-concat "sh " (buffer-name)))
+               ((eq 'python-mode major-mode)
+                (s-concat "python " (buffer-name)))
+               )))
+      (call-interactively 'compile)))
+    ))
 
 (defconst scss-font-lock-keywords
   ;; Variables
@@ -145,10 +159,24 @@ Special commands:
      (if mark-active
          (concat (buffer-substring (region-beginning) (region-end)) " "
                  (cond
+                  ((eq major-mode 'java-mode) "java")
                   ((eq major-mode 'go-mode) "golang")
                   ((eq major-mode 'python-mode) "python")
                   ((eq major-mode 'emacs-lisp-mode) "elisp")
                   ((eq major-mode 'ruby-mode) "rails")))
        (read-string "Google: "))))))
 
+(defun gradle-is-project-dir (dir)
+  "Is this DIR a gradle project directory with an extra convention.
+A project dir is always considered if there is a 'build.gradle' there.
+A project dir is also considered if there is a '{dirname}.gradle'.  This
+is a convention for multi-build projects, where dirname is under some
+'rootDir/dirname/dirname.gradle'."
+  (let ((dirname (file-name-nondirectory
+		  (directory-file-name (expand-file-name dir)))))
+    (or (file-exists-p (expand-file-name "build.gradle" dir))
+	(file-exists-p (expand-file-name
+			(concat dirname ".gradle") dir)))))
+
 (provide 'my-prog)
+

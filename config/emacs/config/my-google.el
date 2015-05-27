@@ -1,5 +1,8 @@
 (add-to-list 'load-path "~/google")
 
+(setq comint-password-prompt-regexp
+      (s-replace "CVS" "SSO" comint-password-prompt-regexp))
+
 (when (require 'borg-mode nil 'noerror)
   (require 'google3-build-mode)
   (require 'google-coding-style)

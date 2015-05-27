@@ -53,7 +53,10 @@
   "q" 'delete-window
   "n" 'narrow-or-widen-dwim
   "d" 'my-quit
-  "k" 'my-kill-buffers
+  "k" (lambda ()
+        (interactive)
+        (if (y-or-n-p "Kill buffers?")
+            (my-kill-buffers)))
   "w" '(lambda ()
           (interactive)
           (evil-write-all nil))
@@ -73,13 +76,15 @@
 
 (define-key evil-normal-state-map "U" 'redo)
 (define-key evil-normal-state-map "\C-r" nil)
-(define-key evil-normal-state-map (kbd "<tab>") '(lambda() (interactive) (evil-goto-mark ?`)))
-;; (define-key evil-normal-state-map (kbd "<tab>") 'goto-last-change)
+(define-key evil-normal-state-map (kbd "<tab>") 'goto-last-change)
+(define-key evil-normal-state-map (kbd "S-<tab>") 'goto-last-change-reverse)
 
 (define-key evil-normal-state-map "t" 'helm-show-kill-ring)
 
 (define-key evil-motion-state-map "'" 'helm-M-x)
 (define-key evil-visual-state-map "'" 'helm-M-x)
+
+(define-key evil-normal-state-map "`" 'google)
 
 (define-key evil-motion-state-map "c" 'helm-for-files)
 (define-key evil-normal-state-map "c" 'helm-for-files)
@@ -89,7 +94,6 @@
 (define-key evil-normal-state-map "/" (lambda () (interactive) (helm-swoop :$query "")))
 (define-key evil-normal-state-map "s" 'evil-ace-jump-word-mode)
 
-(define-key evil-motion-state-map "?" 'search)
 (define-key evil-normal-state-map "?" 'search)
 
 (evil-define-key 'insert comint-mode-map (kbd "<up>") 'comint-previous-input)
