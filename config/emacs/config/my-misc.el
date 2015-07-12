@@ -2,7 +2,6 @@
 
 (setq indent-line-function 'insert-tab)
 (setq large-file-warning-threshold 100000000)
-(global-set-key (kbd "RET") 'newline-and-indent)
 
 (setq ring-bell-function 'ignore)
 
@@ -27,23 +26,15 @@
 (setq revert-without-query '(".*"))
 ;; (global-auto-revert-mode)
 
-(defun tramp-comint-read-input-ring ()
-  "Read remote bash_history file into comint input ring."
-  (when (tramp-tramp-file-p default-directory)
-    (setq-local comint-input-ring-file-name
-                (substitute-in-file-name (format "%s~/.bash_history" default-directory)))
-    (comint-read-input-ring)))
-
-(add-hook 'shell-mode-hook 'tramp-comint-read-input-ring)
-;; Tramp sets HISTFILE to /dev/null so bash history on remote shells does not work.
-(add-to-list 'tramp-remote-process-environment "HISTFILE=")
-(setq explicit-bash-args '("--noediting" "-i" "-c" "export PROMPT_COMMAND=\"history -a; $PROMPT_COMMAND\"; bash"))
-
 ; Only backup locally
 (defvar backup-dir (expand-file-name "~/.emacs.d/backup/"))
 (setq backup-directory-alist (list (cons ".*" backup-dir)))
 ; Don't use builtin autosave.
 (setq auto-save-default nil)
+(require 'persistent-scratch)
+(setq persistent-scratch-autosave-interval 15)
+(persistent-scratch-autosave-mode t)
+(persistent-scratch-setup-default)
 
 (require 'smooth-scrolling)
 (setq smooth-scroll-margin 10)
@@ -55,18 +46,20 @@
                 (format "\\(%s\\)\\|\\(%s\\)"
                         vc-ignore-dir-regexp
                         tramp-file-name-regexp))
+(setq tramp-default-method "ssh")
 (setq tramp-remote-path '(tramp-own-remote-path))
 (add-to-list 'tramp-default-proxies-alist
-             '("\\`mtl\\'" "\\`root\\'" "/ssh:%h:"))
+             '("\\`mtl\\'" "\\`root\\'" "/ssh:%h:")
+             )
 (setq tramp-ssh-controlmaster-options
-      "-o ControlPath=%t.%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=yes")
+      "-o ControlPath=/tmp/%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")
 ;; (setq debug-on-quit nil)
 
 (defun open-sudo ()
   (interactive)
   (let ((new-dir
          (if (file-remote-p default-directory)
-             (s-replace "/scp" "/sudo" default-directory)
+             (s-replace "/ssh" "/sudo" default-directory)
            (s-concat "/sudo:localhost:" default-directory))))
     (helm-find-files-1 new-dir)))
 
@@ -123,13 +116,6 @@
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
-(defun my-dirtrack-mode ()
-  "Add to shell-mode-hook to use dirtrack mode in my shell buffers."
-    (setq ansi-color-for-comint-mode t)
-    (shell-dirtrack-mode 0)
-    (set-variable 'dirtrack-list '("^.+[^ ]+:\\(.+?\\) *\\$" 1 nil))
-    (dirtrack-mode 1))
-(add-hook 'shell-mode-hook 'my-dirtrack-mode)
 (setq explicit-shell-file-name "/bin/bash")
 
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
@@ -140,23 +126,6 @@
   (propertize text 'read-only t))
 
 (add-hook 'comint-preoutput-filter-functions 'my-comint-preoutput-turn-buffer-read-only)
-
-(defun my-find-directory (dir)
-  (with-temp-buffer
-    (add-to-recentd dir)
-    (cd dir)
-    (shell)
-    (rename-uniquely)))
-(setq find-directory-functions '(my-find-directory))
-
-(defun next-shell ()
-  (interactive)
-  (let* ((test (-filter (lambda (s) (s-starts-with? "*shell" (buffer-name s))) (buffer-list)))
-         (sorted (-sort '(lambda (a b) (string< (buffer-name a) (buffer-name b))) test))
-         (index (-elem-index (get-buffer (buffer-name)) sorted)))
-    (if index
-        (switch-to-buffer (nth index (-rotate -1 sorted)))
-      (switch-to-buffer (car sorted)))))
 
 (defun narrow-or-widen-dwim (p)
   (interactive "P")

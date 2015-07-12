@@ -52,7 +52,7 @@
 (evil-leader/set-key
   "q" 'delete-window
   "n" 'narrow-or-widen-dwim
-  "d" 'my-quit
+  "d" 'my-delete-buffer
   "k" (lambda ()
         (interactive)
         (if (y-or-n-p "Kill buffers?")
@@ -64,7 +64,7 @@
   "g" '(lambda ()
          (interactive)
          (evil-write-all nil)
-         (magit-status default-directory))
+         (magit-status))
   "v" 'hsplit-last-buffer
   "r" 'revert-buffer
   "s" 'vsplit-last-buffer
@@ -92,7 +92,7 @@
 (define-key evil-normal-state-map "." 'my-find-directories)
 (define-key evil-visual-state-map "/" 'helm-swoop)
 (define-key evil-normal-state-map "/" (lambda () (interactive) (helm-swoop :$query "")))
-(define-key evil-normal-state-map "s" 'evil-ace-jump-word-mode)
+(define-key evil-normal-state-map "s" 'ace-jump-word-mode)
 
 (define-key evil-normal-state-map "?" 'search)
 
@@ -100,13 +100,31 @@
 (evil-define-key 'insert comint-mode-map (kbd "<down>") 'comint-next-input)
 (evil-define-key 'insert comint-mode-map (kbd "C-z") 'comint-stop-subjob)
 
-(evil-define-key 'normal shell-mode-map (kbd "C-r") 'helm-comint-input-ring)
-(evil-define-key 'insert shell-mode-map (kbd "C-r") 'helm-comint-input-ring)
+(evil-define-key 'normal shell-mode-map (kbd "t") 'helm-comint-input-ring)
 (evil-define-key 'normal shell-mode-map (kbd "RET")
   (lambda ()
     (interactive)
     (evil-goto-line)
     (evil-append 0)))
+(evil-define-key 'normal term-raw-map (kbd "RET")
+  (lambda ()
+    (interactive)
+    (term-send-return)
+    (evil-append 0)))
+(evil-define-key 'normal term-raw-map (kbd "<up>")
+  (lambda ()
+    (interactive)
+    (term-send-up)
+    (evil-append 0)
+    ))
+(evil-define-key 'normal term-raw-map (kbd "<down>")
+  (lambda ()
+    (interactive)
+    (term-send-down)
+    (evil-append 0)
+    ))
+(evil-define-key 'normal term-raw-map (kbd "p") 'term-paste)
+
 (evil-define-key 'normal emacs-lisp-mode-map (kbd "RET") 'eval-last-sexp)
 (evil-define-key 'normal lisp-interaction-mode-map (kbd "RET") 'eval-last-sexp)
 (evil-define-key 'visual emacs-lisp-mode-map (kbd "RET") 'evil-eval-region)

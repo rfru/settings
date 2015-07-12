@@ -9,6 +9,7 @@
 (require 'my-prog)
 (require 'my-completion)
 (require 'my-misc)
+(require 'my-term)
 (require 'my-google)
 (require 'my-keys)
 

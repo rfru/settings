@@ -43,11 +43,7 @@
         (when (eq (process-buffer process)
                   (current-buffer))
           (set-process-query-on-exit-flag process nil))))
-    (if (and (fboundp 'server-edit)
-             (boundp 'server-buffer-clients)
-             server-buffer-clients)
-        (server-edit)
-		  (kill-buffer nil))))
+		  (kill-buffer nil)))
 
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
@@ -60,10 +56,10 @@
         (web-mode-comment-or-uncomment)
         (comment-or-uncomment-region beg end))))
 
-(defun my-quit ()
+(defun my-delete-buffer()
   (interactive)
-  (when (and (not (eq 'shell-mode major-mode)) (buffer-modified-p) (not (string-match "^\\*.+?\\*$" (buffer-name))))
-    (evil-write nil nil nil buffer-file-name t))
+  (when (and (buffer-modified-p) (not (string-match (rxt-elisp-to-pcre "^\\*.+?\\*.*$") (buffer-name))))
+      (evil-write nil nil nil buffer-file-name t))
   (evil-delete-buffer-keep-windows (current-buffer) t))
 
 (defun minibuffer-keyboard-quit ()

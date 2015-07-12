@@ -178,5 +178,9 @@ is a convention for multi-build projects, where dirname is under some
 	(file-exists-p (expand-file-name
 			(concat dirname ".gradle") dir)))))
 
+; go get golang.org/x/tools/cmd/goimports
+(setq gofmt-command "goimports")
+(add-hook 'before-save-hook 'gofmt-before-save)
+
 (provide 'my-prog)
 

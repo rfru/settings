@@ -61,21 +61,16 @@
          (shells
      (-filter (lambda (b)
                 (and (not (s-equals? (buffer-name b) this-name))
-                     (s-starts-with? "*shell"
-                                     (buffer-name b)))) (buffer-list))))
+                     (s-matches? (rxt-elisp-to-pcre "^\*(terminal|shell)") (buffer-name b))))
+              (buffer-list))))
     (-map (lambda (b)
             (cons (with-current-buffer b default-directory) b)) shells)))
 
 (defun no-shells ()
-  (-filter (lambda (b)
+  (-remove (lambda (b)
              (let ((name (buffer-name b)))
-                (not (s-starts-with? "*shell" name)))) (buffer-list)))
-;; (defun no-shells ()
-;;   (-filter (lambda (b)
-;;              (let ((name (buffer-name b)))
-;;                (and
-;;                 (s-starts-with? "*" name)
-;;                 (not (s-starts-with? "*shell" name))))) (buffer-list)))
+                (s-matches? (rxt-elisp-to-pcre "^\*(terminal|shell)") name)
+                )) (buffer-list)))
 
 (setq my-source-shells
       (helm-build-sync-source "Shells"
@@ -83,6 +78,8 @@
         :candidate-number-limit 25
         :action 'switch-to-buffer))
 
+(add-to-list 'helm-boring-buffer-regexp-list "\\*tramp")
+(add-to-list 'helm-boring-buffer-regexp-list "\\*Compile-Log")
 (setq my-source-buffers
       (helm-build-sync-source "Buffers"
         :candidates (lambda ()  (-map 'buffer-name (no-shells)))
@@ -138,15 +135,27 @@ Show the first `helm-ff-history-max-length' elements of
      pruned-history
      :name "Directory History")))
 
+(defun my-find-directory-shell (dir)
+  (with-temp-buffer
+    (add-to-recentd dir)
+    (cd dir)
+    (shell)
+    (rename-uniquely)))
+(defun my-find-directory-term (dir)
+  (progn
+    (add-to-recentd dir)
+    (multi-term-at-dir dir)))
+(setq find-directory-functions '(my-find-directory-shell))
+
 (defun my-find-directories ()
   (interactive)
   (if (and (eq major-mode 'shell-mode) (not (get-buffer-process (current-buffer))))
       (shell)
       ; Find files.
       (let ((dir (my-history)))
-        (when (file-exists-p dir)
-          (add-to-recentd dir))
-        (helm-find-files-1 (expand-file-name dir) nil))))
+        (progn
+          (add-to-recentd dir)
+          (helm-find-files-1 dir nil)))))
 
 (setq helm-swoop-split-direction 'split-window-horizontally)
 

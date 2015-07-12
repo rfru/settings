@@ -5,12 +5,14 @@
 
 (defvar starter-kit-packages
   (list 'evil
+        'pcre2el
         'smooth-scrolling
         'protobuf-mode
         'ess
         'helm-swoop
         'goto-last-change
         'diminish
+        'multi-term
         's
         'dash
         'f
@@ -23,11 +25,11 @@
         'web-mode
         'flycheck
         'visual-regexp
+        'lua-mode
         'ace-jump-mode
         'visual-regexp-steroids
         'evil-leader
         'jedi
-        'keyfreq
         'company
         'company-go
         'multiple-cursors
@@ -37,6 +39,7 @@
         'haskell-mode
         'smartparens
         'js2-mode
+        'persistent-scratch
         'undo-tree ; Automatically loaded by evil.
         'exec-path-from-shell
         'helm)

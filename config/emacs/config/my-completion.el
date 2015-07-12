@@ -12,6 +12,7 @@
 (setq company-minimum-prefix-length 2)
 (setq company-echo-delay 0)                          ; remove annoying blinking
 (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+(delete 'company-files company-backends)
 
 (setq company-global-modes
       '(not shell-mode comint-mode))
