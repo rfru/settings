@@ -69,7 +69,9 @@ user@host) value will be required to perform the connection."
   "Read remote bash_history file into comint input ring."
   (when (file-remote-p default-directory)
     (setq-local comint-input-ring-file-name
-                (substitute-in-file-name (format "%s~/.bash_history" default-directory)))
+                (format "%s%s/.bash_history"
+                        (replace-regexp-in-string (rxt-pcre-to-elisp "^(.+:/).*?$") "\\1" default-directory)
+                        (-last-item (s-lines (s-trim (shell-command-to-string "/bin/echo $HOME"))))))
     (comint-read-input-ring)))
 
 (add-hook 'shell-mode-hook 'tramp-comint-read-input-ring)
