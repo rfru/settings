@@ -3,11 +3,23 @@
 (setq comint-password-prompt-regexp
       (s-replace "CVS" "SSO" comint-password-prompt-regexp))
 
+(defun prodaccess()
+  (interactive)
+  (let ((default-directory "/ssh:mtl-tunnel:")
+        (bufName "*MTL-TUNNEL*"))
+    (tramp-cleanup-all-connections)
+    (when (get-buffer bufName)
+      (kill-buffer bufName))
+    (shell)
+    (rename-buffer bufName)
+    (insert "prodaccess")
+    (comint-send-input)))
+
 (when (require 'borg-mode nil 'noerror)
   (require 'google3-build-mode)
   (require 'google-coding-style)
- (add-to-list 'ac-modes 'borg-mode)
- (add-to-list 'ac-modes 'mendel-mode)
+  (add-to-list 'ac-modes 'borg-mode)
+  (add-to-list 'ac-modes 'mendel-mode)
   (setq auto-mode-alist
         (nconc
          (list
@@ -22,35 +34,35 @@
           (cons "\\.gclx$" 'borg-mode))
          auto-mode-alist))
 
-(defun google-imports-jade()
-  "Run Jade (http://go/jade) on the current file.
+  (defun google-imports-jade()
+    "Run Jade (http://go/jade) on the current file.
 We assume that the files and the build target are already
 editable.  This also saves the current buffer, and will revert it
 once Jade finishes.
   Caveat: does not revert the associated BUILD file."
-  (interactive)
-  (save-buffer)
-  (unless (eq major-mode 'java-mode)
-    (error "JADE only works with Java."))
-  (let* (
-         (temp-originating-buffer-name (current-buffer))
-         (original-directory default-directory)
-         (jade-buffer-name
-          (apply 'make-comint-in-buffer "jade" nil
-                 "/google/data/ro/teams/jade/jade" nil
-                 (list (file-relative-name buffer-file-name)))))
+    (interactive)
+    (save-buffer)
+    (unless (eq major-mode 'java-mode)
+      (error "JADE only works with Java."))
+    (let* (
+           (temp-originating-buffer-name (current-buffer))
+           (original-directory default-directory)
+           (jade-buffer-name
+            (apply 'make-comint-in-buffer "jade" nil
+                   "/google/data/ro/teams/jade/jade" nil
+                   (list (file-relative-name buffer-file-name)))))
 
-    (switch-to-buffer jade-buffer-name)
-    (setq-local originating-buffer-name temp-originating-buffer-name)
-    (setq-local default-directory original-directory)
+      (switch-to-buffer jade-buffer-name)
+      (setq-local originating-buffer-name temp-originating-buffer-name)
+      (setq-local default-directory original-directory)
 
-    (defun after-execution (process event)
-      (when (not (eq (process-status process) 'run))
-        (let ((cur-buf (current-buffer)))
-          (switch-to-buffer originating-buffer-name)
-          (revert-buffer nil t t)
-          (kill-buffer cur-buf))))
+      (defun after-execution (process event)
+        (when (not (eq (process-status process) 'run))
+          (let ((cur-buf (current-buffer)))
+            (switch-to-buffer originating-buffer-name)
+            (revert-buffer nil t t)
+            (kill-buffer cur-buf))))
 
-    (set-process-sentinel (get-buffer-process jade-buffer-name) 'after-execution))))
+      (set-process-sentinel (get-buffer-process jade-buffer-name) 'after-execution))))
 
 (provide 'my-google)
