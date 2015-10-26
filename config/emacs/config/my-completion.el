@@ -3,6 +3,7 @@
 (require 'company-go)
 (company-emacs-eclim-setup)
 (add-to-list 'company-backends 'company-ghc)
+(add-to-list 'company-backends 'company-jedi)
 (add-to-list 'company-backends 'company-go)
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-dabbrev-other-buffers t)

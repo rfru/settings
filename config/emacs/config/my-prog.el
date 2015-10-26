@@ -1,13 +1,11 @@
-(require 'eclim)
-(require 'eclimd)
-(setq eclimd-default-workspace "~/Documents/workspace")
-(custom-set-variables
-  '(company-eclim-executable "~/Desktop/eclipse/eclim")
-  '(eclim-eclipse-dirs '("~/Desktop/eclipse"))
-  '(eclim-executable "~/Desktop/eclipse/eclim"))
-(global-eclim-mode)
-(require 'ac-emacs-eclim-source)
-(ac-emacs-eclim-config)
+;; (require 'eclim)
+;; (require 'eclimd)
+;; (setq eclimd-default-workspace "~/Documents/workspace")
+;; (custom-set-variables
+;;   '(company-eclim-executable "~/Desktop/eclipse/eclim")
+;;   '(eclim-eclipse-dirs '("~/Desktop/eclipse"))
+;;   '(eclim-executable "~/Desktop/eclipse/eclim"))
+;; (global-eclim-mode)
 
 (setq help-at-pt-display-when-idle t)
 (setq help-at-pt-timer-delay 0.1)
@@ -40,9 +38,6 @@
 (require 'smartparens-config)
 (show-smartparens-global-mode t)
 (smartparens-global-mode t)
-
-(setq jedi:complete-on-dot t)
-(add-hook 'python-mode-hook 'jedi:setup)
 
 ; Indentation
 (setq-default indent-tabs-mode nil)
@@ -116,18 +111,6 @@ Special commands:
     (modify-syntax-entry ?* ". 23b" css-mode-syntax-table)
       (modify-syntax-entry ?\n ">" css-mode-syntax-table))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-
-;; (setq
-;;  python-shell-interpreter "ipython"
-;;  python-shell-interpreter-args ""
-;;  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-;;  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-;;  python-shell-completion-setup-code
-;;    "from IPython.core.completerlib import module_completion"
-;;  python-shell-completion-module-string-code
-;;    "';'.join(module_completion('''%s'''))\n"
-;;  python-shell-completion-string-code
-;;    "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 (flycheck-define-checker jsxhint-checker
   "A JSX syntax and style checker based on JSXHint."

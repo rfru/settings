@@ -29,7 +29,7 @@
         'ace-jump-mode
         'visual-regexp-steroids
         'evil-leader
-        'jedi
+        'company-jedi
         'company
         'company-go
         'multiple-cursors

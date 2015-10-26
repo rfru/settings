@@ -79,13 +79,6 @@
   (interactive "r")
   (python-shell-send-string
    (buffer-substring start end)
-   ;; No need to send blank lines in ipython? 2013-12-22
-   ;; (concat
-   ;;  (let ((line-num (line-number-at-pos start)))
-   ;;    ;; When sending a region, add blank lines for non sent code so
-   ;;    ;; backtraces remain correct.
-   ;;    (make-string (1- line-num) ?\n))
-   ;;  (buffer-substring start end))
       nil))
 (defun python-eval-region-or-line ()
   (interactive)

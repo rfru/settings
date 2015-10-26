@@ -18,8 +18,6 @@
 (when (require 'borg-mode nil 'noerror)
   (require 'google3-build-mode)
   (require 'google-coding-style)
-  (add-to-list 'ac-modes 'borg-mode)
-  (add-to-list 'ac-modes 'mendel-mode)
   (setq auto-mode-alist
         (nconc
          (list
