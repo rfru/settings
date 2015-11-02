@@ -53,7 +53,6 @@
              )
 (setq tramp-ssh-controlmaster-options
       "-o ControlPath=/tmp/%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")
-;; (setq debug-on-quit nil)
 
 (defun open-sudo ()
   (interactive)

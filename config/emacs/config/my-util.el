@@ -7,12 +7,12 @@
     (mapc '(lambda (b)
              (evil-delete-buffer-keep-windows b t))
           (remove-if '(lambda (b)
-                        (and
-                         (not (string-match "\\\\*magit\\\\*.*" (buffer-name b)))
-                         (not (string-match "\\\\*shell\\\\*.*" (buffer-name b)))
-                         (not (string-match "\\\\*tramp.+\\\\*" (buffer-name b)))
-                         (not (string= "*compilation*" (buffer-name b)))
-                         (not (buffer-file-name b))))
+                        (or
+                         ( (string-match "\\\\*magit\\\\*.*" (buffer-name b)))
+                         ( (string-match "\\\\*shell\\\\*.*" (buffer-name b)))
+                         ( (string-match "\\\\*tramp.+\\\\*" (buffer-name b)))
+                         ( (string= "*compilation*" (buffer-name b)))
+                         ( (buffer-file-name b))))
                      (buffer-list)))
     (delete-other-windows)
     (switch-to-buffer "*scratch*"))

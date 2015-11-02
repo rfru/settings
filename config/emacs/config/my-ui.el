@@ -57,6 +57,7 @@
     (? mine "\\<defvar\\>" (emacs-lisp-mode))
     (? mine "\\<local\\>" (lua-mode))
     (? mine "\\<var\\>" (js2-mode go-mode web-mode))
+    (? mine "\\<let\\>" (js2-mode))
     ;; (?Ǝ mine "\\<defvar\\>" (emacs-lisp-mode))
     ;; (?Ǝ mine "\\<var\\>" (js2-mode go-mode web-mode))
     (? mine "\\<public\\>" (java-mode))

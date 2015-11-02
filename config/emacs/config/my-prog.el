@@ -10,6 +10,10 @@
 ; Electric indent doesn't work with comments
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+(require 'js2-mode)
+(require 'js2-old-indent)
+(setq js2-pretty-multiline-declarations nil)
+
 (setq help-at-pt-display-when-idle t)
 (setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
