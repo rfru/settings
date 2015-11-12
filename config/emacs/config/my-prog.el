@@ -34,6 +34,8 @@
 
 (require 'magit)
 (require 'web-mode)
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js[6]?\\'" . js2-mode))
@@ -58,10 +60,7 @@
 (setq-default evil-shift-width 2)
 
 (require 'whitespace)
-;; (setq whitespace-style '(face lines-tail empty trailing))
-;; (setq whitespace-line-column 100)
 (setq whitespace-style '(face empty trailing))
-;; (setq whitespace-global-modes '(java-mode python-mode js2-mode go-mode emacs-lisp-mode c++-mode web-mode protobuf-mode))
 (global-whitespace-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/ghc")

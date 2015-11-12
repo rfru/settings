@@ -15,7 +15,7 @@
 (setq helm-split-window-default-side 'other)
 (setq helm-quick-update t)
 
-(setq recentf-exclude '("\\.recentf" "\\.recentd" "^/tmp/" "/.git/" "/.emacs.d/elpa/"))
+(setq recentf-exclude '("\\.recentf" "\\.recentd" "^/tmp/" "/.git/" "/.emacs.d/elpa/" "^/var/"))
 (setq recentf-max-saved-items 250)
 (setq recentf-auto-cleanup 'never)
 (setq recentf-save-file (expand-file-name "~/.emacs.d/.recentf"))
@@ -27,7 +27,7 @@
 (let* ((expanded default-directory)
       (open-buffers (-non-nil (-map 'buffer-file-name (buffer-list))))
       (diff (-difference candidates open-buffers)))
-   diff))
+  diff))
 
 (setq my-source-recentf
       (helm-build-sync-source "Recent"
