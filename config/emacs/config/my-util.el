@@ -3,16 +3,10 @@
 (defun my-kill-buffers ()
     "Kill all other buffers."
     (interactive)
-    ;; (tramp-cleanup-all-connections)
     (mapc '(lambda (b)
              (evil-delete-buffer-keep-windows b t))
-          (-filter '(lambda (b)
-                        (or
-                         (s-matches? "\\\\*magit\\\\*.*" (buffer-name b))
-                         (s-matches? "\\\\*shell\\\\*.*" (buffer-name b))
-                         (s-matches? "\\\\*tramp.+\\\\*" (buffer-name b))
-                         (string= "*compilation*" (buffer-name b))
-                         (buffer-file-name b)))
+          (-remove '(lambda (b)
+                         (string= "*scratch*" (buffer-name b)))
                      (buffer-list)))
     (delete-other-windows)
     (switch-to-buffer "*scratch*"))
