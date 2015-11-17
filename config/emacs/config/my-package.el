@@ -22,6 +22,7 @@
         'magit
         'groovy-mode
         'emacs-eclim
+        'markdown-mode
         'yaml-mode
         'web-mode
         'flycheck
