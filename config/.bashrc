@@ -2,7 +2,7 @@ export LANG='en_US.UTF-8'
 export LC_ALL="en_US.UTF-8"
 export GOPATH=$HOME/go
 export EDITOR=e
-export PATH=/usr/local/go/bin:$GOPATH/bin:$HOME/settings:$HOME/bin:$HOME/Library/Haskell/bin:/Applications/Emacs.app/Contents/MacOS/bin:$PATH
+export PATH=/usr/local/go/bin:$GOPATH/bin:$HOME/settings:$HOME/bin:$HOME/Library/Haskell/bin:/Applications/Emacs.app/Contents/MacOS/bin:/usr/local/bin:$PATH
 export P4CONFIG=.p4config
 export P4EDITOR=e
 
@@ -29,6 +29,3 @@ export PS1='\h:\w $ '
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
-
-
-. $HOME/.bagpipe/setup.sh $HOME/.bagpipe mtl.nyc.corp.google.com

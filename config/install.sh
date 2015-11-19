@@ -18,8 +18,12 @@ ln -sf `$cmd -f .bash_profile` ~
 ln -sf `$cmd -f .bashrc` ~
 ln -sf ~/.bash_profile ~/.profile
 
+mkdir ~/.emacs.d
 init=`$cmd -f emacs/init.el`
 mcl=`$cmd -f emacs/mc-lists.el`
 mkdir -p ~/.emacs.d
 ln -sf $init ~/.emacs.d/
 ln -sf $mcl ~/.emacs.d/.mc-lists.el
+
+mkdir -p ~/.ssh
+ln -s ~/Dropbox/keys/id_rsa ~/.ssh/id_rsa
