@@ -1,5 +1,8 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
+; Don't process machine names in files.
+(setq ffap-machine-p-known 'reject)
+
 (setq indent-line-function 'insert-tab)
 (setq large-file-warning-threshold 100000000)
 
