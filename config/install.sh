@@ -16,6 +16,7 @@ command -v $cmd >/dev/null 2>&1 || {
 ln -sf `$cmd -f .gitconfig` ~
 ln -sf `$cmd -f .bash_profile` ~
 ln -sf `$cmd -f .bashrc` ~
+ln -sf `$cmd -f .Renviron` ~
 ln -sf ~/.bash_profile ~/.profile
 
 mkdir ~/.emacs.d

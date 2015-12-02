@@ -134,4 +134,6 @@
 (evil-define-key 'visual python-mode-map (kbd "RET") 'python-eval-region-or-line)
 (evil-define-key 'normal python-mode-map (kbd "RET") 'python-eval-region-or-line)
 
+(evil-set-initial-state 'compilation-mode 'normal)
+
 (provide 'my-keys)

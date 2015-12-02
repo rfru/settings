@@ -78,6 +78,10 @@
   (interactive)
   (let ((is-remote-host (and (file-remote-p default-directory) (s-equals? "mtl" (tramp-file-name-host (tramp-dissect-file-name default-directory))))))
     (cond
+     ((s-starts-with? "*shell" (buffer-name))
+      (let ((dir default-directory))
+        (switch-to-buffer-other-window (get-buffer-create "*scratch*"))
+        (cd dir)))
      ((and (eq 'java-mode major-mode) (not is-remote-host))
       (let ((default-directory (locate-dominating-file default-directory 'gradle-is-project-dir)))
         (compile "gradle run")))
@@ -101,8 +105,7 @@
                ((eq 'python-mode major-mode)
                 (s-concat "python " (buffer-name)))
                )))
-      (call-interactively 'compile)))
-    ))
+        (call-interactively 'compile)))))
 
 (defconst scss-font-lock-keywords
   ;; Variables
