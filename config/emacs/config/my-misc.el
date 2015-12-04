@@ -132,4 +132,23 @@
            (evil-exit-visual-state)))
         (t (widen))))
 
+(defun my-isearch-forward ()
+  "Repeat the forward search.
+If called from backward search, immediately jump to the following
+occurance instead of jumping to the end of current one."
+  (interactive)
+  (when (not isearch-forward)
+    (isearch-repeat 'forward))
+  (isearch-repeat 'forward))
+
+(defun my-isearch-backward ()
+  "Repeat the backward search.
+If called from forward search, immediately jump to the previous
+occurance instead of jumping to the beginning of current one."
+  (interactive)
+  (when (and isearch-forward
+             (/= (point) isearch-other-end))
+    (isearch-repeat 'backward))
+  (isearch-repeat 'backward))
+
 (provide 'my-misc)

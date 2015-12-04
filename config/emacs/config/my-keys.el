@@ -90,8 +90,8 @@
 (define-key evil-normal-state-map "c" 'helm-for-files)
 (define-key evil-motion-state-map "." 'my-find-directories)
 (define-key evil-normal-state-map "." 'my-find-directories)
-(define-key isearch-mode-map (kbd "<down>") 'isearch-repeat-forward)
-(define-key isearch-mode-map (kbd "<up>") 'isearch-repeat-backward)
+(define-key isearch-mode-map (kbd "<down>") 'my-isearch-forward)
+(define-key isearch-mode-map (kbd "<up>") 'my-isearch-backward)
 (define-key evil-visual-state-map "/"
   (lambda ()
     (interactive)
