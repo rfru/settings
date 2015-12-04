@@ -184,6 +184,9 @@ Show the first `helm-ff-history-max-length' elements of
 (setq helm-candidate-number-limit 25)
 (setq kill-ring-max 500)
 
+(setq helm-swoop-speed-or-color nil)
+
+
 (helm-mode 1)
 
 (provide 'my-helm)

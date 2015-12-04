@@ -90,8 +90,18 @@
 (define-key evil-normal-state-map "c" 'helm-for-files)
 (define-key evil-motion-state-map "." 'my-find-directories)
 (define-key evil-normal-state-map "." 'my-find-directories)
-(define-key evil-visual-state-map "/" 'helm-swoop)
-(define-key evil-normal-state-map "/" (lambda () (interactive) (helm-swoop :$query "")))
+(define-key isearch-mode-map (kbd "<down>") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "<up>") 'isearch-repeat-backward)
+(define-key evil-visual-state-map "/"
+  (lambda ()
+    (interactive)
+    (helm-swoop)))
+(define-key evil-normal-state-map "/"
+  (lambda ()
+    (interactive)
+    (if (>= (line-number-at-pos (point-max)) 2000)
+        (isearch-forward)
+      (helm-swoop :$query ""))))
 (define-key evil-normal-state-map "s" 'ace-jump-word-mode)
 
 (define-key evil-normal-state-map "?" 'search)
