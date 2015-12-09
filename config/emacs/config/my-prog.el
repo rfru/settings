@@ -60,8 +60,13 @@
 (setq python-indent-offset 2)
 (setq-default evil-shift-width 2)
 
+; For highlight-indentation bug:
+(require 'highlight-indentation)
+(defun highlight-indentation-guess-offset () 4)
+
 (require 'whitespace)
-(setq whitespace-style '(face empty trailing))
+(setq whitespace-space-regexp "\\(^ +\\)")
+(setq whitespace-style '(face empty trailing spaces))
 (global-whitespace-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/ghc")
@@ -168,10 +173,10 @@ A project dir is also considered if there is a '{dirname}.gradle'.  This
 is a convention for multi-build projects, where dirname is under some
 'rootDir/dirname/dirname.gradle'."
   (let ((dirname (file-name-nondirectory
-		  (directory-file-name (expand-file-name dir)))))
+    (directory-file-name (expand-file-name dir)))))
     (or (file-exists-p (expand-file-name "build.gradle" dir))
-	(file-exists-p (expand-file-name
-			(concat dirname ".gradle") dir)))))
+        (file-exists-p (expand-file-name
+                        (concat dirname ".gradle") dir)))))
 
 ; go get golang.org/x/tools/cmd/goimports
 (setq gofmt-command "goimports")

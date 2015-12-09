@@ -1,6 +1,7 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
 
 (defvar starter-kit-packages
   (list 'evil
@@ -31,6 +32,7 @@
         'visual-regexp-steroids
         'evil-leader
         'company-jedi
+        'highlight-indentation
         'company
         'company-go
         'multiple-cursors

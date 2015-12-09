@@ -7,7 +7,7 @@
     (tool-bar-mode -1)
     (when (equal system-type 'darwin)
       (set-default-font "Tisa Pro 14")
-      (setq-default line-spacing 0)
+      (setq-default line-spacing 1)
       (add-to-list 'default-frame-alist '(width  . 150))
       (add-to-list 'default-frame-alist '(height . 35))
       (set-fringe-mode 0)

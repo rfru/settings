@@ -65,6 +65,8 @@
    '(font-lock-doc-face ((t (:inherit font-lock-comment-face :foreground nil))))
    '(font-lock-doc-string-face ((t (:inherit font-lock-comment-face :foreground nil))))
 
+   `(highlight-indentation-face ((t (:background "#eaeada"))))
+
                                         ;'(show-paren-mismatch ((t (:background "magenta" :foreground nil :inverse-video t))))
    '(sp-show-pair-match-face ((t (:foreground nil :background nil :inherit show-paren-match))))
    '(js2-external-variable ((t (:inherit default))))
@@ -77,6 +79,7 @@
    '(whitespace-empty ((t (:background nil :foreground nil))))
    `(whitespace-line ((t (:foreground ,red))))
    '(whitespace-trailing ((t (:inherit trailing-whitespace :background nil))))
+   `(whitespace-space ((t (:family "Menlo" :height 80))))
 
    '(secondary-selection ((t (:inherit highlight))))
    '(web-mode-html-tag-bracket-face ((t (:inherit default))))

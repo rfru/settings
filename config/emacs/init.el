@@ -1,4 +1,4 @@
-(package-initialize)
+; (package-initialize)
 
 (defvar my-config-dir
 	(expand-file-name "config" (file-name-directory (file-truename load-file-name))))

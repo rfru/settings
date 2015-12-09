@@ -53,6 +53,7 @@
   "q" 'delete-window
   "n" 'narrow-or-widen-dwim
   "d" 'my-delete-buffer
+  "h" 'highlight-indentation-mode
   "k" (lambda ()
         (interactive)
         (if (y-or-n-p "Kill buffers?")
