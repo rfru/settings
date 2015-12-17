@@ -1,4 +1,7 @@
 #!/bin/bash
+go get golang.org/x/tools/cmd/goimports
+go get github.com/nsf/gocode
+
 unamestr=`uname`
 cmd='greadlink'
 if [[ "$unamestr" == 'Linux' ]]; then
