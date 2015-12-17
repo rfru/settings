@@ -63,7 +63,7 @@
 
 ; For highlight-indentation bug:
 (require 'highlight-indentation)
-(defun highlight-indentation-guess-offset () 4)
+(defun highlight-indentation-guess-offset () 2)
 
 (require 'whitespace)
 (setq whitespace-space-regexp "\\(^ +\\)")
