@@ -100,7 +100,7 @@
 (define-key evil-normal-state-map "/"
   (lambda ()
     (interactive)
-    (if (>= (line-number-at-pos (point-max)) 2000)
+    (if (>= (buffer-size) (* 100 2000))
         (isearch-forward)
       (helm-swoop :$query ""))))
 (define-key evil-normal-state-map "s" 'ace-jump-word-mode)
