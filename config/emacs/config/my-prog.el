@@ -33,6 +33,7 @@
 (setq compilation-ask-about-save nil)
 
 (require 'magit)
+
 (require 'web-mode)
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.pyx$" . python-mode))

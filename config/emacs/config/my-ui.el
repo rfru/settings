@@ -58,6 +58,7 @@
     (? mine "\\<local\\>" (lua-mode))
     (? mine "\\<var\\>" (go-mode web-mode))
     (? mine "\\<let\\>" (js2-mode))
+    (? mine "\\<const\\>" (js2-mode))
     (? mine "\\<public\\>" (java-mode))
     (? mine "\\<export\\>" (js2-mode))
     (? mine "\\<private\\>" (java-mode))

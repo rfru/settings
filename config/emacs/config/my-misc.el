@@ -43,7 +43,7 @@
 (setq smooth-scroll-margin 10)
 
 (require 'tramp)
-(setq tramp-verbose 3)
+(setq tramp-verbose 0)
 (setq vc-handled-backends nil)
 (setq vc-ignore-dir-regexp
                 (format "\\(%s\\)\\|\\(%s\\)"
@@ -55,7 +55,7 @@
              '("\\`mtl\\'" "\\`root\\'" "/ssh:%h:")
              )
 (setq tramp-ssh-controlmaster-options
-      "-o ControlPath=/tmp/%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")
+      "-o ControlPath=/tmp/%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=yes")
 
 (defun open-sudo ()
   (interactive)
