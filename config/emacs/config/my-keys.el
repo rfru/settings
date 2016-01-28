@@ -38,10 +38,11 @@
 
 (define-key evil-normal-state-map (kbd "q") 'last-buffer)
 
-(define-key evil-normal-state-map (kbd "<S-up>") 'buf-move-up)
-(define-key evil-normal-state-map (kbd "<S-down>") 'buf-move-down)
-(define-key evil-normal-state-map (kbd "<S-left>") 'buf-move-left)
-(define-key evil-normal-state-map (kbd "<S-right>") 'buf-move-right)
+(setq mac-command-modifier 'super)
+(define-key evil-normal-state-map (kbd "s-<up>") 'buf-move-up)
+(define-key evil-normal-state-map (kbd "s-<down>") 'buf-move-down)
+(define-key evil-normal-state-map (kbd "s-<left>") 'buf-move-left)
+(define-key evil-normal-state-map (kbd "s-<right>") 'buf-move-right)
 
 ; Use evil keys for compilation mode.
 (define-key compilation-mode-map (kbd "g") nil)

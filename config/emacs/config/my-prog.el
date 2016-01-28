@@ -58,6 +58,7 @@
 (setq web-mode-css-indent-offset 2)
 (setq web-mode-code-indent-offset 2)
 (setq python-guess-indent nil)
+(setq python-indent 2)
 (setq python-indent-offset 2)
 (setq-default evil-shift-width 2)
 

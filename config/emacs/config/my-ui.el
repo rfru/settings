@@ -66,7 +66,7 @@
     (? mine "\\<require\\>" (emacs-lisp-mode))
     (? mine "\\<require\\>" (lua-mode))
     (? mine "\\<import\\>" (java-mode go-mode python-mode))
-    (?• mine "\\<self\\.\\>" (objc-mode python-mode))
+    (?• mine "\\<self\\." (objc-mode python-mode))
     (?• mine "\\<this\\." (java-mode js2-mode web-mode))
     ;(?¬ logical ,(rxt-pcre-to-elisp "\\((!)") (java-mode js-mode go-mode))
     )))

@@ -79,7 +79,7 @@
    '(whitespace-empty ((t (:background nil :foreground nil))))
    `(whitespace-line ((t (:foreground ,red))))
    '(whitespace-trailing ((t (:inherit trailing-whitespace :background nil))))
-   `(whitespace-space ((t (:family "Menlo" :height 80))))
+   `(whitespace-space ((t (:family "Menlo" :height 100))))
 
    '(secondary-selection ((t (:inherit highlight))))
    '(web-mode-html-tag-bracket-face ((t (:inherit default))))

@@ -179,6 +179,9 @@ Show the first `helm-ff-history-max-length' elements of
       (helm-ag)
     (helm-do-ag default-directory)))
 
+(setq helm-ag-command-option
+      (s-join " "(-map '(lambda (x) (s-prepend "--ignore " x)) '("*.pb" "*.log" "*.hdf5" "*.min.js"))))
+
 (define-key helm-map [escape] 'helm-keyboard-quit)
 
 (setq helm-candidate-number-limit 25)
