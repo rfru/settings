@@ -42,21 +42,6 @@
 (require 'smooth-scrolling)
 (setq smooth-scroll-margin 10)
 
-(require 'tramp)
-(setq tramp-verbose 0)
-(setq vc-handled-backends nil)
-(setq vc-ignore-dir-regexp
-                (format "\\(%s\\)\\|\\(%s\\)"
-                        vc-ignore-dir-regexp
-                        tramp-file-name-regexp))
-(setq tramp-default-method "ssh")
-(setq tramp-remote-path '(tramp-own-remote-path))
-(add-to-list 'tramp-default-proxies-alist
-             '("\\`mtl\\'" "\\`root\\'" "/ssh:%h:")
-             )
-(setq tramp-ssh-controlmaster-options
-      "-o ControlPath=/tmp/%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=yes")
-
 (defun open-sudo ()
   (interactive)
   (let ((new-dir

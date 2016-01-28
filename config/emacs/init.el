@@ -12,11 +12,9 @@
 (require 'my-completion)
 (require 'my-misc)
 (require 'my-term)
+(require 'my-tramp)
 (require 'my-google)
 (require 'my-keys)
 
 (require 'my-ui)
 (require 'my-theme)
-
-(load "server")
-(unless (server-running-p) (server-start))

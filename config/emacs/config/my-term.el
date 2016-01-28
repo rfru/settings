@@ -77,6 +77,10 @@ user@host) value will be required to perform the connection."
 (add-hook 'shell-mode-hook 'tramp-comint-read-input-ring)
 ; Tramp sets HISTFILE to /dev/null so bash history on remote shells does not work.
 (add-to-list 'tramp-remote-process-environment "HISTFILE=")
-(setq explicit-bash-args '("--noediting" "-i" "-c" "export PROMPT_COMMAND=\"history -a; $PROMPT_COMMAND\"; bash"))
+(setq explicit-bash-args
+      '("--noediting"
+        "-i"
+        "-c"
+        "export PROMPT_COMMAND=\"history -a; $PROMPT_COMMAND\"; bash"))
 
 (provide 'my-term)
