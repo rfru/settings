@@ -47,10 +47,15 @@ apparently didn't already exist."
     (tramp-file-name-host vec)
     file))
 
+(setq auth-copied '())
 (defun copy-auth ()
   (interactive)
-  (let ((file (tramp-make-tramp-file-name-from-vec (tramp-dissect-file-name default-directory)"~/.emacs.d/remote-server")))
-    (copy-file "~/.emacs.d/server/server" file t)))
+  (let* ((dissected (tramp-dissect-file-name default-directory))
+         (host (tramp-file-name-host dissected))
+         (file (tramp-make-tramp-file-name-from-vec dissected "~/.emacs.d/remote-server")))
+    (when (not (-contains? auth-copied host))
+      (add-to-list 'auth-copied host)
+      (copy-file "~/.emacs.d/server/server" file t))))
 
 (setq tramp-verbose 0)
 (setq vc-handled-backends nil)
