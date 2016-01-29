@@ -81,6 +81,13 @@
                                (turn-on-haskell-indentation)
                                (ghc-init)))
 
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
+(add-hook 'ediff-keymap-setup-hook
+          (lambda ()
+            (define-key ediff-mode-map "j" 'ediff-next-difference)
+            (define-key ediff-mode-map "k" 'ediff-previous-difference)))
+
 (setq-default compile-command nil)
 (defun my-compile ()
   (interactive)

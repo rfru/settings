@@ -52,9 +52,12 @@ apparently didn't already exist."
   (interactive)
   (let* ((dissected (tramp-dissect-file-name default-directory))
          (host (tramp-file-name-host dissected))
+         (emacs-dir (tramp-make-tramp-file-name-from-vec dissected "~/.emacs.d/"))
          (file (tramp-make-tramp-file-name-from-vec dissected "~/.emacs.d/remote-server")))
     (when (not (-contains? auth-copied host))
       (add-to-list 'auth-copied host)
+      (unless (file-exists-p emacs-dir)
+        (make-directory emacs-dir))
       (copy-file "~/.emacs.d/server/server" file t))))
 
 (setq tramp-verbose 0)
