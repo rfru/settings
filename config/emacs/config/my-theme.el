@@ -102,6 +102,13 @@
    '(popup-tip-face ((t (:inherit secondary-selection))))
    '(ghc-face-error ((t (:inherit error))))
 
+   `(ediff-even-diff-A ((t (:background ,lightgray :foreground ,gray))))
+   `(ediff-even-diff-B ((t (:background ,lightgray :foreground ,gray))))
+   `(ediff-even-diff-C ((t (:background ,lightgray :foreground ,gray))))
+   `(ediff-odd-diff-A ((t (:background ,lightgray :foreground ,gray))))
+   `(ediff-odd-diff-B ((t (:background ,lightgray :foreground ,gray))))
+   `(ediff-odd-diff-C ((t (:background ,lightgray :foreground ,gray))))
+
    `(helm-match ((t (:weight bold))))
    `(helm-candidate-number ((t (:inherit mode-line))))
    `(helm-selection ((t (:background ,lightgray))))))
