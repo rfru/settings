@@ -20,6 +20,7 @@
         'helm-ag
         'evil-matchit ; Enhance % operator for tags and many other structures
         'magit
+        'sass-mode
         'groovy-mode
         'emacs-eclim
         'markdown-mode
@@ -38,6 +39,7 @@
         'multiple-cursors
         'buffer-move
         'pretty-symbols
+        'typescript-mode
         'go-mode
         'haskell-mode
         'smartparens

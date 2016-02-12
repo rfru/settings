@@ -36,13 +36,19 @@
 
 (require 'web-mode)
 (require 'yaml-mode)
+(require 'typescript-mode)
+(require 'sass-mode)
 (add-to-list 'auto-mode-alist '("\\.pyx$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js[6]?\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.soy$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.xml$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.ts$" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
+
 (setq web-mode-enable-current-element-highlight t)
 (setq web-mode-enable-css-colorization t)
 
@@ -53,6 +59,7 @@
 ; Indentation
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
+(setq typescript-indent-level 2)
 (setq c-basic-offset 2)
 (setq css-indent-offset 2)
 (setq web-mode-markup-indent-offset 2)
@@ -121,21 +128,6 @@
                 (s-concat "python " (buffer-name)))
                )))
         (call-interactively 'compile)))))
-
-(defconst scss-font-lock-keywords
-  ;; Variables
-    '(("$[a-z_-][a-z-_0-9]*" . font-lock-constant-face)))
-(define-derived-mode scss-mode css-mode "SCSS"
-    "Major mode for editing SCSS files, http://sass-lang.com/
-Special commands:
-\\{scss-mode-map}"
-    (font-lock-add-keywords nil scss-font-lock-keywords)
-    ;; Add the single-line comment syntax ('//', ends with newline)
-    ;; as comment style 'b' (see "Syntax Flags" in elisp manual)
-    (modify-syntax-entry ?/ ". 124" css-mode-syntax-table)
-    (modify-syntax-entry ?* ". 23b" css-mode-syntax-table)
-      (modify-syntax-entry ?\n ">" css-mode-syntax-table))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 (flycheck-define-checker jsxhint-checker
   "A JSX syntax and style checker based on JSXHint."

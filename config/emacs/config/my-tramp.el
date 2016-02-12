@@ -73,6 +73,6 @@ apparently didn't already exist."
              '("\\`mtl\\'" "\\`root\\'" "/ssh:%h:")
              )
 (setq tramp-ssh-controlmaster-options
-      "-o ControlPath=/tmp/%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=yes")
+      "-o ControlPath=/tmp/%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")
 
 (provide 'my-tramp)
