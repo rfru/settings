@@ -89,6 +89,8 @@
   (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
+(setq compilation-always-kill t)
+
 ; Jump to first error
 (setq compilation-scroll-output 'first-error)
 

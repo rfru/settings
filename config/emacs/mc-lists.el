@@ -37,6 +37,7 @@
         comment-or-uncomment-region-or-line
         evil-a-curly
         evil-ace-jump-word-mode
+        evil-digit-argument-or-evil-beginning-of-line
         evil-ex
         evil-goto-first-line
         evil-goto-line
