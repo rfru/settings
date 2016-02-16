@@ -8,7 +8,10 @@
 ;; (global-eclim-mode)
 
 ; Electric indent doesn't work with comments
-(define-key global-map (kbd "RET") 'newline-and-indent)
+(electric-indent-mode -1)
+(setq initial-major-mode 'text-mode)
+(add-hook 'prog-mode-hook '(lambda ()
+  (local-set-key (kbd "RET") 'newline-and-indent)))
 
 (require 'js2-mode)
 (require 'js2-old-indent)

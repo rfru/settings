@@ -113,11 +113,21 @@
 (evil-define-key 'insert comint-mode-map (kbd "C-z") 'comint-stop-subjob)
 
 (evil-define-key 'normal shell-mode-map (kbd "t") 'helm-comint-input-ring)
-(evil-define-key 'normal shell-mode-map (kbd "RET")
+(defun jump-to-prompt()
+  (interactive)
+  (evil-normal-state)
+  (evil-goto-line)
+  (evil-append 0))
+(evil-define-key 'normal shell-mode-map (kbd "RET") 'jump-to-prompt)
+; Ignore visual selection execution
+(evil-define-key 'visual shell-mode-map (kbd "RET") 'jump-to-prompt)
+; Prevent sending terminal output when scrolled
+(evil-define-key 'insert shell-mode-map (kbd "RET")
   (lambda ()
     (interactive)
     (evil-goto-line)
-    (evil-append 0)))
+    (comint-send-input)))
+
 (evil-define-key 'normal term-raw-map (kbd "RET")
   (lambda ()
     (interactive)
