@@ -88,6 +88,8 @@
 
 (define-key evil-normal-state-map "`" 'google)
 
+(define-key evil-normal-state-map (kbd "<backspace>") 'kill-compilation)
+
 (define-key evil-motion-state-map "c" 'helm-for-files)
 (define-key evil-normal-state-map "c" 'helm-for-files)
 (define-key evil-motion-state-map "." 'my-find-directories)
