@@ -23,6 +23,14 @@
 
 (add-hook 'python-mode-hook (lambda () (run-python "python")))
 
+(require 'volatile-highlights)
+
+; Don't think yank or delete works here.
+(vhl/define-extension 'my-evil-highlights 'evil-yank 'evil-paste-after 'evil-paste-before  'undo-tree-undo 'undo-tree-redo 'evil-delete)
+(vhl/install-extension 'my-evil-highlights)
+
+(volatile-highlights-mode t)
+
 (require 'expand-region)
 
 (require 'flycheck)

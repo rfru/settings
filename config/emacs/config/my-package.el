@@ -39,6 +39,7 @@
         'multiple-cursors
         'buffer-move
         'pretty-symbols
+        'volatile-highlights
         'typescript-mode
         'go-mode
         'haskell-mode

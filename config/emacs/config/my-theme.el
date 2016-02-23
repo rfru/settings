@@ -45,6 +45,8 @@
    `(font-lock-variable-name-face ((t ())))
    `(font-lock-type-face ((t (:foreground "#6E819F"))))
 
+   `(vhl/default-face ((t (:foreground ,red))))
+
    `(error ((t (:inverse-video t :foreground ,red))))
    `(region ((t (:foreground ,white :background ,darkgray))))
 
