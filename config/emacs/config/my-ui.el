@@ -85,6 +85,7 @@
 (add-hook 'go-mode-hook 'pretty-symbols-mode)
 
 (diminish 'undo-tree-mode)
+(diminish 'volatile-highlights-mode)
 (diminish 'global-whitespace-mode)
 (diminish 'flycheck-mode)
 (diminish 'helm-mode)
