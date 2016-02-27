@@ -20,7 +20,7 @@
         'helm-ag
         'evil-matchit ; Enhance % operator for tags and many other structures
         'magit
-        'sass-mode
+        'scss-mode
         'groovy-mode
         'emacs-eclim
         'markdown-mode

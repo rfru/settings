@@ -48,7 +48,7 @@
 (require 'web-mode)
 (require 'yaml-mode)
 (require 'typescript-mode)
-(require 'sass-mode)
+(require 'scss-mode)
 (add-to-list 'auto-mode-alist '("\\.pyx$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
@@ -58,7 +58,7 @@
 (add-to-list 'auto-mode-alist '("\\.soy$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.xml$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ts$" . typescript-mode))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 (setq web-mode-enable-current-element-highlight t)
 (setq web-mode-enable-css-colorization t)
