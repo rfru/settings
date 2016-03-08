@@ -88,7 +88,24 @@
 
 (define-key evil-normal-state-map "`" 'google)
 
-(define-key evil-normal-state-map (kbd "<backspace>") 'kill-compilation)
+(require 'async)
+(define-key evil-normal-state-map (kbd "<backspace>")
+  (lambda()
+    (interactive)
+    (if compilation-in-progress
+        (progn
+          (kill-compilation)
+          (async-start
+           (lambda ()
+             (sleep-for 0.2))
+           (lambda (res)
+             (when compilation-in-progress
+               (kill-buffer "*compilation*")
+               )
+             )))
+      (let ((compilation-read-command (if compile-command nil t)))
+        (my-compile)
+       ))))
 
 (define-key evil-motion-state-map "c" 'helm-for-files)
 (define-key evil-normal-state-map "c" 'helm-for-files)

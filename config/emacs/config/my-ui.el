@@ -68,8 +68,8 @@
     (? mine "\\<require\\>" (lua-mode))
     (? mine "\\<import\\>" (java-mode go-mode python-mode typescript-mode))
     ; ﹕•
-    (?﹕ mine "\\<self\\." (objc-mode python-mode))
-    (?﹕ mine "\\<this\\." (java-mode js2-mode web-mode typescript-mode))
+    (?• mine "\\<self\\." (objc-mode python-mode))
+    (?• mine "\\<this\\." (java-mode js2-mode web-mode typescript-mode))
     ;(?¬ logical ,(rxt-pcre-to-elisp "\\((!)") (java-mode js-mode go-mode))
     )))
 

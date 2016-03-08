@@ -12,6 +12,7 @@
         'helm-swoop
         'goto-last-change
         'diminish
+        'async
         'multi-term
         's
         'dash
