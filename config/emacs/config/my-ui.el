@@ -56,7 +56,7 @@
     (?∈ mine "\\<in\\>" (python-mode js2-mode web-mode typescript-mode))
     (? mine "\\<defvar\\>" (emacs-lisp-mode))
     (? mine "\\<local\\>" (lua-mode))
-    (? mine "\\<var\\>" (go-mode web-mode js2-mode typescript-mode))
+    (? mine "\\<var\\>" (go-mode web-mode js2-mode))
     (? mine "\\<let\\>" (js2-mode typescript-mode))
     (? mine "\\<const\\>" (js2-mode typescript-mode))
     (? mine "\\<public\\>" (java-mode))

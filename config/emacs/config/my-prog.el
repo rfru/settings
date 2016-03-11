@@ -60,6 +60,9 @@
 (add-to-list 'auto-mode-alist '("\\.ts$" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
+; This is broken.
+(setq typescript-auto-indent-flag nil)
+
 (setq web-mode-enable-current-element-highlight t)
 (setq web-mode-enable-css-colorization t)
 
