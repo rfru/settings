@@ -10,6 +10,7 @@
         'protobuf-mode
         'ess
         'helm-swoop
+        'beacon
         'goto-last-change
         'diminish
         'async

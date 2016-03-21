@@ -15,10 +15,16 @@
       (scroll-bar-mode -1)))
     (menu-bar-mode -1)
     (setq column-number-mode t)
+    (setq beacon-blink-when-window-scrolls nil)
+    (setq beacon-blink-when-focused t)
+    (setq beacon-blink-duration 0.5)
+    (setq beacon-blink-delay 0.3)
+    (setq beacon-size 60)
+    (setq beacon-color "lavender")
+    (beacon-mode 1)
 
     (add-hook 'window-configuration-change-hook
               (lambda ()
-                (global-hl-line-mode t)
                 (set-frame-parameter nil 'internal-border-width 0)
                 (set-window-margins (car (get-buffer-window-list (current-buffer) nil t)) 1 1)))
                                         ; Highlight current line

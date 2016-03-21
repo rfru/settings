@@ -20,7 +20,8 @@
        (orange (if gui "orange" "yellow"))
        (blue "blue")
        (verylightgray (if gui "#f6f6f6" "white"))
-       (lightgray (if gui "#efefef" "white"))
+       (lightgray2 "#efefef")
+       (lightgray (if gui "#e7e7e7" "white"))
        (pink (if gui "maroon" "magenta"))
        (purple (if gui "darkorchid" "brightmagenta"))
        (darkgray (if gui "#666" "brightblue"))
@@ -48,7 +49,7 @@
    `(vhl/default-face ((t (:foreground ,red))))
 
    `(error ((t (:inverse-video t :foreground ,red))))
-   `(region ((t (:foreground ,white :background ,darkgray))))
+   `(region ((t (:background ,lightgray))))
 
    `(popup-face ((t (:background ,verylightgray))))
    `(comint-highlight-prompt ((t (:inherit default))))
@@ -113,7 +114,7 @@
 
    `(helm-match ((t (:weight bold))))
    `(helm-candidate-number ((t (:inherit mode-line))))
-   `(helm-selection ((t (:background ,lightgray))))))
+   `(helm-selection ((t (:background ,lightgray2))))))
 (setq underline-minimum-offset 4)
 
 (provide 'my-theme)

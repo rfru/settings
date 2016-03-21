@@ -27,6 +27,7 @@
         go-mode-insert-and-indent
         keyboard-quit
         sp--self-insert-command
+        typescript-insert-and-indent
         vr/replace
         ))
 
