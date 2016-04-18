@@ -176,7 +176,7 @@ Show the first `helm-ff-history-max-length' elements of
                        (-distinct (ring-elements comint-input-ring))))))
     (action . helm-comint-input-ring-action)))
 
-(defun search()
+(defun my-ag-search()
   (interactive)
   (if (file-remote-p default-directory)
       (helm-ag)

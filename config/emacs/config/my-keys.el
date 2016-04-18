@@ -31,11 +31,6 @@
 (define-key evil-normal-state-map (kbd "E") 'er/contract-region)
 (define-key evil-visual-state-map (kbd "E") 'er/contract-region)
 
-(define-key evil-normal-state-map (kbd "m") 'mc/mark-next-like-this)
-(define-key evil-visual-state-map (kbd "m") 'mc/mark-next-like-this)
-(define-key evil-normal-state-map (kbd "M") 'mc/unmark-next-like-this)
-(define-key evil-visual-state-map (kbd "M") 'mc/unmark-next-like-this)
-
 (define-key evil-normal-state-map (kbd "q") 'last-buffer)
 
 (setq mac-command-modifier 'super)
@@ -74,8 +69,8 @@
 
 (require 'visual-regexp)
 (require 'visual-regexp-steroids)
-(define-key evil-normal-state-map (kbd "R") 'vr/replace)
-(define-key evil-visual-state-map (kbd "r")
+(define-key evil-normal-state-map (kbd "m") 'vr/query-replace)
+(define-key evil-visual-state-map (kbd "m")
   (lambda(start end)
   (interactive "r")
   (let ((multiline (> (count-lines-region start end) 1))
@@ -92,7 +87,7 @@
                  (lambda ())
                  (lambda (res)
                    (exit-minibuffer))))
-            (call-interactively 'vr/replace)))))))
+            (call-interactively 'vr/query-replace)))))))
 
 (define-key evil-normal-state-map "U" 'redo)
 (define-key evil-normal-state-map "\C-r" nil)
@@ -143,7 +138,7 @@
       (helm-swoop :$query ""))))
 (define-key evil-normal-state-map "s" 'ace-jump-word-mode)
 
-(define-key evil-normal-state-map "?" 'search)
+(define-key evil-normal-state-map "?" 'my-ag-search)
 
 (evil-define-key 'insert comint-mode-map (kbd "<up>") 'comint-previous-input)
 (evil-define-key 'insert comint-mode-map (kbd "<down>") 'comint-next-input)

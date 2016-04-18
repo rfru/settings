@@ -38,7 +38,6 @@
         'highlight-indentation
         'company
         'company-go
-        'multiple-cursors
         'buffer-move
         'pretty-symbols
         'volatile-highlights

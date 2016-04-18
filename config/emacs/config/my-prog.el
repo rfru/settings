@@ -45,6 +45,9 @@
 
 (require 'magit)
 
+; Must be before web-mode!
+(setq standard-indent 2)
+
 (require 'web-mode)
 (require 'yaml-mode)
 (require 'typescript-mode)
@@ -75,10 +78,8 @@
 (setq-default tab-width 2)
 (setq typescript-indent-level 2)
 (setq c-basic-offset 2)
+
 (setq css-indent-offset 2)
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
 (setq python-indent-guess-indent-offset nil)
 (setq python-indent-offset 2)
 (setq-default evil-shift-width 2)

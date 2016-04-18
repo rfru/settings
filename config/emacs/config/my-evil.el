@@ -1,6 +1,5 @@
 (require 'evil)
 (require 'evil-matchit)
-(require 'multiple-cursors)
 (global-evil-matchit-mode 1)
 (defcustom evil-state-modes
   '(fundamental-mode
