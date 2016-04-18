@@ -15,6 +15,10 @@
 (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
 (delete 'company-files company-backends)
 
+; Don't complete filenames in shell scripts
+(require 'sh-script)
+(setq sh-dynamic-complete-functions (remove 'comint-filename-completion sh-dynamic-complete-functions))
+
 (setq company-global-modes
       '(not shell-mode comint-mode))
 

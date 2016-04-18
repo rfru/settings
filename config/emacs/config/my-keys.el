@@ -74,7 +74,25 @@
 
 (require 'visual-regexp)
 (require 'visual-regexp-steroids)
-(define-key evil-visual-state-map (kbd "r") 'vr/replace)
+(define-key evil-normal-state-map (kbd "R") 'vr/replace)
+(define-key evil-visual-state-map (kbd "r")
+  (lambda(start end)
+  (interactive "r")
+  (let ((multiline (> (count-lines-region start end) 1))
+        (selected (buffer-substring start end)))
+    (if multiline
+        (call-interactively 'vr/replace)
+        (progn
+          (deactivate-mark)
+          (goto-char start)
+          (minibuffer-with-setup-hook
+              (lambda ()
+                (insert selected)
+                (async-start
+                 (lambda ())
+                 (lambda (res)
+                   (exit-minibuffer))))
+            (call-interactively 'vr/replace)))))))
 
 (define-key evil-normal-state-map "U" 'redo)
 (define-key evil-normal-state-map "\C-r" nil)
