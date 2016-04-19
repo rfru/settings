@@ -1,5 +1,4 @@
 ;; Define escapes before anything else.
-(define-key mc/keymap [escape] 'mc/keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
@@ -70,11 +69,12 @@
 (require 'visual-regexp)
 (require 'visual-regexp-steroids)
 (define-key evil-normal-state-map (kbd "m") 'vr/query-replace)
+
 (define-key evil-visual-state-map (kbd "m")
   (lambda(start end)
   (interactive "r")
-  (let ((multiline (> (count-lines-region start end) 1))
-        (selected (buffer-substring start end)))
+  (let ((multiline (> (count-lines start end) 1))
+        (selected (buffer-substring-no-properties start end)))
     (if multiline
         (call-interactively 'vr/replace)
         (progn
@@ -82,7 +82,8 @@
           (goto-char start)
           (minibuffer-with-setup-hook
               (lambda ()
-                (insert selected)
+                (insert
+                 (replace-regexp-in-string "\\([^[:alnum:]]\\)" "\\\\\\1" selected))
                 (async-start
                  (lambda ())
                  (lambda (res)
