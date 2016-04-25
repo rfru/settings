@@ -83,7 +83,8 @@
           (minibuffer-with-setup-hook
               (lambda ()
                 (insert
-                 (replace-regexp-in-string "\\([^[:alnum:]]\\)" "\\\\\\1" selected))
+                 (format "(%s)"
+                         (replace-regexp-in-string "\\([^[:alnum:]]\\)" "\\\\\\1" selected)))
                 (async-start
                  (lambda ())
                  (lambda (res)
@@ -106,20 +107,42 @@
 (define-key evil-normal-state-map (kbd "<backspace>")
   (lambda()
     (interactive)
-    (if compilation-in-progress
-        (progn
-          (kill-compilation)
-          (async-start
-           (lambda ()
-             (sleep-for 0.2))
-           (lambda (res)
-             (when compilation-in-progress
-               (kill-buffer "*compilation*")
-               )
-             )))
-      (let ((compilation-read-command (if compile-command nil t)))
-        (my-compile)
-       ))))
+    (cond
+     ((eq 'shell-mode major-mode)
+      (evil-write-all nil)
+      (if (boundp 'my-shell-command)
+          (let ((orig-command my-shell-command))
+            (if (get-buffer-process (current-buffer))
+                (kill-process (current-buffer))
+              (progn
+                (async-shell-command orig-command (current-buffer))
+                (evil-normal-state)
+                (setq-local my-shell-command orig-command))))
+        (let ((original-buffer (current-buffer)))
+          (save-window-excursion
+            (call-interactively 'async-shell-command))
+          (switch-to-buffer "*Async Shell Command*")
+          (evil-normal-state)
+          (setq-local my-shell-command (-first-item shell-command-history))
+          (rename-buffer (format "*%s*" my-shell-command))
+          (rename-uniquely)
+          ;; (switch-to-buffer-other-window original-buffer)
+          )))
+     (t
+      (if compilation-in-progress
+          (progn
+            (kill-compilation)
+            (async-start
+             (lambda ()
+               (sleep-for 0.2))
+             (lambda (res)
+               (when compilation-in-progress
+                 (kill-buffer "*compilation*")
+                 )
+               )))
+        (let ((compilation-read-command (if compile-command nil t)))
+          (my-compile)
+          ))))))
 
 (define-key evil-motion-state-map "c" 'helm-for-files)
 (define-key evil-normal-state-map "c" 'helm-for-files)
