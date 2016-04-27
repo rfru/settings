@@ -113,9 +113,10 @@
       (if (boundp 'my-shell-command)
           (let ((orig-command my-shell-command))
             (if (get-buffer-process (current-buffer))
-                (kill-process (current-buffer))
+                (comint-interrupt-subjob)
               (progn
                 (async-shell-command orig-command (current-buffer))
+                (setq-local comint-prompt-read-only nil)
                 (evil-normal-state)
                 (setq-local my-shell-command orig-command))))
         (let ((original-buffer (current-buffer)))
