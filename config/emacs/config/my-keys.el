@@ -122,6 +122,7 @@
           (save-window-excursion
             (call-interactively 'async-shell-command))
           (switch-to-buffer "*Async Shell Command*")
+          (setq-local comint-prompt-read-only nil)
           (evil-normal-state)
           (setq-local my-shell-command (-first-item shell-command-history))
           (rename-buffer (format "*%s*" my-shell-command))
