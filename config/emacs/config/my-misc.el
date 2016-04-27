@@ -91,6 +91,16 @@
 
 (setq compilation-always-kill t)
 
+(setq compilation-error-regexp-alist
+      (delete 'maven compilation-error-regexp-alist))
+
+(ignore-errors
+  (require 'ansi-color)
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+
 ; Jump to first error
 (setq compilation-scroll-output 'first-error)
 
