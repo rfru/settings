@@ -91,9 +91,6 @@
 
 (setq compilation-always-kill t)
 
-(setq compilation-error-regexp-alist
-      (delete 'maven compilation-error-regexp-alist))
-
 (ignore-errors
   (require 'ansi-color)
   (defun my-colorize-compilation-buffer ()
