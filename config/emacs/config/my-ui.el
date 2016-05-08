@@ -11,17 +11,9 @@
       (add-to-list 'default-frame-alist '(width  . 150))
       (add-to-list 'default-frame-alist '(height . 35))
       (set-fringe-mode 0)
-      (blink-cursor-mode -1)
       (scroll-bar-mode -1)))
     (menu-bar-mode -1)
     (setq column-number-mode t)
-    (setq beacon-blink-when-window-scrolls nil)
-    (setq beacon-blink-when-focused t)
-    (setq beacon-blink-duration 0.5)
-    (setq beacon-blink-delay 0.3)
-    (setq beacon-size 60)
-    (setq beacon-color "lavender")
-    (beacon-mode 1)
 
     (add-hook 'window-configuration-change-hook
               (lambda ()
