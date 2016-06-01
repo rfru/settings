@@ -108,6 +108,7 @@
 (setq explicit-shell-file-name "/bin/bash")
 
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
+
 (add-hook 'compilation-filter-hook 'comint-truncate-buffer)
 (setq comint-buffer-maximum-size 2000)
 (setq comint-input-ring-size 5000)

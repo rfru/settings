@@ -116,7 +116,8 @@
     (cond
      ((s-starts-with? "*shell" (buffer-name))
       (let ((dir default-directory))
-        (switch-to-buffer-other-window (get-buffer-create "*scratch*"))
+        (switch-to-buffer-other-window (get-buffer-create "*Rscratch*"))
+        (r-mode)
         (cd dir)))
      ((and (eq 'java-mode major-mode) (not is-remote-host))
       (let ((default-directory (locate-dominating-file default-directory 'gradle-is-project-dir)))
@@ -135,7 +136,7 @@
                ((eq 'go-mode major-mode)
                 (if (s-contains? "_test" (buffer-name))
                     "go test"
-                  "go build"))
+                  "go install"))
                ((eq 'sh-mode major-mode)
                 (s-concat "sh " (buffer-name)))
                ((eq 'python-mode major-mode)

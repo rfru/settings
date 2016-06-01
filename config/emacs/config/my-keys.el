@@ -117,19 +117,10 @@
               (progn
                 (async-shell-command orig-command (current-buffer))
                 (setq-local comint-prompt-read-only nil)
+                (setq-local comint-buffer-maximum-size 20000)
                 (evil-normal-state)
                 (setq-local my-shell-command orig-command))))
-        (let ((original-buffer (current-buffer)))
-          (save-window-excursion
-            (call-interactively 'async-shell-command))
-          (switch-to-buffer "*Async Shell Command*")
-          (setq-local comint-prompt-read-only nil)
-          (evil-normal-state)
-          (setq-local my-shell-command (-first-item shell-command-history))
-          (rename-buffer (format "*%s*" my-shell-command))
-          (rename-uniquely)
-          ;; (switch-to-buffer-other-window original-buffer)
-          )))
+          (helm-comint-input-ring-async-command)))
      (t
       (if compilation-in-progress
           (progn

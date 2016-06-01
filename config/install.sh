@@ -31,3 +31,4 @@ ln -sf $mcl ~/.emacs.d/.mc-lists.el
 
 mkdir -p ~/.ssh
 ln -s ~/Dropbox/keys/id_rsa ~/.ssh/id_rsa
+ln -s ~/Dropbox/keys/id_rsa.pub ~/.ssh/id_rsa.pub

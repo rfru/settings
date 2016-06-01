@@ -185,6 +185,39 @@ Show the first `helm-ff-history-max-length' elements of
 (setq helm-ag-command-option
       (s-join " "(-map '(lambda (x) (s-prepend "--ignore " x)) '("*.pb" "*.log" "*.hdf5" "*.min.js"))))
 
+(defvar helm-source-comint-input-ring-async-blank
+  (helm-build-dummy-source
+   "Run"
+   :action (helm-make-actions
+            "Run"
+            'helm-comint-input-ring-action-async-command)))
+
+(defun helm-comint-input-ring-action-async-command (candidate)
+  (switch-to-buffer (format "*%s*" candidate))
+  (rename-uniquely)
+  (async-shell-command candidate (current-buffer))
+  (setq-local comint-buffer-maximum-size 20000)
+  (setq-local comint-prompt-read-only nil)
+  (setq-local my-shell-command candidate))
+
+(defvar helm-source-comint-input-ring-async
+  '((name . "Comint history")
+    (candidates . (lambda ()
+                    (with-helm-current-buffer
+                      (ring-elements comint-input-ring))))
+    (action . helm-comint-input-ring-action-async-command))
+  "Source that provide helm completion against `comint-input-ring'.")
+
+(defun helm-comint-input-ring-async-command ()
+  (interactive)
+  (when (derived-mode-p 'comint-mode)
+    (helm :sources '(
+                     helm-source-comint-input-ring-async
+                     helm-source-comint-input-ring-async-blank)
+          :input (buffer-substring-no-properties (comint-line-beginning-position)
+                                                 (point-at-eol))
+          :buffer "*helm comint history*")))
+
 (define-key helm-map [escape] 'helm-keyboard-quit)
 
 (setq helm-candidate-number-limit 25)
