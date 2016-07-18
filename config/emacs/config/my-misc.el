@@ -42,14 +42,6 @@
 (require 'smooth-scrolling)
 (setq smooth-scroll-margin 10)
 
-(defun open-sudo ()
-  (interactive)
-  (let ((new-dir
-         (if (file-remote-p default-directory)
-             (s-replace "/ssh" "/sudo" default-directory)
-           (s-concat "/sudo:localhost:" default-directory))))
-    (helm-find-files-1 new-dir)))
-
 (defun evil-eval-region ()
      (interactive)
      (call-interactively 'eval-region)

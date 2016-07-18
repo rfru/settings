@@ -24,7 +24,7 @@
          (black (if light "#333" "#ccc"))
          (gray (if light "#aaa" "#888"))
          (yellow "#CD9B1D")
-         (lightyellow "#FFF5dE")
+         (lightyellow "#FCF2DB")
          (brown "#D2B48C")
          ;; (green "#aaa")
          ;; (green "forestgreen")

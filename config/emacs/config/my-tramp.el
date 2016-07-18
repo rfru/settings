@@ -60,6 +60,21 @@ apparently didn't already exist."
         (make-directory emacs-dir))
       (copy-file "~/.emacs.d/server/server" file t))))
 
+(defun open-sudo ()
+  (interactive)
+  (let ((new-dir
+         (if (file-remote-p default-directory)
+             (let* ((ds (tramp-dissect-file-name default-directory))
+                   (prefix (substring (tramp-make-tramp-file-name
+                    "ssh"
+                    (tramp-file-name-user ds)
+                    (tramp-file-name-host ds) nil) 0 -1)))
+               (progn
+                 (message (s-concat prefix (s-replace "/ssh" "|sudo" default-directory)))
+                 (s-concat prefix (s-replace "/ssh" "|sudo" default-directory))))
+           (s-concat "/sudo:localhost:" default-directory))))
+    (helm-find-files-1 new-dir)))
+
 (setq tramp-verbose 0)
 (setq vc-handled-backends nil)
 (setq vc-ignore-dir-regexp
@@ -70,8 +85,9 @@ apparently didn't already exist."
 (update-tramp-emacs-server-port-forward tramp-default-method)
 (setq tramp-remote-path '(tramp-own-remote-path))
 (add-to-list 'tramp-default-proxies-alist
-             '("\\`mtl\\'" "\\`root\\'" "/ssh:%h:")
-             )
+             '(nil "\\`root\\'" "/ssh:%h:"))
+(add-to-list 'tramp-default-proxies-alist
+             '((regexp-quote (system-name)) nil nil))
 (setq tramp-ssh-controlmaster-options
       "-o ControlPath=/tmp/%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")
 
