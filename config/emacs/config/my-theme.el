@@ -50,7 +50,7 @@
      `(font-lock-builtin-face ((t (:foreground ,black))))
      `(font-lock-constant-face ((t ())))
      `(font-lock-string-face ((t (:foreground ,black :background ,verylightgray :family "Menlo" :height 0.9))))
-     `(font-lock-function-name-face ((t (:foreground ,pink :family "Tisa Sans Pro" :weight normal :height 1.4))))
+     `(font-lock-function-name-face ((t (:foreground ,pink :family "Tisa Sans Pro" :weight normal :height 1.3))))
      `(font-lock-comment-face ((t (:foreground ,gray :slant italic))))
      `(font-lock-keyword-face ((t (:foreground ,black  :weight bold))))
      `(font-lock-variable-name-face ((t ())))

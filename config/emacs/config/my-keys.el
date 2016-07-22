@@ -144,9 +144,15 @@
 (define-key isearch-mode-map (kbd "<down>") 'my-isearch-forward)
 (define-key isearch-mode-map (kbd "<up>") 'my-isearch-backward)
 (define-key evil-visual-state-map "/"
-  (lambda ()
-    (interactive)
-    (helm-swoop)))
+  (lambda(start end)
+    (interactive "r")
+    (if (>= (buffer-size) (* 100 2000))
+      (let ((selected (buffer-substring-no-properties start end)))
+            (progn
+              (deactivate-mark)
+              (call-interactively 'isearch-forward)
+              (isearch-yank-string selected)))
+      (helm-swoop))))
 (define-key evil-normal-state-map "/"
   (lambda ()
     (interactive)
