@@ -6,7 +6,6 @@
 (require 'dash)
 (require 's)
 (require 'f)
-(require 'helm-swoop)
 
 (setq helm-mp-matching-method 'multi3)
 (setq helm-mp-highlight-delay 0.1)
@@ -19,8 +18,18 @@
 (setq recentf-max-saved-items 250)
 (setq recentf-auto-cleanup 'never)
 (setq recentf-save-file (expand-file-name "~/.emacs.d/.recentf"))
+(defvar my-recentf-list-prev nil)
+(defvar my-recentd-list-prev nil)
+
+(defun my-recentf-save-list ()
+  "If recentf-list and previous recentf-list is equal,
+do nothing"
+  (unless (equal recentf-list my-recentf-list-prev)
+    (recentf-save-list)
+    (setq my-recentf-list-prev recentf-list)))
+
 (setq recentf-auto-save-timer
-      (run-with-idle-timer 10 t 'recentf-save-list))
+      (run-with-idle-timer 10 t 'my-recentf-save-list))
 (recentf-mode 1)
 
 (defun my-filter (candidates _source)
@@ -105,7 +114,9 @@
             tmp))))
 
 (defun recentd-save-list ()
-  (dump-vars-to-file '(recentd-list) recentd-file))
+  (unless (equal recentd-list my-recentd-list-prev)
+    (dump-vars-to-file '(recentd-list) recentd-file)
+    (setq my-recentd-list-prev recentd-list)))
 (setq recentd-list '())
 (when (file-exists-p recentd-file)
     (load-file recentd-file))
@@ -159,8 +170,6 @@ Show the first `helm-ff-history-max-length' elements of
         (progn
           (add-to-recentd dir)
           (helm-find-files-1 dir nil)))))
-
-(setq helm-swoop-split-direction 'split-window-horizontally)
 
 (setq helm-source-comint-input-ring
   '((name . "Comint history")
@@ -223,8 +232,7 @@ Show the first `helm-ff-history-max-length' elements of
 (setq helm-candidate-number-limit 25)
 (setq kill-ring-max 500)
 
-(setq helm-swoop-speed-or-color nil)
-
+(setq ivy-height 15)
 
 (helm-mode 1)
 

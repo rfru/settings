@@ -5,13 +5,12 @@
 (defun reset-ui ()
   (when (display-graphic-p)
     (tool-bar-mode -1)
-    (when (equal system-type 'darwin)
-      (set-default-font "Tisa Pro 14")
-      (setq-default line-spacing 1)
-      (add-to-list 'default-frame-alist '(width  . 150))
-      (add-to-list 'default-frame-alist '(height . 35))
-      (set-fringe-mode 0)
-      (scroll-bar-mode -1)))
+    (set-frame-font "Tisa Pro 14" t t)
+    (setq-default line-spacing 1)
+    (add-to-list 'default-frame-alist '(width  . 150))
+    (add-to-list 'default-frame-alist '(height . 35))
+    (set-fringe-mode 0)
+    (scroll-bar-mode -1))
     (menu-bar-mode -1)
     (setq column-number-mode t)
 
@@ -22,7 +21,6 @@
                                         ; Highlight current line
     (custom-set-variables
      '(inhibit-startup-screen t)))
-
 (add-hook 'after-make-frame-functions
           (lambda (frame) (reset-ui)))
 (reset-ui)

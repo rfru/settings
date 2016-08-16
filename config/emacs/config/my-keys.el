@@ -1,9 +1,11 @@
+(require 'ivy)
 ;; Define escapes before anything else.
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
@@ -146,19 +148,28 @@
 (define-key evil-visual-state-map "/"
   (lambda(start end)
     (interactive "r")
-    (if (>= (buffer-size) (* 100 2000))
-      (let ((selected (buffer-substring-no-properties start end)))
-            (progn
-              (deactivate-mark)
-              (call-interactively 'isearch-forward)
-              (isearch-yank-string selected)))
-      (helm-swoop))))
+    (let ((selected (buffer-substring-no-properties start end)))
+      (if (>= (buffer-size) (* 100 3000))
+          (progn
+            (setq my-swiper-enabled nil)
+            (deactivate-mark)
+            (call-interactively 'isearch-forward)
+            (isearch-yank-string selected)))
+      (progn
+        (setq my-swiper-enabled t)
+        (deactivate-mark)
+        (swiper selected)
+        ))))
 (define-key evil-normal-state-map "/"
   (lambda ()
     (interactive)
-    (if (>= (buffer-size) (* 100 2000))
-        (isearch-forward)
-      (helm-swoop :$query ""))))
+    (if (>= (buffer-size) (* 100 3000))
+        (progn
+          (setq my-swiper-enabled nil)
+          (isearch-forward))
+      (progn
+        (setq my-swiper-enabled t)
+        (swiper)))))
 (define-key evil-normal-state-map "s" 'ace-jump-word-mode)
 
 (define-key evil-normal-state-map "?" 'my-ag-search)

@@ -30,7 +30,7 @@
          ;; (green "forestgreen")
          (red "red")
          (blue "#6E819F")
-         (verylightgray (if light "#f6f6f6" "#404040"))
+         (verylightgray (if light "#f2f2f2" "#404040"))
          (lightgray2 (if light "#efefef" "#505050"))
          (lightgray (if light "#e7e7e7" "#585858"))
          (pink "#EE6363")
@@ -43,7 +43,7 @@
      ;;;;;;;;;;;;;;;;;;;;;;;
      `(default ((t (:foreground ,black :background ,white))))
      `(isearch ((t (:background ,lightyellow))))
-     `(lazy-highlight ((t (:foreground ,lightgray :background ,black :inverse-video t))))
+     `(lazy-highlight ((t (:inherit highlight))))
      `(hl-line ((t :background ,verylightgray)))
      `(highlight ((t :background ,lightgray)))
 
@@ -69,7 +69,7 @@
      `(mode-line-buffer-id ((t (:height 1.2 :weight normal :foreground ,black  :family "Tisa Sans Pro"))))
      `(mode-line-inactive ((t (:inherit mode-line))))
      `(vertical-border ((t (:foreground ,lightgray :background ,white))))
-     `(match ((t (:underline t :weight bold :foreground ,black))))
+     `(match ((t (:inherit isearch))))
      `(header-line ((t (:foreground ,gray :background ,lightgray :family "Tisa Sans Pro"))))
      `(show-paren-match ((t (:underline ,pureblack))))
      `(helm-source-header ((t (:foreground ,darkgray :weight normal :underline nil :height 1.8 :family "Tisa Sans Pro"))))
@@ -109,8 +109,6 @@
      '(web-mode-doctype-face ((t (:inherit web-mode-comment-face))))
      '(web-mode-symbol-face ((t (:inherit web-mode-comment-face))))
      '(web-mode-current-element-highlight-face ((t (:inherit highlight))))
-     '(helm-swoop-target-word-face ((t (:inherit isearch))))
-     `(helm-swoop-target-line-face ((t (:inherit hl-line))))
 
      '(ac-completion-face ((t (:inherit font-lock-comment-face))))
      '(ac-emacs-eclim-candidate-face ((t (:inherit ac-candidate-face))))
@@ -140,6 +138,12 @@
      `(vr/group-0 ((t (:foreground ,pink))))
      `(vr/group-1 ((t (:foreground ,gray))))
      `(vr/group-2 ((t (:foreground ,brown))))
+
+     `(ivy-current-match ((t (:background ,verylightgray))))
+     `(swiper-line-face ((t (:background ,verylightgray))))
+     '(ivy-minibuffer-match-face-2 ((t (:inherit isearch))))
+     `(ivy-minibuffer-match-face-3 ((t (:foreground ,pink))))
+     `(ivy-minibuffer-match-face-1 ((t (:foreground ,brown))))
 
      `(helm-match ((t (:weight bold))))
      `(helm-candidate-number ((t (:inherit mode-line))))

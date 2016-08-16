@@ -9,8 +9,8 @@
         'smooth-scrolling
         'protobuf-mode
         'ess
-        'helm-swoop
         'goto-last-change
+        'swiper
         'diminish
         'async
         'multi-term
