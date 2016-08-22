@@ -13,7 +13,6 @@
 (require 'my-misc)
 (require 'my-term)
 (require 'my-tramp)
-(require 'my-google)
 (require 'my-keys)
 
 (require 'my-ui)

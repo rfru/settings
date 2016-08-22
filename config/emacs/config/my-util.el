@@ -52,9 +52,13 @@
 
 (defun my-delete-buffer()
   (interactive)
-  (when (and (buffer-modified-p) (not (string-match (rxt-elisp-to-pcre "^\\*.+?\\*.*$") (buffer-name))))
-      (evil-write nil nil nil buffer-file-name t))
-  (evil-delete-buffer-keep-windows (current-buffer) t))
+  (let ((active-modes (--filter (and (boundp it) (symbol-value it)) minor-mode-list)))
+    (if (-contains? active-modes 'with-editor-mode)
+        (call-interactively 'with-editor-finish)
+      (progn
+        (when (and (buffer-modified-p) (not (string-match (rxt-elisp-to-pcre "^\\*.+?\\*.*$") (buffer-name))))
+          (evil-write nil nil nil buffer-file-name t))
+        (evil-delete-buffer-keep-windows (current-buffer) t)))))
 
 (defun minibuffer-keyboard-quit ()
   "Abort recursive edit.

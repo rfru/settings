@@ -41,6 +41,7 @@
         'pretty-symbols
         'volatile-highlights
         'typescript-mode
+        'with-editor
         'go-mode
         'haskell-mode
         'smartparens

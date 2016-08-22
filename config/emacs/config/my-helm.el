@@ -150,8 +150,6 @@ Show the first `helm-ff-history-max-length' elements of
   (with-temp-buffer
     (add-to-recentd dir)
     (cd dir)
-    (when (file-remote-p default-directory)
-      (copy-auth))
     (shell)
     (rename-uniquely)))
 

@@ -81,6 +81,6 @@ user@host) value will be required to perform the connection."
       '("--noediting"
         "-i"
         "-c"
-        "export PROMPT_COMMAND=\"history -a; $PROMPT_COMMAND\"; bash"))
+        "export PROMPT_COMMAND=\"history -a; $PROMPT_COMMAND\"; function e { if [ $# -eq 0 ] || [[ ! -f $1 ]]; then return; fi; eval \"$EDITOR\" \"$@\"; } ; export -f e; bash"))
 
 (provide 'my-term)
