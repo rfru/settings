@@ -129,7 +129,7 @@
             (kill-compilation)
             (async-start
              (lambda ()
-               (sleep-for 0.2))
+               (sleep-for 2.0))
              (lambda (res)
                (when compilation-in-progress
                  (kill-buffer "*compilation*")

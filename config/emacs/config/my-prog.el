@@ -141,7 +141,7 @@
                ((eq 'sh-mode major-mode)
                 (s-concat "sh " (buffer-name)))
                ((eq 'python-mode major-mode)
-                (s-concat "python " (buffer-name)))
+                (s-concat "python " (file-name-base (buffer-file-name)) "." (file-name-extension (buffer-file-name))))
                )))
         (call-interactively 'compile)))))
 
