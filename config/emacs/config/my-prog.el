@@ -21,8 +21,6 @@
 (setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
 
-(add-hook 'python-mode-hook (lambda () (run-python "python")))
-
 (require 'volatile-highlights)
 
 ; Don't think yank or delete works here.

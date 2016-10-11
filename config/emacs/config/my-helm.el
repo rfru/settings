@@ -32,6 +32,11 @@ do nothing"
       (run-with-idle-timer 10 t 'my-recentf-save-list))
 (recentf-mode 1)
 
+(defun buffer-in-window-list ()
+  (let (buffers)
+    (walk-windows (lambda (window) (push (window-buffer window) buffers)) t t)
+    buffers))
+
 (defun my-filter (candidates _source)
 (let* ((expanded default-directory)
       (open-buffers (-non-nil (-map 'buffer-file-name (buffer-list))))
@@ -65,11 +70,10 @@ do nothing"
         collect (cons name i)))
 
 (defun shell-buffers ()
-  ; Hack to get the other non-helm buffer
-  (let* ((this-name (buffer-name (nth 1 (buffer-list))))
+  (let* ((open (buffer-in-window-list))
          (shells
      (-filter (lambda (b)
-                (and (not (s-equals? (buffer-name b) this-name))
+                (and (not (-contains? open b))
                      (s-matches? (rxt-elisp-to-pcre "^\*(terminal|shell)") (buffer-name b))))
               (buffer-list))))
     (-map (lambda (b)
