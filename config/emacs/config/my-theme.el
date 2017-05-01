@@ -7,6 +7,7 @@
 (setq evil-insert-state-cursor '((bar . 2) "#666"))
 (setq evil-visual-state-cursor '(box "#666"))
 
+;; Set mode line to top
 (setq-default header-line-format mode-line-format)
 (setq-default mode-line-format nil)
 (setq go-fontify-function-calls nil)

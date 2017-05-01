@@ -103,7 +103,7 @@
 
 (add-hook 'compilation-filter-hook 'comint-truncate-buffer)
 (setq comint-buffer-maximum-size 2000)
-(setq comint-input-ring-size 5000)
+(setq comint-input-ring-size 10000)
 (setq comint-prompt-read-only t)
 
 (defun narrow-or-widen-dwim (p)
