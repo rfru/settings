@@ -12,18 +12,22 @@
 
 (defun open-sudo ()
   (interactive)
-  (let ((new-dir
-         (if (file-remote-p default-directory)
-             (let* ((ds (tramp-dissect-file-name default-directory))
-                   (prefix (substring (tramp-make-tramp-file-name
-                    "ssh"
-                    (tramp-file-name-user ds)
-                    (tramp-file-name-host ds) nil) 0 -1)))
-               (progn
-                 (message (s-concat prefix (s-replace "/ssh" "|sudo" default-directory)))
-                 (s-concat prefix (s-replace "/ssh" "|sudo" default-directory))))
-           (s-concat "/sudo:localhost:" default-directory))))
-    (helm-find-files-1 new-dir)))
+  (let* ((candidate default-directory)
+         (buf (helm-basename candidate))
+         (host (file-remote-p candidate 'host))
+         (remote-path (format "/%s:%s:%s"
+                              helm-su-or-sudo
+                              (or host "")
+                              (expand-file-name
+                               (if host
+                                   (file-remote-p candidate 'localname)
+                                 candidate))))
+         non-essential)
+    (if (buffer-live-p (get-buffer buf))
+        (progn
+          (set-buffer buf)
+          (find-alternate-file remote-path))
+      (helm-find-files-1 remote-path))))
 
 (setq tramp-verbose 0)
 (setq vc-handled-backends nil)
