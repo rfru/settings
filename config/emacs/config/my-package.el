@@ -10,6 +10,7 @@
         'protobuf-mode
         'ess
         'goto-last-change
+        'scss-mode
         'swiper
         'diminish
         'async
@@ -21,9 +22,7 @@
         'helm-ag
         'evil-matchit ; Enhance % operator for tags and many other structures
         'magit
-        'scss-mode
         'groovy-mode
-        'emacs-eclim
         'markdown-mode
         'yaml-mode
         'web-mode

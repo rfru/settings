@@ -22,7 +22,3 @@ cyan=$(tput setaf 6)
 white=$(tput setaf 7)
 
 export PS1='\h:\w $ '
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi

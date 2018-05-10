@@ -50,7 +50,7 @@
 
      `(font-lock-builtin-face ((t (:foreground ,black))))
      `(font-lock-constant-face ((t ())))
-     `(font-lock-string-face ((t (:foreground ,black :background ,verylightgray :family "Menlo" :height 0.9))))
+     `(font-lock-string-face ((t (:foreground ,black :background ,verylightgray :family ,console-font :height 0.9))))
      `(font-lock-function-name-face ((t (:foreground ,pink :family "Tisa Sans Pro" :weight normal :height 1.3))))
      `(font-lock-comment-face ((t (:foreground ,gray :slant italic))))
      `(font-lock-keyword-face ((t (:foreground ,black  :weight bold))))
@@ -96,7 +96,7 @@
      '(whitespace-empty ((t (:background nil :foreground nil))))
      `(whitespace-line ((t (:foreground ,red))))
      '(whitespace-trailing ((t (:inherit trailing-whitespace :background nil))))
-     `(whitespace-space ((t (:family "Menlo" :height 100))))
+     `(whitespace-space ((t (:family ,console-font :height 100))))
 
      '(secondary-selection ((t (:inherit highlight))))
      '(web-mode-html-tag-bracket-face ((t (:inherit default))))

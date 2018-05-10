@@ -151,11 +151,20 @@ Show the first `helm-ff-history-max-length' elements of
      :name "Directory History")))
 
 (defun my-find-directory-shell (dir)
-  (with-temp-buffer
-    (add-to-recentd dir)
-    (cd dir)
-    (shell)
-    (rename-uniquely)))
+    (with-temp-buffer
+      (add-to-recentd dir)
+      (other-window 1 nil)
+      (cd dir)
+      (shell)
+      (rename-uniquely)))
+;; (defun my-find-directory-shell (dir)
+;;   (progn 
+;;     (add-to-recentd dir)
+;;     (let ((default-directory dir))
+;;       (other-window 1 nil)
+;;         (shell)
+;;         (rename-uniquely)
+;;         )))
 
 (defun my-find-directory-term (dir)
   (progn

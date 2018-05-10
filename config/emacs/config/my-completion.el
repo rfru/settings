@@ -1,7 +1,5 @@
-(require 'company-emacs-eclim)
 (require 'company-dabbrev)
 (require 'company-go)
-(company-emacs-eclim-setup)
 (add-to-list 'company-backends 'company-ghc)
 (add-to-list 'company-backends 'company-jedi)
 (add-to-list 'company-backends 'company-go)
