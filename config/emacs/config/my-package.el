@@ -10,7 +10,6 @@
         'protobuf-mode
         'ess
         'goto-last-change
-        'scss-mode
         'swiper
         'diminish
         'async

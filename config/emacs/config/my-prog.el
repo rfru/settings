@@ -49,7 +49,6 @@
 (require 'web-mode)
 (require 'yaml-mode)
 (require 'typescript-mode)
-(require 'scss-mode)
 (add-to-list 'auto-mode-alist '("\\.pyx$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
@@ -59,7 +58,6 @@
 (add-to-list 'auto-mode-alist '("\\.soy$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.xml$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ts$" . typescript-mode))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ; This is broken.
 (setq typescript-auto-indent-flag nil)
