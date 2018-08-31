@@ -7,7 +7,7 @@ unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
     alias ls='ls --color=auto'
     # Disable middle mouse button
-    xmodmap -e 'pointer = 1 25 3 4 5 6 7 8 9'
+    xmodmap -e 'pointer = 1 25 3 4 5 6 7 8 9 10 11 12'
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias ls='ls -G'
 fi
