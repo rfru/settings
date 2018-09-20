@@ -137,6 +137,7 @@ occurance instead of jumping to the beginning of current one."
       (ivy-previous-line)
     (progn
       (when (and isearch-forward
+                 (not (null isearch-other-end))
                  (/= (point) isearch-other-end))
         (isearch-repeat 'backward))
       (isearch-repeat 'backward))))
