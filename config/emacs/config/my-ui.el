@@ -8,7 +8,7 @@
 (defun reset-ui ()
   (when (display-graphic-p)
     (tool-bar-mode -1)
-    (set-frame-font "Tisa Pro 14" t t)
+    (set-frame-font "Tisa Pro 12" t t)
     (setq-default line-spacing 1)
     (add-to-list 'default-frame-alist '(width  . 150))
     (add-to-list 'default-frame-alist '(height . 35))
