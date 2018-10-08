@@ -78,7 +78,7 @@
 (setq undo-tree-visualizer-diff t)
 (setq undo-tree-history-directory-alist '((".*" . "~/.emacs.d/undo")))
 
-  (require 'uniquify)
+(require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
 (setq compilation-always-kill t)

@@ -3,7 +3,7 @@
           "Menlo"
         "Consolas"))
 (add-hook 'term-mode-hook (lambda ()
-                            (face-remap-add-relative 'default '(:family ,console-font :height 120))
+                            (face-remap-add-relative 'default `(:family ,console-font :height 120))
                             (setq line-spacing 3)))
 (defun reset-ui ()
   (when (display-graphic-p)
