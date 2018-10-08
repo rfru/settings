@@ -97,7 +97,7 @@ do nothing"
       (helm-build-sync-source "Buffers"
         :candidates (lambda ()  (-map 'buffer-name (no-shells)))
         :candidate-number-limit 15
-        :filtered-candidate-transformer '(helm-skip-boring-buffers buffers-transformer)
+        :filtered-candidate-transformer '(helm-skip-boring-buffers)
         :action 'helm-buffers-list-persistent-action))
 
 (setq helm-for-files-preferred-list
@@ -151,20 +151,12 @@ Show the first `helm-ff-history-max-length' elements of
      :name "Directory History")))
 
 (defun my-find-directory-shell (dir)
-    (with-temp-buffer
-      (add-to-recentd dir)
-      (other-window 1 nil)
-      (cd dir)
-      (shell)
-      (rename-uniquely)))
-;; (defun my-find-directory-shell (dir)
-;;   (progn 
-;;     (add-to-recentd dir)
-;;     (let ((default-directory dir))
-;;       (other-window 1 nil)
-;;         (shell)
-;;         (rename-uniquely)
-;;         )))
+  (other-window 1 nil)
+  (with-temp-buffer
+    (add-to-recentd dir)
+    (cd dir)
+    (shell)
+    (rename-uniquely)))
 
 (defun my-find-directory-term (dir)
   (progn
