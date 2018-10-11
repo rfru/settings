@@ -61,7 +61,7 @@ do nothing"
          (proc (get-buffer-process buf)))
     (list
      (cond
-      ((not file) (propertize name 'face 'italic))
+      ((not file) (propertize name 'face '(:slant italic)))
       (t name)))))
 
 (defun buffers-transformer (buffers _source)
@@ -97,7 +97,7 @@ do nothing"
       (helm-build-sync-source "Buffers"
         :candidates (lambda ()  (-map 'buffer-name (no-shells)))
         :candidate-number-limit 15
-        :filtered-candidate-transformer '(helm-skip-boring-buffers)
+        :filtered-candidate-transformer '(helm-skip-boring-buffers buffers-transformer)
         :action 'helm-buffers-list-persistent-action))
 
 (setq helm-for-files-preferred-list
