@@ -47,7 +47,8 @@
         'persistent-scratch
         'undo-tree ; Automatically loaded by evil.
         'exec-path-from-shell
-        'helm)
+        'helm
+        'dumb-jump)
   "Libraries that should be installed by default.")
 
 (defun starter-kit-elpa-install ()

@@ -7,6 +7,9 @@
 ;;   '(eclim-executable "~/Desktop/eclipse/eclim"))
 ;; (global-eclim-mode)
 
+(require 'dumb-jump)
+(setq dumb-jump-selector 'ivy)
+
 ; Electric indent doesn't work with comments
 (electric-indent-mode -1)
 (setq initial-major-mode 'text-mode)
