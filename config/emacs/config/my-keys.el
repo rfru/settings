@@ -214,15 +214,15 @@
     ))
 (evil-define-key 'normal term-raw-map (kbd "p") 'term-paste)
 
-;; (evil-define-key 'normal emacs-lisp-mode-map (kbd "RET") 'eval-last-sexp)
-;; (evil-define-key 'normal lisp-interaction-mode-map (kbd "RET") 'eval-last-sexp)
+(evil-define-key 'normal emacs-lisp-mode-map (kbd "RET") 'eval-last-sexp)
+(evil-define-key 'normal lisp-interaction-mode-map (kbd "RET") 'eval-last-sexp)
 (evil-define-key 'visual emacs-lisp-mode-map (kbd "RET") 'evil-eval-region)
 (evil-define-key 'visual lisp-interaction-mode-map (kbd "RET") 'evil-eval-region)
-;; (evil-define-key 'normal ess-mode-map (kbd "RET") 'my-ess-eval)
+(evil-define-key 'normal ess-mode-map (kbd "RET") 'my-ess-eval)
 (evil-define-key 'visual ess-mode-map (kbd "RET") 'my-ess-eval)
-(evil-define-key 'visual python-mode-map (kbd "RET") 'python-eval-region-or-line)
+(evil-define-key 'normal go-mode-map (kbd "RET") 'godef-jump)
+;; (evil-define-key 'visual python-mode-map (kbd "RET") 'python-eval-region-or-line)
 ;; (evil-define-key 'normal python-mode-map (kbd "RET") 'python-eval-region-or-line)
-(define-key evil-normal-state-map (kbd "RET") 'dumb-jump-go)
 
 (evil-set-initial-state 'compilation-mode 'normal)
 
