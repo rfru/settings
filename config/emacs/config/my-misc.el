@@ -27,7 +27,7 @@
 
 (setq lazy-highlight-initial-delay 0)
 (setq revert-without-query '(".*"))
-;; (global-auto-revert-mode)
+(global-auto-revert-mode)
 
 ; Only backup locally
 (defvar backup-dir (expand-file-name "~/.emacs.d/backup/"))
