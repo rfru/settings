@@ -1,4 +1,5 @@
 (require 'multi-term)
+(require 'tramp)
 
 ;;; derived from http://www.enigmacurry.com/2008/12/26/emacs-ansi-term-tricks/
 ;;; stolen from http://github.com/tavisrudd/emacs.d

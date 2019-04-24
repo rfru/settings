@@ -1,4 +1,5 @@
 (require 'ivy)
+(require 'popup)
 ;; Define escapes before anything else.
 (define-key popup-menu-keymap [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
