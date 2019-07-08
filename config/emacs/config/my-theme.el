@@ -146,6 +146,9 @@
      `(ivy-minibuffer-match-face-3 ((t (:foreground ,pink))))
      `(ivy-minibuffer-match-face-1 ((t (:foreground ,brown))))
 
+     `(avy-lead-face ((t (:foreground ,red :underline ,darkgray))))
+     `(avy-lead-face-0 ((t (:foreground ,red :underline ,darkgray))))
+
      `(helm-match ((t (:weight bold))))
      `(helm-candidate-number ((t (:inherit mode-line))))
      `(helm-selection ((t (:background ,verylightgray)))))))

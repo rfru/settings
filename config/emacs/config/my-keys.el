@@ -172,7 +172,14 @@
       (progn
         (setq my-swiper-enabled t)
         (swiper)))))
-(define-key evil-normal-state-map "s" 'ace-jump-word-mode)
+
+(setq avy-keys
+      '(
+        ?a ?s ?d ?f ?g ?h ?j ?k ?l ?;
+        ?w ?e ?r ?t ?y ?u ?i ?o
+        ?c ?m ?v ?n
+        ))
+(define-key evil-normal-state-map "s" 'avy-goto-word-1)
 
 (define-key evil-normal-state-map "?" 'my-ag-search)
 

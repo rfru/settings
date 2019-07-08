@@ -28,7 +28,7 @@
         'flycheck
         'visual-regexp
         'lua-mode
-        'ace-jump-mode
+        'avy
         'visual-regexp-steroids
         'evil-leader
         'company-jedi
