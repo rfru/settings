@@ -12,6 +12,7 @@
 (setq company-echo-delay 0)                          ; remove annoying blinking
 (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
 (delete 'company-files company-backends)
+(delete 'company-clang company-backends)
 
 ; Don't complete filenames in shell scripts
 (require 'sh-script)
