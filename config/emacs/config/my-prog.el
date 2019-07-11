@@ -58,6 +58,7 @@
 (add-to-list 'auto-mode-alist '("\\.soy$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.xml$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ts$" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ; This is broken.
 (setq typescript-auto-indent-flag nil)

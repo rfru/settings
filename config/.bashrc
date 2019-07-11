@@ -1,7 +1,8 @@
+export CONAN_REVISIONS_ENABLED=1
 export LANG='en_US.UTF-8'
 export LC_ALL="en_US.UTF-8"
 export GOPATH=$HOME/go
-export PATH=/usr/local/sbin:/usr/local/go/bin:$GOPATH/bin:$HOME/settings:$HOME/bin:$HOME/Library/Haskell/bin:/Applications/Emacs.app/Contents/MacOS/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:/usr/local/go/bin:$GOPATH/bin:$HOME/settings:$HOME/bin:$HOME/.local/bin:/Applications/Emacs.app/Contents/MacOS/bin:/usr/local/bin:$PATH
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
