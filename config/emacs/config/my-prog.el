@@ -76,6 +76,8 @@
 (setq typescript-indent-level 2)
 (setq c-basic-offset 2)
 (setq js2-basic-offset 2)
+(require 'google-c-style)
+(add-hook 'c-mode-common-hook 'google-set-c-style)
 
 (setq css-indent-offset 2)
 (setq python-indent-guess-indent-offset nil)
