@@ -199,5 +199,14 @@ is a convention for multi-build projects, where dirname is under some
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
+(defun clang-format-buffer-when-used ()
+  ;; Only use clang-format when it's in the project root.
+  (when (locate-dominating-file "." ".clang-format")
+    (clang-format-buffer))
+  ;; Evaluate to nil, else the file is considered already saved.
+  nil)
+(add-hook 'c++-mode-hook
+  (lambda () (add-to-list 'write-file-functions 'clang-format-buffer-when-used)))
+
 (provide 'my-prog)
 

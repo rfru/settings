@@ -47,6 +47,7 @@
         'persistent-scratch
         'undo-tree ; Automatically loaded by evil.
         'exec-path-from-shell
+        'clang-format
         'helm)
   "Libraries that should be installed by default.")
 

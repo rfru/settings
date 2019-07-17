@@ -1,4 +1,5 @@
 export CONAN_REVISIONS_ENABLED=1
+export CONAN_CPU_COUNT=2
 export LANG='en_US.UTF-8'
 export LC_ALL="en_US.UTF-8"
 export GOPATH=$HOME/go
