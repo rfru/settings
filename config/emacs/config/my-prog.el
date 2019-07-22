@@ -206,7 +206,7 @@ is a convention for multi-build projects, where dirname is under some
   ;; Evaluate to nil, else the file is considered already saved.
   nil)
 (add-hook 'c++-mode-hook
-  (lambda () (add-to-list 'write-file-functions 'clang-format-buffer-when-used)))
+  (lambda () (add-hook 'write-file-functions 'clang-format-buffer-when-used nil t)))
 
 (provide 'my-prog)
 
