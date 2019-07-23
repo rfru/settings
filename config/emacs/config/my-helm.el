@@ -236,6 +236,7 @@ Show the first `helm-ff-history-max-length' elements of
 (setq kill-ring-max 500)
 
 (setq ivy-height 15)
+(customize-set-variable 'helm-ff-lynx-style-map t)
 
 (helm-mode 1)
 

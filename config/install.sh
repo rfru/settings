@@ -1,7 +1,8 @@
 #!/bin/bash
-sudo aptitude install -y python-pip libtool autoconf automake pkg-config
+sudo aptitude install -y python-pip libtool autoconf automake pkg-config cmake
 sudo pip install jedi epc
 sudo apt-get install -y silversearcher-ag
+cmd='readlink'
 
 ln -sf `$cmd -f .gitconfig` ~
 ln -sf `$cmd -f .bash_profile` ~
@@ -19,6 +20,7 @@ mkdir -p ~/.ssh
 ln -s ~/Dropbox/keys/id_rsa ~/.ssh/id_rsa
 ln -s ~/Dropbox/keys/id_rsa.pub ~/.ssh/id_rsa.pub
 ln -s ~/Dropbox/keys/config ~/.ssh/config
+chmod 600 ~/Dropbox/keys/id_rsa ~/Dropbox/keys/*.pem
 
 go get golang.org/x/tools/cmd/goimports
 go get github.com/nsf/gocode

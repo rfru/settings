@@ -1,10 +1,12 @@
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(setq package-archives
+             '(("melpa" . "http://melpa.milkbox.net/packages/")
+              ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
 (defvar starter-kit-packages
-  (list 'evil
+  (list
+        'undo-tree ; Needed for dependencies
         'pcre2el
         'smooth-scrolling
         'protobuf-mode
@@ -45,7 +47,7 @@
         'smartparens
         'js2-mode
         'persistent-scratch
-        'undo-tree ; Automatically loaded by evil.
+        'evil
         'exec-path-from-shell
         'clang-format
         'helm)
