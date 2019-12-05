@@ -33,7 +33,6 @@
         'avy
         'visual-regexp-steroids
         'evil-leader
-        'company-jedi
         'highlight-indentation
         'company
         'company-go
