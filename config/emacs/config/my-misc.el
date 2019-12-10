@@ -98,6 +98,8 @@
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
 (setq explicit-shell-file-name "/bin/bash")
+; Ensure .bashrc is read.
+(setq shell-command-switch "-ic")
 
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 
