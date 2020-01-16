@@ -82,6 +82,8 @@
 (setq css-indent-offset 2)
 (setq python-indent-guess-indent-offset nil)
 (setq python-indent-offset 2)
+(setq python-shell-interpreter "python3")
+(setq flycheck-python-pylint-executable "python3")
 (setq-default evil-shift-width 2)
 
 ; For highlight-indentation bug:
