@@ -49,6 +49,8 @@
         'evil
         'exec-path-from-shell
         'clang-format
+        'yapfify
+        'py-isort
         'helm)
   "Libraries that should be installed by default.")
 
