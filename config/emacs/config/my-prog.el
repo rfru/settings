@@ -210,9 +210,5 @@ is a convention for multi-build projects, where dirname is under some
 (add-hook 'c++-mode-hook
   (lambda () (add-hook 'write-file-functions 'clang-format-buffer-when-used nil t)))
 
-(add-hook 'python-mode-hook 'yapf-mode)
-(require 'py-isort)
-(add-hook 'before-save-hook 'py-isort-before-save)
-
 (provide 'my-prog)
 
